@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OEMInformation>
+                <Manufacturer>Fabrikam</Manufacturer>
+                <SupportHours>08:30 - 21:30</SupportHours>
+                <SupportPhone>12345678</SupportPhone>
+                <SupportURL>http://www.fabrikam.com</SupportURL>
+                <Model>FabrikamFabrikam</Model>
+                <Logo>%windir%\system32\OEM\FabrikamLogo.png</Logo>
+            </OEMInformation>
+            <ComputerName>ComputerName</ComputerName>
+            <OEMName>OEMName</OEMName>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OEMInformation>
+                <Manufacturer>Fabrikam</Manufacturer>
+                <SupportHours>08:30 - 21:30</SupportHours>
+                <SupportPhone>12345678</SupportPhone>
+                <SupportURL>http://www.fabrikam.com</SupportURL>
+                <Model>FabrikamFabrikam</Model>
+                <Logo>%windir%\system32\OEM\FabrikamLogo.png</Logo>
+            </OEMInformation>
+            <ComputerName>ComputerName</ComputerName>
+            <OEMName>OEMName</OEMName>
+        </component>
+	</settings>
+    <settings pass="windowsPE">
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>de-de</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>de-de</InputLocale>
+            <SystemLocale>de-de</SystemLocale>
+            <UILanguage>de-de</UILanguage>
+            <UserLocale>de-de</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>de-de</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>de-de</InputLocale>
+            <SystemLocale>de-de</SystemLocale>
+            <UILanguage>de-de</UILanguage>
+            <UserLocale>de-de</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserData>
+                <ProductKey>
+                    <Key>NF6HC-QH89W-F8WYV-WWXV4-WFG6P</Key>
+                    <WillShowUI>OnError</WillShowUI>
+                </ProductKey>
+            </UserData>
+        </component>
+        <component name="Microsoft-Windows-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserData>
+                <ProductKey>
+                    <Key>NF6HC-QH89W-F8WYV-WWXV4-WFG6P</Key>
+                    <WillShowUI>OnError</WillShowUI>
+                </ProductKey>
+            </UserData>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Themes>
+                <DesktopBackground>%windir%\system32\OEM\Fabrikam.bmp</DesktopBackground>
+                <ThemeName>OEM Theme</ThemeName>
+            </Themes>
+            <TaskbarLinks>
+                <!--OEMs must pin nothing other than, and no more than, 3 .lnk files to the taskbar. Those .lnk files must be linked to .exe files. -->
+                <Link0>%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Accessories\Paint.lnk</Link0>
+                <Link1>%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Control Panel.lnk</Link1>
+                <Link2></Link2>
+            </TaskbarLinks>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Themes>
+                <DesktopBackground>%windir%\system32\OEM\Fabrikam.bmp</DesktopBackground>
+                <ThemeName>OEM Theme</ThemeName>
+            </Themes>
+            <TaskbarLinks>
+                <!--OEMs must pin nothing other than, and no more than, 3 .lnk files to the taskbar. Those .lnk files must be linked to .exe files. -->
+                <Link0>%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Accessories\Paint.lnk</Link0>
+                <Link1>%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Control Panel.lnk</Link1>
+                <Link2></Link2>
+            </TaskbarLinks>
+        </component>
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Reseal>
+                <Mode>OOBE</Mode>
+            </Reseal>
+        </component>
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Reseal>
+                <Mode>OOBE</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <settings pass="generalize">
+        <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <PersistAllDeviceInstalls>true</PersistAllDeviceInstalls>
+            <DoNotCleanUpNonPresentDevices>true</DoNotCleanUpNonPresentDevices>
+        </component>
+        <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <PersistAllDeviceInstalls>true</PersistAllDeviceInstalls>
+            <DoNotCleanUpNonPresentDevices>true</DoNotCleanUpNonPresentDevices>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim:v:/mywindows/sources/install.wim#Windows 10 Pro" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>

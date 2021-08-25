@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Reset>
+    <Run Phase="BasicReset_BeforeImageApply">
+        <Path>EnableCustomizations.cmd</Path>
+        <Duration>2</Duration>
+    </Run>
+    <Run Phase="BasicReset_AfterImageApply">
+        <Path>EnableCustomizations.cmd</Path>
+        <Duration>2</Duration>
+    </Run>
+    <Run Phase="FactoryReset_AfterImageApply">
+        <Path>EnableCustomizations.cmd</Path>
+        <Duration>2</Duration>
+    </Run>
+    <Run Phase="FactoryReset_AfterDiskFormat">
+        <Path>EnableCustomizations.cmd</Path>
+        <Duration>2</Duration>
+    </Run>
+</Reset>

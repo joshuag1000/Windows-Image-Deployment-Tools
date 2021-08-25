@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OEMInformation>
+                <Manufacturer>Fabrikam</Manufacturer>
+                <SupportHours>08:30 - 21:30</SupportHours>
+                <SupportPhone>12345678</SupportPhone>
+                <SupportURL>http://www.fabrikam.com</SupportURL>
+                <Model>FabrikamFabrikam</Model>
+                <Logo>%windir%\system32\OEM\FabrikamLogo.png</Logo>
+            </OEMInformation>
+            <ComputerName>ComputerName</ComputerName>
+            <OEMName>OEMName</OEMName>
+            <ProductKey>RHGJR-N7FVY-Q3B8F-KBQ6V-46YP4</ProductKey>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OEMInformation>
+                <Manufacturer>Fabrikam</Manufacturer>
+                <SupportHours>08:30 - 21:30</SupportHours>
+                <SupportPhone>12345678</SupportPhone>
+                <SupportURL>http://www.fabrikam.com</SupportURL>
+                <Model>FabrikamFabrikam</Model>
+                <Logo>%windir%\system32\OEM\FabrikamLogo.png</Logo>
+            </OEMInformation>
+            <ComputerName>ComputerName</ComputerName>
+            <OEMName>OEMName</OEMName>
+            <ProductKey>RHGJR-N7FVY-Q3B8F-KBQ6V-46YP4</ProductKey>
+        </component>
+        <component name="Microsoft-Windows-IE-InternetExplorer" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SearchScopes>
+                <Scope wcm:action="add">
+                    <SuggestionsURL>http://api.bing.com/qsml.aspx?query={searchTerms}&amp;src={referrer:source?}&amp;maxwidth={ie:maxWidth}&amp;rowheight={ie:rowHeight}&amp;sectionHeight={ie:sectionHeight}&amp;FORM=IE8SSC&amp;market={Language}</SuggestionsURL>
+                    <FaviconURL>http://www.bing.com/favicon.ico</FaviconURL>
+                    <ScopeKey>Bing</ScopeKey>
+                    <ScopeDefault>true</ScopeDefault>
+                    <ScopeDisplayName>Bing</ScopeDisplayName>
+                    <ScopeUrl>http://www.bing.com/search?q={searchTerms}&amp;form=PRNAM1&amp;src=PRNAM1&amp;pc=NMTE</ScopeUrl>
+                </Scope>
+            </SearchScopes>
+            <Home_Page>http://OEM15.MSN.com/?pc=NMTE</Home_Page>
+            <FavoritesOnTop>true</FavoritesOnTop>
+            <FavoriteBarItems>
+                <FavoriteBarItem wcm:action="add">
+                    <ItemName>Fabrikum Mainpage</ItemName>
+                    <ItemUrl>http://www.fabrikum.com</ItemUrl>
+                    <ItemKey>1</ItemKey>
+                    <ItemType>Webslice</ItemType>
+                </FavoriteBarItem>
+                <FavoriteBarItem wcm:action="add">
+                    <ItemName>Fabrikam Mainpage</ItemName>
+                    <ItemUrl>http://www.fabrikam.com</ItemUrl>
+                    <ItemKey>2</ItemKey>
+                    <ItemType>Headline</ItemType>
+                </FavoriteBarItem>
+            </FavoriteBarItems>
+            <FavoritesList>
+                <FavoriteItem wcm:action="add">
+                    <FavURL>http://www.oemfabrikam.com</FavURL>
+                    <FavID>1</FavID>
+                    <FavTitle>OEM Links\Fabrikam Home Page</FavTitle>
+                </FavoriteItem>
+            </FavoritesList>
+            <StartPages>
+                <StartPage wcm:action="add">
+                    <StartPageKey>Misc Page</StartPageKey>
+                    <StartPageUrl>http://www.miscpage.com</StartPageUrl>
+                </StartPage>
+            </StartPages>
+        </component>
+        <component name="Microsoft-Windows-IE-InternetExplorer" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SearchScopes>
+                <Scope wcm:action="add">
+                    <SuggestionsURL>http://api.bing.com/qsml.aspx?query={searchTerms}&amp;src={referrer:source?}&amp;maxwidth={ie:maxWidth}&amp;rowheight={ie:rowHeight}&amp;sectionHeight={ie:sectionHeight}&amp;FORM=IE8SSC&amp;market={Language}</SuggestionsURL>
+                    <FaviconURL>http://www.bing.com/favicon.ico</FaviconURL>
+                    <ScopeKey>Bing</ScopeKey>
+                    <ScopeDefault>true</ScopeDefault>
+                    <ScopeDisplayName>Bing</ScopeDisplayName>
+                    <ScopeUrl>http://www.bing.com/search?q={searchTerms}&amp;form=&PRNAM1&amp;src=PRNAM1&amp;pc=NMTE</ScopeUrl>
+                </Scope>
+            </SearchScopes>
+            <Home_Page>http://OEM15.MSN.com/?pc=NMTE</Home_Page>
+            <FavoritesOnTop>true</FavoritesOnTop>
+            <FavoriteBarItems>
+                <FavoriteBarItem wcm:action="add">
+                    <ItemName>Fabrikum Mainpage</ItemName>
+                    <ItemUrl>http://www.fabrikum.com</ItemUrl>
+                    <ItemKey>1</ItemKey>
+                    <ItemType>Webslice</ItemType>
+                </FavoriteBarItem>
+                <FavoriteBarItem wcm:action="add">
+                    <ItemName>Fabrikam Mainpage</ItemName>
+                    <ItemUrl>http://www.fabrikam.com</ItemUrl>
+                    <ItemKey>2</ItemKey>
+                    <ItemType>Headline</ItemType>
+                </FavoriteBarItem>
+            </FavoriteBarItems>
+            <FavoritesList>
+                <FavoriteItem wcm:action="add">
+                    <FavURL>http://www.oemfabrikam.com</FavURL>
+                    <FavID>1</FavID>
+                    <FavTitle>OEM Links\Fabrikam Home Page</FavTitle>
+                </FavoriteItem>
+            </FavoritesList>
+            <StartPages>
+                <StartPage wcm:action="add">
+                    <StartPageKey>Misc Page</StartPageKey>
+                    <StartPageUrl>http://www.miscpage.com</StartPageUrl>
+                </StartPage>
+            </StartPages>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Themes>
+                <DesktopBackground>%windir%\system32\OEM\Fabrikam.bmp</DesktopBackground>
+                <ThemeName>OEM Theme</ThemeName>
+            </Themes>
+            <TaskbarLinks>
+                <!--OEMs must pin nothing other than, and no more than, 6 .lnk files to the taskbar. Those .lnk files must be linked to .exe files. -->
+                <Link0>%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Accessories\Paint.lnk</Link0>
+                <Link1>%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Control Panel.lnk</Link1>
+                <Link2></Link2>
+                <Link3></Link3>
+            </TaskbarLinks>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Themes>
+                <DesktopBackground>%windir%\system32\OEM\Fabrikam.bmp</DesktopBackground>
+                <ThemeName>OEM Theme</ThemeName>
+            </Themes>
+            <TaskbarLinks>
+                <!--OEMs must pin nothing other than, and no more than, 6 .lnk files to the taskbar. Those .lnk files must be linked to .exe files. -->
+                <Link0>%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Accessories\Paint.lnk</Link0>
+                <Link1>%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Control Panel.lnk</Link1>
+                <Link2></Link2>
+                <Link3></Link3>
+            </TaskbarLinks>
+        </component>
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Reseal>
+                <Mode>OOBE</Mode>
+            </Reseal>
+        </component>
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Reseal>
+                <Mode>OOBE</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim:i:/win10%20training/media/sources/install.wim#Windows 10 Pro" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>

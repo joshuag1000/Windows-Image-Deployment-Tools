@@ -1,0 +1,14 @@
+﻿<migration urlid="http://www.microsoft.com/migration/1.0/migxmlext/test">
+     <component type="System" context="UserAndSystem">
+          <displayName>OEMID</displayName> 
+          <role role="Settings">
+          <rules>
+            <include>
+              <objectSet>
+                <pattern type="Registry">HKLM\Software\Microsoft\Windows\CurrentVersion\Store [OEMID]</pattern> 
+              </objectSet>
+            </include>
+          </rules>
+          </role>
+     </component>
+</migration>

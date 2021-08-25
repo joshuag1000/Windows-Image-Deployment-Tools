@@ -1,0 +1,16 @@
+wpeinit
+powercfg /s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+@echo  *********************************************************************
+@echo -- Working out 'USB-B' drive letter --
+@IF EXIST D:\Scripts SET USBB=D:
+@IF EXIST E:\Scripts SET USBB=E:
+@IF EXIST F:\Scripts SET USBB=F:
+@IF EXIST G:\Scripts SET USBB=G:
+@IF EXIST H:\Scripts SET USBB=H:
+@IF EXIST I:\Scripts SET USBB=I:
+@echo The 'USB-B' drive is %USBB%
+@echo  *********************************************************************
+%USBB%
+@cd Scripts
+@call Entrypoint.bat
+:end
