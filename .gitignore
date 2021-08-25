@@ -1,7 +1,6 @@
 /WinPE/WinPE_amd64/**
 /ImageModification/Drivers/**
-/ImageModification/Drivers/!Notice!.txt
-/ImageModification/Images/*.wim
+/ImageModification/Images/**
 /ImageModification/Languages/**
 /ImageModification/Mountpoint/**
 /Exclude/**
