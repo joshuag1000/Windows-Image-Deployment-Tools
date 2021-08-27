@@ -48,7 +48,6 @@ echo Selected Drive: %ChosenDrive%
 (echo Rescan
 echo list disk
 echo select disk %ChosenDrive%
-echo Automount disable
 echo Automount Scrub
 echo clean
 echo rem === Create the Windows PE partition. ===
