@@ -5,3 +5,4 @@
 /ImageModification/Mountpoint/**
 /Exclude/**
 **/desktop.ini
+**/*.wim
