@@ -52,11 +52,8 @@ In order to use the tools in this script you will need to install the Windows AD
 
 1. The windows ADK can be downloaded here: https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install
 2. You will need to download and install the "[Windows ADK](https://go.microsoft.com/fwlink/?linkid=2196127)" and the "[WinPE add-on for the Windows ADK](https://go.microsoft.com/fwlink/?linkid=2196224)" 
-    - *Note:* <br>
-    *When installing the Windows ADK it is recommended you select all of the install options when asked which components you would like to install.* 
-    <br>
-    *It is also important to take into consideration which ADK version you need (especially when working with multiple versions of windows). For best practice and results you should use the ADK version that is for the version of windows you plan to be deploying*
-    <br>
+    - *Note:* *When installing the Windows ADK it is recommended you select all of the install options when asked which components you would like to install.* <br>
+    *It is also important to take into consideration which ADK version you need (especially when working with multiple versions of windows). For best practice and results you should use the ADK version that is for the version of windows you plan to be deploying.* <br>
     *Read more at: https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install#considerations-when-youre-working-with-more-than-one-windows-version*
 
 ## Automatically using MakeWinPEDrive.bat
@@ -189,11 +186,8 @@ In order to use the tools in this script you will need to install the Windows AD
 
 1. The windows ADK can be downloaded here: https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install
 2. You will need to download and install the "[Windows ADK](https://go.microsoft.com/fwlink/?linkid=2196127)" and the "[WinPE add-on for the Windows ADK](https://go.microsoft.com/fwlink/?linkid=2196224)" 
-    - *Note:* <br>
-    *When installing the Windows ADK it is recommended you select all of the install options when asked which components you would like to install.* 
-    <br>
-    *It is also important to take into consideration which ADK version you need (especially when working with multiple versions of windows). For best practice and results you should use the ADK version that is for the version of windows you plan to be deploying*
-    <br>
+    - *Note:* *When installing the Windows ADK it is recommended you select all of the install options when asked which components you would like to install.* <br>
+    *It is also important to take into consideration which ADK version you need (especially when working with multiple versions of windows). For best practice and results you should use the ADK version that is for the version of windows you plan to be deploying.* <br>
     *Read more at: https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install#considerations-when-youre-working-with-more-than-one-windows-version*
 
 ## Other tools and resources needed.
