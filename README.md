@@ -4,9 +4,6 @@ There are 2 main tools in the repository.
 - ImageModification - This can be used to inject device drivers and languages into an image.
 - WinPE - This is used to create a WinPE drive that can be used to capture or deploy an image to a computer. Because this uses a standard WinPE environment with some startup scripts to give the options to deploy or capture an image.
 
-# Documentation 
-### Last Updated July 2022
-
 ## Disclaimer
 I an not sponsored, endorsed or affiliated with Microsoft and these tools were created for my own use. <br>
 These tools may change at any time and features could be removed or added at random (I will try to document any changes but this isn't a promise). These scripts are to be used at your own risk. <br>
@@ -44,8 +41,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
 
-# Building a WinPE USB Drive to use for PC Imaging and Image Capturing
+# Documentation 
+### Last Updated July 2022
 
+# Building a WinPE USB Drive to use for PC Imaging and Image Capturing
 ## Requirements
 In order to use the tools in this script you will need to install the Windows ADK and the WinPE addon. To install them:
 
@@ -59,7 +58,6 @@ In order to use the tools in this script you will need to install the Windows AD
     Read more at: https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install#considerations-when-youre-working-with-more-than-one-windows-version*
 
 ## Automatically using MakeWinPEDrive.bat
-
 Building a new USB to use to image a PC is simple when using the Windows Deployment Tools
 Before proceeding, please make sure you have installed the Windows AKD and WinPE addon.
 
@@ -76,7 +74,6 @@ Before proceeding, please make sure you have installed the Windows AKD and WinPE
 If an error occurs while running this script you may need to check to see if the WinPE Image was unmounted or not by checking to see if the `mount` folder is empty or not (located in the WinPE_amd64 folder that was created. If there is no folder then you are all good). If it wasn't see the unmount an image instructions in the building an image manually instructions (use the discard command).
 
 ## Manually
-
 Creating a WinPE Drive manually may be useful to understand how the script works when it creates WinPE media for you.
 Before proceeding, please make sure you have installed the Windows AKD and WinPE addon.
 
