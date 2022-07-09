@@ -4,6 +4,8 @@ There are 2 main tools in the repository.
 - ImageModification - This can be used to inject device drivers and languages into an image.
 - WinPE - This is used to create a WinPE drive that can be used to capture or deploy an image to a computer. Because this uses a standard WinPE environment with some startup scripts to give the options to deploy or capture an image.
 
+*Note: I plan to (should i get time) to better improve and tidy these tools in the future. If you spot any bugs please create an issue*
+
 ## Disclaimer
 I an not sponsored, endorsed or affiliated with Microsoft and these tools were created for my own use. <br>
 These tools may change at any time and features could be removed or added at random (I will try to document any changes but this isn't a promise). These scripts are to be used at your own risk. <br>
