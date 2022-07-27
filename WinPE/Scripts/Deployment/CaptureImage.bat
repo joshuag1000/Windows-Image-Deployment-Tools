@@ -31,8 +31,9 @@ echo Exit
 )  | diskpart
 set /p ChosenVolume=Please select the volume to capture (Expected input is drive letter ie: C or D): 
 set /p SaveDrive=Please select the volume to save the image (Expected input is drive letter ie: C or D): 
+set /P MyFileName=Please enter a name for the image: 
 mkdir %SaveDrive%:\ScratchDir
-dism /capture-image /imagefile:"%SaveDrive%:\CapturedImage.wim" /capturedir:%ChosenVolume%:\ /name:"Windows 10" /Description:"Windows 10" /compress:maximum /checkintegrity /verify /ScratchDir:"%SaveDrive%:\ScratchDir" /LogPath:"%SaveDrive%:\Log.log"
+dism /capture-image /imagefile:"%SaveDrive%:\%MyFileName%.wim" /capturedir:%ChosenVolume%:\ /name:"Windows 10" /Description:"Windows 10" /compress:maximum /checkintegrity /verify /ScratchDir:"%SaveDrive%:\ScratchDir" /LogPath:"%SaveDrive%:\Log.log"
 rmdir %SaveDrive%:\ScratchDir
 echo Image has been captured please check the console for errors before exiting.
 
