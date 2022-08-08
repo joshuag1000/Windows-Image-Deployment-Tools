@@ -8,9 +8,34 @@ powercfg /s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
 @IF EXIST G:\Scripts SET USBB=G:
 @IF EXIST H:\Scripts SET USBB=H:
 @IF EXIST I:\Scripts SET USBB=I:
-@echo The 'USB-B' drive is %USBB%
+@echo The 'USB' drive is: %USBB%
 @echo  *********************************************************************
+
+if "%USBB%"=="" (
+    echo It appears that the USB Drive was not found.
+    echo Please ensure that the USB is setup correctly
+    echo and verify that is is not corrupt.
+    set /P ShutdownNow=Would you like to shutdown now? [Y/N]: 
+    if /I "%ShutdownNow%" EQU "y" goto :ShutdownSystem
+    if /I "%ShutdownNow%" EQU "Y" goto :ShutdownSystem
+    goto :EOF
+)
+
 %USBB%
+
+if not exist .\Scripts\Entrypoint.bat (
+    echo It appears that the USB Drive was not found.
+    echo Please ensure that the USB is setup correctly
+    echo and verify that is is not corrupt.
+    set /P ShutdownNow=Would you like to shutdown now? [Y/N]: 
+    if /I "%ShutdownNow%" EQU "y" goto :ShutdownSystem
+    if /I "%ShutdownNow%" EQU "Y" goto :ShutdownSystem
+    goto :EOF
+)
+
 @cd Scripts
 @call Entrypoint.bat
-:end
+goto :EOF
+
+:ShutdownSystem
+wpetuil shutdown
