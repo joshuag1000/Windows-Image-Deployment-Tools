@@ -32,6 +32,7 @@ if not "!folder%selection%!"=="" (
     echo No Wim files were found.
 	set /P c=Would you like to capture the existing image on this device [Y/N]? 
     if /I "%c%" EQU "N" goto :EOF
+    if /I "%c%" EQU "n" goto :EOF
     call CaptureImage.bat
     goto :EOF
 )
