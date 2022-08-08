@@ -6,6 +6,12 @@ There are 2 main tools in the repository.
 
 *Note: I plan to (should i get time) to better improve and tidy these tools in the future. If you spot any bugs please create an issue.*
 
+## Windows 11
+Windows 11 (at this time) is only partially supported. Capturing and deploying a Windows 11 Image should work as expected.
+When modifying an image Languages are not supported and so use the language image modification at your owk risk (so to speak).
+Drivers and Cleanup in the Image Modification should work as expected providing the drivers used are Windows 11 Drivers.
+If you run into an issue while using a Windows 11 Image please create a bug report.
+
 ## Disclaimer
 I an not sponsored, endorsed or affiliated with Microsoft and these tools were created for my own use. <br>
 These tools may change at any time and features could be removed or added at random (I will try to document any changes but this isn't a promise). These scripts are to be used at your own risk. <br>
