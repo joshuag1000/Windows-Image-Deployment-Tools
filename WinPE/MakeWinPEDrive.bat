@@ -19,7 +19,9 @@ echo ***************************************************************************
 set /P c=Are you sure you want to continue [Y/N]? 
 if /I "%c%" EQU "Y" goto :Proceed
 if /I "%c%" EQU "N" goto :ENDOFFILE
-goto Start
+if /I "%c%" EQU "y" goto :Proceed
+if /I "%c%" EQU "n" goto :ENDOFFILE
+goto :Start
 
 :Proceed
 call "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"
@@ -27,6 +29,7 @@ cd /D %~dp0
 if not exist .\WinPE_amd64\ ( 
   set /P c=WinPE was not detected in this folder. Would you like to create and modify WinPE [Y/N]? 
   if /I "%c%" EQU "N" goto :ENDOFFILE
+  if /I "%c%" EQU "n" goto :ENDOFFILE
   call CreateAndModifyPE.bat Y
   if not exist .\WinPE_amd64\ ( 
     goto :ENDOFFILE
@@ -42,7 +45,10 @@ set /p ChosenDrive=Please select a drive:
 set /P c=Are you sure you want to continue [Y/N]? 
 if /I "%c%" EQU "Y" goto :MakeDrive
 if /I "%c%" EQU "N" goto :ENDOFFILE
-goto choice
+if /I "%c%" EQU "y" goto :MakeDrive
+if /I "%c%" EQU "n" goto :ENDOFFILE
+goto :choice
+
 :MakeDrive
 echo Selected Drive: %ChosenDrive%
 (echo Rescan
@@ -63,6 +69,7 @@ echo list vol
 echo Automount enable
 echo Exit
 ) | diskpart
+
 Call MakeWinPEMedia /UFD /f .\WinPE_amd64 P:
 mkdir O:\Scripts
 Call xCopy ".\Scripts" O:\Scripts /e /q
