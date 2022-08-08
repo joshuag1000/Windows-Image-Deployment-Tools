@@ -19,7 +19,9 @@ echo ************************************************************************
 set /P c=Are you sure you want to continue [Y/N]? 
 if /I "%c%" EQU "Y" goto :Proceed
 if /I "%c%" EQU "N" goto :ENDOFFILE
-goto Start
+if /I "%c%" EQU "y" goto :Proceed
+if /I "%c%" EQU "n" goto :ENDOFFILE
+goto :Start
 
 :Proceed
 cd /D %~dp0
@@ -63,7 +65,9 @@ if not exist .\Mountpoint\ (
 set /P DriversYesNo=Would you like to install drivers to this image [Y/N]? 
 if /I "%DriversYesNo%" EQU "N" goto :InstallLanguagesYN
 if /I "%DriversYesNo%" EQU "Y" goto :InstallDriversY
-goto InstallDriversYN
+if /I "%DriversYesNo%" EQU "n" goto :InstallLanguagesYN
+if /I "%DriversYesNo%" EQU "y" goto :InstallDriversY
+goto :InstallDriversYN
 :InstallDriversY
 if not exist .\Drivers\ ( 
 	mkdir Drivers
@@ -92,7 +96,9 @@ set DriversToInstall=!folder%Driverselection%!
 set /P LanguagesYesNo=Would you like to install languages to this image [Y/N]? 
 if /I "%LanguagesYesNo%" EQU "N" goto :CleanupImageYN
 if /I "%LanguagesYesNo%" EQU "Y" goto :InstallLanguagesY
-goto InstallLanguagesYN
+if /I "%LanguagesYesNo%" EQU "n" goto :CleanupImageYN
+if /I "%LanguagesYesNo%" EQU "y" goto :InstallLanguagesY
+goto :InstallLanguagesYN
 :InstallLanguagesY
 if not exist .\Languages\ ( 
 	mkdir Languages
@@ -105,14 +111,24 @@ if not exist .\Languages\ (
 :: Cleanup
 :CleanupImageYN
 set /P CleanUpYesNo=Would you like to cleanup this image [Y/N]? 
+if /I "%CleanUpYesNo%" EQU "N" goto :StartOperations
+if /I "%CleanUpYesNo%" EQU "Y" goto :StartOperations
+if /I "%CleanUpYesNo%" EQU "n" goto :StartOperations
+if /I "%CleanUpYesNo%" EQU "y" goto :StartOperations
+goto :CleanupImageYN
 
+:StartOperations
 copy .\Images\%SelectedImage% .\Images\Working\Working.wim
 set SelectedImage=Working\Working.wim
 
 :InstallDrivers
 if /I "%DriversYesNo%" EQU "N" goto :InstallLanguages
 if /I "%DriversYesNo%" EQU "Y" goto :InstallDriversResume
-goto InstallDrivers
+if /I "%DriversYesNo%" EQU "n" goto :InstallLanguages
+if /I "%DriversYesNo%" EQU "y" goto :InstallDriversResume
+echo Yeah Something strange happned. Exiting....
+goto :EOF
+
 :InstallDriversResume
 echo Creating Image to modify
 
@@ -143,7 +159,11 @@ echo This is to be expected.
 :InstallLanguages
 if /I "%LanguagesYesNo%" EQU "N" goto :CleanupImage
 if /I "%LanguagesYesNo%" EQU "Y" goto :InstallLanguagesResume
-goto InstallLanguages
+if /I "%LanguagesYesNo%" EQU "n" goto :CleanupImage
+if /I "%LanguagesYesNo%" EQU "y" goto :InstallLanguagesResume
+echo Yeah Something strange happned. Exiting....
+goto :EOF
+
 :InstallLanguagesResume
 Dism /Mount-Image /ImageFile:".\Images\Working\Working.wim" /Index:1 /MountDir:".\Mountpoint"
 ::Install All languages in languages folder.
@@ -166,7 +186,11 @@ Dism /Unmount-Image /MountDir:".\Mountpoint" /Commit
 :CleanupImage
 if /I "%CleanUpYesNo%" EQU "N" goto :SaveImage
 if /I "%CleanUpYesNo%" EQU "Y" goto :CleanupImageResume
-goto CleanupImage
+if /I "%CleanUpYesNo%" EQU "n" goto :SaveImage
+if /I "%CleanUpYesNo%" EQU "y" goto :CleanupImageResume
+echo Yeah Something strange happned. Exiting....
+goto :EOF
+
 :CleanupImageResume
 echo Mounting Image.
 Dism /Mount-Image /ImageFile:".\Images\Working\Working.wim" /Index:1 /MountDir:".\Mountpoint"
