@@ -21,8 +21,10 @@ if "%OVERRIDEYN%"=="Y" (
 )
 set /P c=Are you sure you want to continue [Y/N]? 
 if /I "%c%" EQU "Y" goto :Proceed
+if /I "%c%" EQU "y" goto :Proceed
 if /I "%c%" EQU "N" goto :ENDOFFILE
-goto Start
+if /I "%c%" EQU "n" goto :ENDOFFILE
+goto :Start
 
 :Proceed
 call "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"
@@ -30,6 +32,7 @@ cd /D %~dp0
 if exist .\WinPE_amd64\ (
   set /P c=You already have a WinPE Folder. It will be deleted. Proceed [Y/N]? 
   if /I "%c%" EQU "N" goto :ENDOFFILE
+  if /I "%c%" EQU "n" goto :ENDOFFILE
   rmdir /s /q .\WinPE_amd64
 )
 call copype amd64 .\WinPE_amd64
