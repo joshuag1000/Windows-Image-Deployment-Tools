@@ -24,7 +24,7 @@ if "%USBB%"=="" (
 %USBB%
 
 if not exist .\Scripts\Entrypoint.bat (
-    echo It appears that the USB Drive was not found.
+    echo It appears that the Entrypoint.bat script was not found.
     echo Please ensure that the USB is setup correctly
     echo and verify that is is not corrupt.
     set /P ShutdownNow=Would you like to shutdown now? [Y/N]: 
