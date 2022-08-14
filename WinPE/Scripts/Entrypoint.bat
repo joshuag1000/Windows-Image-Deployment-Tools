@@ -3,7 +3,7 @@ cd Deployment
 echo -- Are you sure you would like to proceed with Imaging this pc? Everything will be wiped. --
 echo -- If you would like to capture the image on this device say no. --
 :Check
-SET /P AreYouSure=-- So are you sure (Y/N)::
+SET /P AreYouSure=-- So are you sure (Y/N): 
 if /I "%AreYouSure%" EQU "N" goto :CaptureImage
 if /I "%AreYouSure%" EQU "n" goto :CaptureImage
 if /I "%AreYouSure%" EQU "y" goto :Proceed
