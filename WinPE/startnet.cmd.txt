@@ -29,7 +29,10 @@ if not exist .\Scripts\Entrypoint.bat (
 
 @cd Scripts
 @call Entrypoint.bat
-goto :Shutdown
+
+:UnmountUSB
+cd /d X:\
+mountvol %USBB%\ /p
 
 :Shutdown
 echo It is recommended that you shutdown this device to prevent corruption to the USB key.
