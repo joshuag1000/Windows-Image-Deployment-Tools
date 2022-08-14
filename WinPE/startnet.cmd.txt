@@ -15,10 +15,7 @@ if "%USBB%"=="" (
     echo It appears that the USB Drive was not found.
     echo Please ensure that the USB is setup correctly
     echo and verify that is is not corrupt.
-    set /P ShutdownNow=Would you like to shutdown now? [Y/N]: 
-    if /I "%ShutdownNow%" EQU "y" goto :ShutdownSystem
-    if /I "%ShutdownNow%" EQU "Y" goto :ShutdownSystem
-    goto :EOF
+    goto :Shutdown
 )
 
 %USBB%
@@ -27,15 +24,22 @@ if not exist .\Scripts\Entrypoint.bat (
     echo It appears that the Entrypoint.bat script was not found.
     echo Please ensure that the USB is setup correctly
     echo and verify that is is not corrupt.
-    set /P ShutdownNow=Would you like to shutdown now? [Y/N]: 
-    if /I "%ShutdownNow%" EQU "y" goto :ShutdownSystem
-    if /I "%ShutdownNow%" EQU "Y" goto :ShutdownSystem
-    goto :EOF
+    goto :Shutdown
 )
 
 @cd Scripts
 @call Entrypoint.bat
-goto :EOF
+goto :Shutdown
+
+:Shutdown
+echo It is recommended that you shutdown this device to prevent corruption to the USB key.
+echo Once the device has shutdown you may remove the key and boot your device.
+set /P ShutdownNow=Would you like to shutdown now? [Y/N]:
+if /I "%ShutdownNow%" EQU "y" goto :ShutdownSystem
+if /I "%ShutdownNow%" EQU "Y" goto :ShutdownSystem
+if /I "%ShutdownNow%" EQU "n" goto :EOF
+if /I "%ShutdownNow%" EQU "N" goto :EOF
+goto :Shutdown
 
 :ShutdownSystem
 wpetuil shutdown

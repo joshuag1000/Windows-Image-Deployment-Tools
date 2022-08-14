@@ -13,7 +13,7 @@ goto :Check
 :Proceed
 echo -- Build PC Image --
 call build.bat
-goto :Shutdown
+goto :EOF
 
 :CaptureImage
 set /P c=Would you like to capture the existing image on this device [Y/N]? 
@@ -25,15 +25,4 @@ goto :CaptureImage
 
 :BeginCapture
 call CaptureImage.bat
-goto :Shutdown
-
-:Shutdown
-echo It is recommended that you shutdown this device to prevent corruption to the USB key.
-echo Once the device has shutdown you may remove the key and boot your device.
-set /P ShutdownNow=Would you like to shutdown now? [Y/N]: 
-if /I "%ShutdownNow%" EQU "y" goto :ShutdownSystem
-if /I "%ShutdownNow%" EQU "Y" goto :ShutdownSystem
 goto :EOF
-
-:ShutdownSystem
-wpetuil shutdown
