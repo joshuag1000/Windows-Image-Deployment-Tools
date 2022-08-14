@@ -127,7 +127,7 @@ if /I "%DriversYesNo%" EQU "Y" goto :InstallDriversResume
 if /I "%DriversYesNo%" EQU "n" goto :InstallLanguages
 if /I "%DriversYesNo%" EQU "y" goto :InstallDriversResume
 echo Yeah Something strange happned. Exiting....
-goto :EOF
+goto :ENDOFFILE
 
 :InstallDriversResume
 echo Creating Image to modify
@@ -162,7 +162,7 @@ if /I "%LanguagesYesNo%" EQU "Y" goto :InstallLanguagesResume
 if /I "%LanguagesYesNo%" EQU "n" goto :CleanupImage
 if /I "%LanguagesYesNo%" EQU "y" goto :InstallLanguagesResume
 echo Yeah Something strange happned. Exiting....
-goto :EOF
+goto :ENDOFFILE
 
 :InstallLanguagesResume
 Dism /Mount-Image /ImageFile:".\Images\Working\Working.wim" /Index:1 /MountDir:".\Mountpoint"
@@ -189,7 +189,7 @@ if /I "%CleanUpYesNo%" EQU "Y" goto :CleanupImageResume
 if /I "%CleanUpYesNo%" EQU "n" goto :SaveImage
 if /I "%CleanUpYesNo%" EQU "y" goto :CleanupImageResume
 echo Yeah Something strange happned. Exiting....
-goto :EOF
+goto :ENDOFFILE
 
 :CleanupImageResume
 echo Mounting Image.
