@@ -43,8 +43,8 @@ echo If you are not sure you probably want a USB drive
 echo If you are using an ISO image you will need a separate USB drive or partition with the scrips on it.
 echo To do this just copy the scripts folder onto an NTFS formatted drive.
 set /P ISOorUSB=Type 1 for USB or 2 for ISO: 
-if /I "%c%" EQU "1" goto :MakeUSB
-if /I "%c%" EQU "2" goto :MakeISO
+if /I "%ISOorUSB%" EQU "1" goto :MakeUSB
+if /I "%ISOorUSB%" EQU "2" goto :MakeISO
 goto :ISOorUSB
 
 :MakeISO
