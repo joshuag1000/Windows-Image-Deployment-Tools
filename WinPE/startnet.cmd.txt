@@ -52,4 +52,4 @@ if /I "%ShutdownNow%" EQU "N" goto :EOF
 goto :Shutdown
 
 :ShutdownSystem
-wpetuil shutdown
+wpeutil shutdown
