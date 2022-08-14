@@ -6,7 +6,7 @@ net session >nul 2>&1
 if not %errorLevel% == 0 (
     echo You are not running this script as administrator. Please run again as administrator.
 	goto :ENDOFFILE
-) 
+)
 
 :Start
 cls
@@ -26,16 +26,32 @@ goto :Start
 :Proceed
 call "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"
 cd /D %~dp0
-if not exist .\WinPE_amd64\ ( 
+if not exist .\WinPE_amd64\ (
   set /P c=WinPE was not detected in this folder. Would you like to create and modify WinPE [Y/N]? 
   if /I "%c%" EQU "N" goto :ENDOFFILE
   if /I "%c%" EQU "n" goto :ENDOFFILE
   call CreateAndModifyPE.bat Y
-  if not exist .\WinPE_amd64\ ( 
+  if not exist .\WinPE_amd64\ (
     goto :ENDOFFILE
   )
   cd /D %~dp0
 )
+
+:ISOorUSB
+echo Would you like to create an iso image or USB Drive?
+echo If you are not sure you probably want a USB drive
+echo If you are using an ISO image you will need a separate USB drive or partition with the scrips on it.
+echo To do this just copy the scripts folder onto an NTFS formatted drive.
+set /P ISOorUSB=Type 1 for USB or 2 for ISO: 
+if /I "%c%" EQU "1" goto :MakeUSB
+if /I "%c%" EQU "2" goto :MakeISO
+goto :ISOorUSB
+
+:MakeISO
+Call MakeWinPEMedia /ISO .\WinPE_amd64 .\WinpeISO.iso
+goto :ENDOFFILE
+
+:MakeUSB
 (echo Rescan
 echo List Disk
 echo Exit
@@ -73,5 +89,6 @@ echo Exit
 Call MakeWinPEMedia /UFD /f .\WinPE_amd64 P:
 mkdir O:\Scripts
 Call xCopy ".\Scripts" O:\Scripts /e /q
+
 :ENDOFFILE
 pause
