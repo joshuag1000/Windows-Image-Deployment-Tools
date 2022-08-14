@@ -48,7 +48,7 @@ if /I "%ISOorUSB%" EQU "2" goto :MakeISO
 goto :ISOorUSB
 
 :MakeISO
-Call MakeWinPEMedia /ISO .\WinPE_amd64 .\WinpeISO.iso
+Call MakeWinPEMedia /ISO .\WinPE_amd64 .\WinPEISO.iso
 goto :ENDOFFILE
 
 :MakeUSB
