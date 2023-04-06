@@ -13,7 +13,7 @@ Drivers and Cleanup in the Image Modification should work as expected providing 
 If you run into an issue while using a Windows 11 Image please create a bug report.
 
 ## Disclaimer
-I an not sponsored, endorsed or affiliated with Microsoft and these tools were created for my own use. <br>
+I am not sponsored, endorsed or affiliated with Microsoft and these tools were created for my own use. <br>
 These tools may change at any time and features could be removed or added at random (I will try to document any changes but this isn't a promise). These scripts are to be used at your own risk. <br>
 Please note that any other companies mentioned in the documentation are only used as examples to properly show how the scrips should be used. I am not endorsed, sponsored or affiliated with any of these companies. These are just random examples that have been selected to give a variety in the documentation. <br>
 If any companies would like me to remove anything mentioned here in the documentation please contact me through my website: https://joshuaglass.dev/#contact or create an issue/pull request.
