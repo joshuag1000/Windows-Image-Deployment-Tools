@@ -10,12 +10,14 @@ if not %errorLevel% == 0 (
 
 :Start
 cls
-echo *****************************************************************************
-echo ** This Script will install WinPE onto a USB drive                         **
-echo ** THIS WILL WIPE THE DRIVE YOU HAVE SELECTED                              **
-echo ** Please make sure you have run CreateAndModifyPE.bat before this script. **
-echo ** Please make sure you have no drives mounted as P or O.                  **
-echo *****************************************************************************
+echo *********************************************************************************
+echo **  Make WinPE Drive - Windows Image Deployment Tools - (c) Joshua Glass 2023  **
+echo *********************************************************************************
+echo ** This Script will install WinPE onto a USB drive                             **
+echo ** THIS WILL WIPE THE DRIVE YOU HAVE SELECTED                                  **
+echo ** Please make sure you have run CreateAndModifyPE.bat before this script.     **
+echo ** Please make sure you have no drives mounted as P or O.                      **
+echo *********************************************************************************
 set /P c=Are you sure you want to continue [Y/N]? 
 if /I "%c%" EQU "Y" goto :Proceed
 if /I "%c%" EQU "N" goto :ENDOFFILE

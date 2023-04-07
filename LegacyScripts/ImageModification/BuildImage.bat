@@ -10,12 +10,14 @@ if not %errorLevel% == 0 (
 
 :Start
 cls
-echo ************************************************************************
-echo ** This script will create a Wim Image to be used to deploy an image. **
-echo ** This script works in stages. Each Stage creates its own wim.       **
-echo ** Created image will be named Completed-YourImageName.wim            **
-echo ** This script can only be run once at a time                         **
-echo ************************************************************************
+echo *****************************************************************************
+echo **  Build Image - Windows Image Deployment Tools - (c) Joshua Glass 2023   **
+echo *****************************************************************************
+echo ** This script will create a Wim Image to be used to deploy an image.      **
+echo ** This script works in stages. Each Stage creates its own wim.            **
+echo ** Created image will be named Completed-YourImageName.wim                 **
+echo ** This script can only be run once at a time                              **
+echo *****************************************************************************
 set /P c=Are you sure you want to continue [Y/N]? 
 if /I "%c%" EQU "Y" goto :Proceed
 if /I "%c%" EQU "N" goto :ENDOFFILE

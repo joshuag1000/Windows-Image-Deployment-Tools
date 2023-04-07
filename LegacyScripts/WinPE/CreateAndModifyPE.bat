@@ -10,10 +10,12 @@ if not %errorLevel% == 0 (
 
 :Start
 cls
-echo ********************************************************
-echo ** This Script will and modify WinPE so it can be     **
-echo ** used with other scripts in this folder.            **
-echo ********************************************************
+echo *****************************************************************************
+echo **  Setup WinPE - Windows Image Deployment Tools - (c) Joshua Glass 2023   **
+echo *****************************************************************************
+echo ** This Script will and modify WinPE so it can be                          **
+echo ** used with other scripts in this folder.                                 **
+echo *****************************************************************************
 set OVERRIDEYN=N
 Set OVERRIDEYN=%1
 if "%OVERRIDEYN%"=="Y" ( 
