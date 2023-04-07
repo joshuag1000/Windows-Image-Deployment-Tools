@@ -1,6 +1,7 @@
 # Windows Image Deployment Tools
 These tools are to be used to capture and modify a Windows Image for deployment to various computers. <br>
-These tools 
+There is 2 versions of these tools. A new GUI based set of tools which (will) offer the same functions as the original legacy scripts as well as some new features like adding drivers in the winpe environment.
+The Legacy scrips still exist but are in maintenance mode meaning they will recieve no new features.
 
 ## Disclaimer
 I am not sponsored, endorsed or affiliated with Microsoft and these tools were created for my own use. <br>
