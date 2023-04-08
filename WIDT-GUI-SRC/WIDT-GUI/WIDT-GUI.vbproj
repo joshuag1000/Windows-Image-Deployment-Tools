@@ -3,8 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <RootNamespace>WIDT_GUI_Setup</RootNamespace>
-    <StartupObject>Sub Main</StartupObject>
+    <RootNamespace>WIDT_GUI</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <Copyright>Copyright (c) Joshua Glass 2023</Copyright>
@@ -14,6 +13,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Configurations>Debug;Release;Debug WinPE;Release WinPE</Configurations>
+    <StartupObject>WIDT_GUI.My.MyApplication</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

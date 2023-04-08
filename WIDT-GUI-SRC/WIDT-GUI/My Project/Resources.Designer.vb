@@ -39,7 +39,7 @@ Namespace My.Resources
         Friend ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
-                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("WIDT_GUI_Setup.Resources", GetType(Resources).Assembly)
+                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("WIDT_GUI.Resources", GetType(Resources).Assembly)
                     resourceMan = temp
                 End If
                 Return resourceMan
@@ -58,6 +58,28 @@ Namespace My.Resources
             Set
                 resourceCulture = value
             End Set
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to @echo off
+        '''wpeinit
+        '''powercfg /s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+        '''@echo  *********************************************************************
+        '''@echo -- Working out &apos;USB-B&apos; drive letter --
+        '''@IF EXIST D:\Scripts SET USBB=D:
+        '''@IF EXIST E:\Scripts SET USBB=E:
+        '''@IF EXIST F:\Scripts SET USBB=F:
+        '''@IF EXIST G:\Scripts SET USBB=G:
+        '''@IF EXIST H:\Scripts SET USBB=H:
+        '''@IF EXIST I:\Scripts SET USBB=I:
+        '''@IF EXIST C:\Scripts\Entrypoint.bat SET USBB=C:
+        '''@echo The &apos;USB&apos; drive is: %USBB%
+        '''@echo  ************************ [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property startnet() As String
+            Get
+                Return ResourceManager.GetString("startnet", resourceCulture)
+            End Get
         End Property
     End Module
 End Namespace

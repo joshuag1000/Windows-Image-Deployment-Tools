@@ -24,6 +24,14 @@ Namespace My
     ' End Sub
 
     Partial Friend Class MyApplication
-
+        Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
+            If Application.CommandLineArgs.Count > 1 Then
+                If Application.CommandLineArgs.Item(0) = "/S" Then
+                    If Application.CommandLineArgs.Item(1).ToLower = "winpe" Then
+                        Application.MainForm = Global.WIDT_GUI.WinPEForm
+                    End If
+                End If
+            End If
+        End Sub
     End Class
 End Namespace

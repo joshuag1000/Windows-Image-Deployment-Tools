@@ -1,6 +1,6 @@
 ﻿Imports System.IO.DriveInfo
 Imports System.IO
-Public Class StartForm
+Public Class SetupForm
 
     Dim WinPEPath As String = ""
 
@@ -33,6 +33,13 @@ Public Class StartForm
             If RunCmdCommand(ADKCommandLine + "call copype amd64 """ + WinPEPath + """") Then Return
             ProgressDialog.SetProgressBarAmount(10)
 
+            ProgressDialog.SetLabelText("Mounting WinPE Image.")
+            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WinPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WinPEPath + "\mount""") Then Return
+            ProgressDialog.SetProgressBarAmount(20)
+
+            If File.Exists(WinPEPath + "\mount\Windows\System32\startnet.cmd") Then
+                File.Delete(WinPEPath + "\mount\Windows\System32\startnet.cmd")
+            End If
 
             ProgressDialog.Close()
         End If

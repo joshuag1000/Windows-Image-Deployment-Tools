@@ -27,13 +27,13 @@ Namespace My
             Me.IsSingleInstance = true
             Me.EnableVisualStyles = true
             Me.SaveMySettingsOnExit = true
-            Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
+            Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterAllFormsClose
             Me.HighDpiMode = HighDpiMode.DpiUnaware
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.WIDT_GUI_Setup.StartForm
+            Me.MainForm = Global.WIDT_GUI.SetupForm
         End Sub
     End Class
 End Namespace

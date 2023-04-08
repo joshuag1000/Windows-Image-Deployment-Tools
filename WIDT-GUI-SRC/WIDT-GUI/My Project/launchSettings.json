@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "WIDT-GUI-Setup": {
+      "commandName": "Project"
+    },
+    "WIDT-GUI-WinPE": {
+      "commandName": "Project",
+      "commandLineArgs": "/S WinPE"
+    }
+  }
+}
