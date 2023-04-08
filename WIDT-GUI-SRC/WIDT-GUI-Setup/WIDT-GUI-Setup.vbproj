@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/joshuag1000/Windows-Image-Deployment-Tools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
