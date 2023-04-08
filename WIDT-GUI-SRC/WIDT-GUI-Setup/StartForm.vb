@@ -30,7 +30,7 @@ Public Class StartForm
 
             ' CopyPE Command - Setup the command to run
             ProgressDialog.SetLabelText("Copying WinPE to directory.")
-            If RunCmdCommand(ADKCommandLine + "call copype amd64 " + WinPEPath) Then Return
+            If RunCmdCommand(ADKCommandLine + "call copype amd64 """ + WinPEPath + """") Then Return
             ProgressDialog.SetProgressBarAmount(10)
 
 
