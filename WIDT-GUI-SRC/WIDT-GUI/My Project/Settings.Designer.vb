@@ -53,6 +53,15 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Setup")>  _
+        Public ReadOnly Property StartupApp() As String
+            Get
+                Return CType(Me("StartupApp"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

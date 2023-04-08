@@ -1,11 +1,23 @@
 {
   "profiles": {
     "WIDT-GUI-Setup": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "/S Setup"
     },
     "WIDT-GUI-WinPE": {
       "commandName": "Project",
       "commandLineArgs": "/S WinPE"
+    },
+    "PE App Default": {
+      "commandName": "Project",
+      "commandLineArgs": "/SetStartupApp WinPE"
+    },
+    "Setup App Default": {
+      "commandName": "Project",
+      "commandLineArgs": "/SetStartupApp Setup"
+    },
+    "Default": {
+      "commandName": "Project"
     }
   }
 }

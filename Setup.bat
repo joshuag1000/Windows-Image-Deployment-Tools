@@ -64,13 +64,10 @@ if /I "%c%" EQU "1" goto :CompileSetupApp
 if /I "%c%" EQU "2" goto :LegacyScriptMenu
 
 :CompileSetupApp
-echo Compiling Setup App
-cd /D "%~dp0\WIDT-GUI-SRC\WIDT-GUI-Setup"
-mkdir "%~dp0\WIDT-GUI\bin\WIDT-GUI-WinPE"
+echo Compiling Tools
+cd /D "%~dp0\WIDT-GUI-SRC\WIDT-GUI"
+mkdir "%~dp0\WIDT-GUI\bin"
 dotnet publish -c Release -r win-x64 -p:ReadyToRun=True -p:PublishSingleFile=true --self-contained true -o "%~dp0\WIDT-GUI\bin"
-IF %ERRORLEVEL% NEQ 0 goto :CompileError
-cd /D "%~dp0\WIDT-GUI-SRC\WIDT-GUI-WinPE"
-dotnet publish -c Release -r win-x64 -p:ReadyToRun=True -p:PublishSingleFile=true --self-contained true -o "%~dp0\WIDT-GUI\bin\WIDT-GUI-WinPE"
 IF %ERRORLEVEL% NEQ 0 goto :CompileError
 cls
 echo Setup is complete. You do not need to run this script again unless you have downloaded a new version or moving to a new computer.
@@ -79,7 +76,7 @@ echo Any config created by the program will be located in: %~dp0\WIDT-GUI\
 echo Press enter to automatically start the application.
 pause
 IF EXIST "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat" del "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat"
-echo start /D "%~dp0\WIDT-GUI\bin\" "" "%~dp0\WIDT-GUI\bin\WIDT-GUI-Setup.exe" >> "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat"
+echo start /D "%~dp0\WIDT-GUI\bin\" "" "%~dp0\WIDT-GUI\bin\WIDT-GUI-Setup.exe /S Setup" >> "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat"
 start /D "%~dp0\WIDT-GUI\bin\" "" "%~dp0\WIDT-GUI\bin\WIDT-GUI-Setup.exe"
 goto :EOFNoPause
 
