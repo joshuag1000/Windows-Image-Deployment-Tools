@@ -1,5 +1,5 @@
 # Beta - Windows Image Deployment Tools
-THE NEW GUI TOOLS ARE IN BETA/ALPHA STAGES AND IT IS NOT RECOMMENDED TO USE THEM IN PRODUCTION AT THIS STAGE.W
+THE NEW GUI TOOLS ARE IN BETA/ALPHA STAGES AND IT IS NOT RECOMMENDED TO USE THEM IN PRODUCTION AT THIS STAGE.<br>
 These tools are to be used to capture and modify a Windows Image for deployment to various computers. <br>
 There is 2 versions of these tools. A new GUI based set of tools which (will) offer the same functions as the original legacy scripts as well as some new features like adding drivers in the winpe environment.<br>
 The Legacy scrips still exist but are in maintenance mode meaning they will recieve no new features. <br>
