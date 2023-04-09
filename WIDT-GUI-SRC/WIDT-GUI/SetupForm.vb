@@ -1,5 +1,4 @@
-﻿Imports System.IO.DriveInfo
-Imports System.IO
+﻿Imports System.IO
 Imports System.Threading
 
 Public Class SetupForm
@@ -14,7 +13,7 @@ Public Class SetupForm
         End If
 
         ' Load the drives into the ui
-        RefreshDrives(False)
+        RefreshDrives(False, False)
     End Sub
 
     Private Sub QuitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
@@ -40,7 +39,10 @@ Public Class SetupForm
             Dim progressInfo = New Progress(Of String)(Sub(Info)
                                                            ProgressDialog.SetLabelText(Info)
                                                        End Sub)
-            Await Task.Run(Sub() SetupWinPE(progressPercent, progressInfo, WinPEPath, IncludeDuplicateMagic))
+            Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
+                                                                   ProgressDialog.SetTextboxText(Info)
+                                                               End Sub)
+            Await Task.Run(Sub() SetupWinPE(progressPercent, progressInfo, progressInfoDetailed, WinPEPath, IncludeDuplicateMagic))
             ProgressDialog.Close()
             Me.Enabled = True
             Me.BringToFront()
@@ -49,9 +51,9 @@ Public Class SetupForm
         End If
     End Sub
 
-    Public Sub SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal WPEPath As String, ByVal IncludeDuplicateMagic As Boolean)
-        Dim ADKCommandLine As String = "call ""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"" && "
+    ReadOnly ADKCommandLine As String = "call ""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"" && "
 
+    Public Sub SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String, ByVal IncludeDuplicateMagic As Boolean)
         ' Create the folder
         Info.Report("Creating Folder")
         If Directory.Exists(WPEPath) Then
@@ -63,12 +65,12 @@ Public Class SetupForm
 
         ' Copy winpe to folder
         Info.Report("Copying WinPE to folder")
-        If RunCmdCommand(ADKCommandLine + "call copype amd64 """ + WPEPath + """") Then Return
+        If RunCmdCommand(ADKCommandLine + "call copype amd64 """ + WPEPath + """", DetailedInfo) Then Return
         Percent.Report(20)
 
         ' Mount the Image
         Info.Report("Mounting WinPE")
-        If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""") Then Return
+        If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return
         Percent.Report(30)
 
         ' Copy in the needed files
@@ -78,24 +80,24 @@ Public Class SetupForm
         End If
         File.WriteAllText(WPEPath + "\mount\Windows\System32\startnet.cmd", My.Resources.startnet)
         Directory.CreateDirectory(WPEPath + "\mount\WIDT-GUI")
-        If RunCmdCommand("Call xCopy """ + AppContext.BaseDirectory + """ """ + WPEPath + "\mount\WIDT-GUI\"" /e /q") Then Return
-        If RunCmdCommand("Call """ + WPEPath + "\mount\WIDT-GUI\WIDT-GUI.exe"" /SetStartupApp WinPE") Then Return
+        If RunCmdCommand("Call xCopy """ + AppContext.BaseDirectory + """ """ + WPEPath + "\mount\WIDT-GUI\"" /e /q", DetailedInfo) Then Return
+        If RunCmdCommand("Call """ + WPEPath + "\mount\WIDT-GUI\WIDT-GUI.exe"" /SetStartupApp WinPE", DetailedInfo) Then Return
         Percent.Report(40)
 
         ' Unmount and Save the image
         Info.Report("Saving WinPE Image")
-        If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit") Then Return
+        If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit", DetailedInfo) Then Return
         Percent.Report(50)
 
         ' Create a 7z Archive at max compression 
         Info.Report("Compressing WinPE to 7z Archive")
-        If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7zr.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""") Then Return
+        If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7zr.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return
         Percent.Report(60)
 
         If IncludeDuplicateMagic = True Then
             ' ReMount the Image
             Info.Report("Mounting WinPE")
-            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""") Then Return
+            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return
             Percent.Report(70)
 
             ' Move the file into the WinPE Environment
@@ -105,7 +107,7 @@ Public Class SetupForm
 
             ' Unmount and Save the image
             Info.Report("Saving WinPE Image")
-            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit") Then Return
+            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit", DetailedInfo) Then Return
             Percent.Report(100)
         Else
             Percent.Report(100)
@@ -123,7 +125,7 @@ Public Class SetupForm
     End Sub
 
     Private Sub btnRefreshDrives_Click(sender As Object, e As EventArgs) Handles btnRefreshDrives.Click
-        RefreshDrives(ChkShowInternal.Checked)
+        RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
     End Sub
 
     Private Structure DriveStruct
@@ -135,15 +137,19 @@ Public Class SetupForm
             drive = newdrv
         End Sub
 
+        Public Function GetDriveInfo() As DriveInfo
+            Return drive
+        End Function
+
         Public Overrides Function ToString() As String
             Return DriveName
         End Function
     End Structure
 
-    Private Sub RefreshDrives(ByVal ShowInternal As Boolean)
+    Private Sub RefreshDrives(ByVal ShowInternal As Boolean, ByVal ShowUnknown As Boolean)
         CmbDrives.Items.Clear()
         For Each drive In DriveInfo.GetDrives
-            If drive.DriveType = IO.DriveType.Removable Or drive.DriveType = IO.DriveType.NoRootDirectory Or If(ShowInternal = True, drive.DriveType = IO.DriveType.Fixed, Nothing) Then
+            If drive.DriveType = IO.DriveType.Removable Or If(ShowUnknown = True, drive.DriveType = IO.DriveType.Unknown, False) Or If(ShowInternal = True, drive.DriveType = IO.DriveType.Fixed, False) Then
                 Dim driveToAdd As DriveStruct = New DriveStruct(drive.Name + " " + drive.VolumeLabel, drive)
                 CmbDrives.Items.Add(driveToAdd)
             End If
@@ -158,9 +164,74 @@ Public Class SetupForm
         ChkWinPEStatus.Checked = True
         Dim StringCalc As String = Directory.GetParent(WinPEPath).ToString
         ChkWinPEStatus.Text = "Found in: " + If(StringCalc.Length > 33, WinPEPath.Substring(0, 3) + "..." + StringCalc.Substring(StringCalc.Length - 30, 30), StringCalc)
+        btnCreateISO.Enabled = True
+        btnCreateUSB.Enabled = True
     End Sub
 
     Private Sub ChkShowInternal_CheckedChanged(sender As Object, e As EventArgs) Handles ChkShowInternal.CheckedChanged
-        RefreshDrives(ChkShowInternal.Checked)
+        RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
+    End Sub
+
+    Private Async Sub btnCreateISO_Click(sender As Object, e As EventArgs) Handles btnCreateISO.Click
+        ProgressDialog.Show()
+        ProgressDialog.SetProgressBarAmount(50)
+        ProgressDialog.SetLabelText("Creating WinPE ISO")
+        Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
+                                                               ProgressDialog.SetTextboxText(Info)
+                                                           End Sub)
+        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            If File.Exists(SaveFileDialog1.FileName) Then File.Delete(SaveFileDialog1.FileName)
+            Await Task.Run(Sub()
+                               If RunCmdCommand(ADKCommandLine + "call MakeWinPEMedia /ISO """ + WinPEPath + """ """ + SaveFileDialog1.FileName + """", progressInfoDetailed) Then Return
+                               MessageBox.Show("Saved ISO Successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                           End Sub)
+        End If
+        ProgressDialog.Close()
+    End Sub
+
+    Private Async Sub btnCreateUSB_Click(sender As Object, e As EventArgs) Handles btnCreateUSB.Click
+        'If CmbDrives.Text = "No Usable Drives Found" Then
+        '    MessageBox.Show("There are no usable drives available.", "Drive Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End If
+        'Select Case drive.GetDriveInfo.DriveType
+        '    Case IO.DriveType.CDRom
+        '        MessageBox.Show("It is not possible at this time to create a CD/DVD WinPE install using this option." + vbCrLf + "If you wish to create a CD/DVD use the ISO option to create an ISO that can be written to a CD/DVD", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        Return
+        '    Case IO.DriveType.Network
+        '        MessageBox.Show("You cannot use a network share as a drive to install WinPE", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        Return
+        '    Case IO.DriveType.Ram
+        '        MessageBox.Show("You cannot use a Ramdisk as a WinPE destination", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        Return
+        '    Case IO.DriveType.NoRootDirectory
+        '        MessageBox.Show("Windows does not detect a drive at this location", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        Return
+        '    Case IO.DriveType.Unknown
+        '        If MessageBox.Show("Windows cannot identify what type of drive this is." + vbCrLf + "Are you sure you want to continue?", "Unknown Drive Type", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+        '            Return
+        '        End If
+        '    Case IO.DriveType.Fixed
+        '        If MessageBox.Show("Windows has identified this drive as an internal drive." + vbCrLf + "Are you sure you want to continue?", "Internal Drive Type", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+        '            Return
+        '        End If
+        'End Select
+
+        'Dim drive As DriveStruct = CmbDrives.SelectedItem
+        'MsgBox(drive.ToString)
+        ProgressDialog.Show()
+
+        Dim cmdOutput As String = ""
+        Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
+                                                               cmdOutput += Info + vbCrLf
+                                                           End Sub)
+        Directory.CreateDirectory(AppContext.BaseDirectory + "\TemporaryFiles")
+        My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\ListDisks.tmp", "list disk" + vbCrLf + "exit", False)
+        Await Task.Run(Sub() RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\ListDisks.tmp""", progressInfoDetailed))
+        Dim tmpDumb As String = cmdOutput
+        MsgBox(cmdOutput)
+    End Sub
+
+    Private Sub ChkShowUnknownDrives_CheckedChanged(sender As Object, e As EventArgs) Handles ChkShowUnknownDrives.CheckedChanged
+        RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
     End Sub
 End Class
