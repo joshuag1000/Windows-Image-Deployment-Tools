@@ -77,13 +77,13 @@ Partial Class SetupForm
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(136, 6)
+        ToolStripSeparator1.Size = New Size(177, 6)
         ' 
         ' QuitToolStripMenuItem
         ' 
         QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
         QuitToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
-        QuitToolStripMenuItem.Size = New Size(139, 22)
+        QuitToolStripMenuItem.Size = New Size(180, 22)
         QuitToolStripMenuItem.Text = "Quit"
         ' 
         ' TableLayoutPanel1

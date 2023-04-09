@@ -79,6 +79,7 @@ Public Class SetupForm
         File.WriteAllText(WPEPath + "\mount\Windows\System32\startnet.cmd", My.Resources.startnet)
         Directory.CreateDirectory(WPEPath + "\mount\WIDT-GUI")
         If RunCmdCommand("Call xCopy """ + AppContext.BaseDirectory + """ """ + WPEPath + "\mount\WIDT-GUI\"" /e /q") Then Return
+        If RunCmdCommand("Call """ + WPEPath + "\mount\WIDT-GUI\WIDT-GUI.exe"" /SetStartupApp WinPE") Then Return
         Percent.Report(40)
 
         ' Unmount and Save the image

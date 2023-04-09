@@ -1,4 +1,4 @@
-:: Only different file from the Legacy Scripts. Contains a merged Entrypoint.bat and startnet.cmd from the origional scripts
+:: Only different file from the Legacy Scripts. Contains a merged Entrypoint.bat and startnet.cmd from the original scripts as well as some patches.
 @echo off
 @echo  *********************************************************************
 @echo -- Working out 'USB-B' drive letter --
@@ -12,7 +12,7 @@
 @echo The 'USB' drive is: %USBB%
 @echo  *********************************************************************
 
-cd /D %USBB%\
+cd /D "%~dp0\Deployment\"
 
 echo -- Are you sure you would like to proceed with Imaging this pc? Everything will be wiped. --
 echo -- If you would like to capture the image on this device say no. --

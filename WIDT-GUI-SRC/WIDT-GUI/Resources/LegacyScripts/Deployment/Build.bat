@@ -2,7 +2,7 @@
 setlocal enableDelayedExpansion
 ::build "array" of Wim Files
 set folderCnt=0
-for /f "eol=: delims=" %%F in ('dir /b \*.wim') do (
+for /f "eol=: delims=" %%F in ('dir /b %USBB%\*.wim') do (
   set /a folderCnt+=1
   set "folder!folderCnt!=%%F"
 )
@@ -22,7 +22,7 @@ if %folderCnt% EQU 1 (
     set /p "selection=Image: "
 )
 if not "!folder%selection%!"=="" (
-    call ApplyImage.bat \!folder%selection%!
+    call ApplyImage.bat %USBB%\!folder%selection%!
     call ApplyRecovery.bat
 ) else (
     echo No Wim files were found.

@@ -22,16 +22,66 @@ Partial Class WinPEForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        MenuStrip1 = New MenuStrip()
+        FileToolStripMenuItem = New ToolStripMenuItem()
+        ToolsToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripSeparator1 = New ToolStripSeparator()
+        UseLegacyToolsToolStripMenuItem = New ToolStripMenuItem()
+        MenuStrip1.SuspendLayout()
         SuspendLayout()
+        ' 
+        ' MenuStrip1
+        ' 
+        MenuStrip1.Items.AddRange(New ToolStripItem() {FileToolStripMenuItem, ToolsToolStripMenuItem})
+        MenuStrip1.Location = New Point(0, 0)
+        MenuStrip1.Name = "MenuStrip1"
+        MenuStrip1.Size = New Size(800, 24)
+        MenuStrip1.TabIndex = 0
+        MenuStrip1.Text = "MenuStrip1"
+        ' 
+        ' FileToolStripMenuItem
+        ' 
+        FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        FileToolStripMenuItem.Size = New Size(37, 20)
+        FileToolStripMenuItem.Text = "File"
+        ' 
+        ' ToolsToolStripMenuItem
+        ' 
+        ToolsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator1, UseLegacyToolsToolStripMenuItem})
+        ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
+        ToolsToolStripMenuItem.Size = New Size(46, 20)
+        ToolsToolStripMenuItem.Text = "Tools"
+        ' 
+        ' ToolStripSeparator1
+        ' 
+        ToolStripSeparator1.Name = "ToolStripSeparator1"
+        ToolStripSeparator1.Size = New Size(177, 6)
+        ' 
+        ' UseLegacyToolsToolStripMenuItem
+        ' 
+        UseLegacyToolsToolStripMenuItem.Name = "UseLegacyToolsToolStripMenuItem"
+        UseLegacyToolsToolStripMenuItem.Size = New Size(180, 22)
+        UseLegacyToolsToolStripMenuItem.Text = "Use Legacy Tools"
         ' 
         ' WinPEForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(MenuStrip1)
+        MainMenuStrip = MenuStrip1
         Name = "WinPEForm"
         Text = "WinPEForm"
         WindowState = FormWindowState.Maximized
+        MenuStrip1.ResumeLayout(False)
+        MenuStrip1.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
+
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents UseLegacyToolsToolStripMenuItem As ToolStripMenuItem
 End Class
