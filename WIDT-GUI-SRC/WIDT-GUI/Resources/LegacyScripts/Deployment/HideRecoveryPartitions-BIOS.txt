@@ -1,0 +1,7 @@
+rem === HideRecoveryPartitions-BIOS.txt ===
+select disk 0
+select partition 3
+set id=27
+remove
+list volume
+exit

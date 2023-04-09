@@ -34,18 +34,23 @@ Partial Class ConfigurePEDialog
         btnBrowse = New Button()
         Label2 = New Label()
         FolderBrowserDialog1 = New FolderBrowserDialog()
+        FlowLayoutPanel1 = New FlowLayoutPanel()
+        FlowLayoutPanel2 = New FlowLayoutPanel()
         TableLayoutPanel1.SuspendLayout()
+        FlowLayoutPanel1.SuspendLayout()
+        FlowLayoutPanel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' TableLayoutPanel1
         ' 
         TableLayoutPanel1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        TableLayoutPanel1.AutoSize = True
         TableLayoutPanel1.ColumnCount = 2
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
         TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
-        TableLayoutPanel1.Location = New Point(161, 190)
+        TableLayoutPanel1.Location = New Point(159, 112)
         TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
@@ -78,7 +83,7 @@ Partial Class ConfigurePEDialog
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(12, 9)
+        Label1.Location = New Point(3, 0)
         Label1.Name = "Label1"
         Label1.Size = New Size(294, 20)
         Label1.TabIndex = 1
@@ -90,7 +95,7 @@ Partial Class ConfigurePEDialog
         chkDupMagic.Checked = True
         chkDupMagic.CheckState = CheckState.Checked
         chkDupMagic.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        chkDupMagic.Location = New Point(12, 32)
+        chkDupMagic.Location = New Point(3, 23)
         chkDupMagic.Name = "chkDupMagic"
         chkDupMagic.Size = New Size(202, 24)
         chkDupMagic.TabIndex = 2
@@ -100,7 +105,7 @@ Partial Class ConfigurePEDialog
         ' 
         ' txtWinPEPath
         ' 
-        txtWinPEPath.Location = New Point(12, 82)
+        txtWinPEPath.Location = New Point(3, 3)
         txtWinPEPath.Name = "txtWinPEPath"
         txtWinPEPath.ReadOnly = True
         txtWinPEPath.Size = New Size(236, 23)
@@ -109,7 +114,7 @@ Partial Class ConfigurePEDialog
         ' btnBrowse
         ' 
         btnBrowse.Anchor = AnchorStyles.None
-        btnBrowse.Location = New Point(255, 82)
+        btnBrowse.Location = New Point(246, 3)
         btnBrowse.Margin = New Padding(4, 3, 4, 3)
         btnBrowse.Name = "btnBrowse"
         btnBrowse.Size = New Size(77, 27)
@@ -120,11 +125,36 @@ Partial Class ConfigurePEDialog
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label2.Location = New Point(12, 59)
+        Label2.Location = New Point(3, 50)
         Label2.Name = "Label2"
         Label2.Size = New Size(320, 20)
         Label2.TabIndex = 5
         Label2.Text = "Select a destination. (Default is recommended)"
+        ' 
+        ' FlowLayoutPanel1
+        ' 
+        FlowLayoutPanel1.AutoSize = True
+        FlowLayoutPanel1.Controls.Add(txtWinPEPath)
+        FlowLayoutPanel1.Controls.Add(btnBrowse)
+        FlowLayoutPanel1.Dock = DockStyle.Top
+        FlowLayoutPanel1.Location = New Point(3, 73)
+        FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        FlowLayoutPanel1.Size = New Size(327, 33)
+        FlowLayoutPanel1.TabIndex = 6
+        ' 
+        ' FlowLayoutPanel2
+        ' 
+        FlowLayoutPanel2.Controls.Add(Label1)
+        FlowLayoutPanel2.Controls.Add(chkDupMagic)
+        FlowLayoutPanel2.Controls.Add(Label2)
+        FlowLayoutPanel2.Controls.Add(FlowLayoutPanel1)
+        FlowLayoutPanel2.Controls.Add(TableLayoutPanel1)
+        FlowLayoutPanel2.Dock = DockStyle.Fill
+        FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel2.Location = New Point(0, 0)
+        FlowLayoutPanel2.Name = "FlowLayoutPanel2"
+        FlowLayoutPanel2.Size = New Size(335, 181)
+        FlowLayoutPanel2.TabIndex = 7
         ' 
         ' ConfigurePEDialog
         ' 
@@ -132,13 +162,8 @@ Partial Class ConfigurePEDialog
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = Cancel_Button
-        ClientSize = New Size(345, 237)
-        Controls.Add(Label2)
-        Controls.Add(btnBrowse)
-        Controls.Add(txtWinPEPath)
-        Controls.Add(chkDupMagic)
-        Controls.Add(Label1)
-        Controls.Add(TableLayoutPanel1)
+        ClientSize = New Size(335, 181)
+        Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(4, 3, 4, 3)
         MaximizeBox = False
@@ -146,10 +171,13 @@ Partial Class ConfigurePEDialog
         Name = "ConfigurePEDialog"
         ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterParent
-        Text = "Dialog1"
+        Text = "Configure WinPE"
         TableLayoutPanel1.ResumeLayout(False)
+        FlowLayoutPanel1.ResumeLayout(False)
+        FlowLayoutPanel1.PerformLayout()
+        FlowLayoutPanel2.ResumeLayout(False)
+        FlowLayoutPanel2.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
@@ -161,4 +189,6 @@ Partial Class ConfigurePEDialog
     Friend WithEvents btnBrowse As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
 End Class

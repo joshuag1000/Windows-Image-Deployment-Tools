@@ -1,0 +1,20 @@
+rem == CreateRecoveryPartitions-BIOS.txt ==
+select disk 0
+select partition 2
+assign letter="W"
+rem == extend the Windows partition ==
+shrink minimum=500
+extend
+rem ==    b. Create space for the recovery tools  
+shrink minimum=500
+rem       ** NOTE: Update this size to match the
+rem                size of the recovery tools 
+rem                (winre.wim)                 **
+rem ==    c. Prepare the Recovery partition ====== 
+select disk 0
+create partition primary
+format quick fs=ntfs label="Recovery image"
+assign letter="R"
+set id=27
+list volume
+exit

@@ -74,6 +74,45 @@
     <None Update="Resources\7zr.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\LegacyScripts\Deployment\ApplyImage.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\ApplyRecovery.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\Build.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\CaptureImage.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-BIOS-FFU.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-BIOS.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-UEFI-FFU.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-UEFI.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\CreateRecoveryPartitions-BIOS.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\CreateRecoveryPartitions-UEFI.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\HideRecoveryPartitions-BIOS.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Deployment\HideRecoveryPartitions-UEFI.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\LegacyScripts\Entrypoint.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\startnet.cmd">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
