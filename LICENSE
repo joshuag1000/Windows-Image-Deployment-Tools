@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2021 Joshua Glass (AKA: SuperNinja_4965)
+Copyright (c) 2023 Joshua Glass (AKA: SuperNinja_4965)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,30 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This project contains or uses other 3rd party software/files that are subject to different licenses.
+The following is an incomplete list of the 3rd part software and where to find their licenses:
+
+7-Zip - Prebuild binary (console version). Used for compression and decompression of files by the WIDT-GUI app.
+    - Download: https://www.7-zip.org/download.html
+    - License can be found in the source code download on the link above.
+    
+.Net - Used as the framework for the WIDT-GUI app
+    - Information: https://dotnet.microsoft.com/en-us/
+    - License: https://dotnet.microsoft.com/en-us/platform/open-source
+
+Windows ADK - Used to provide the tools needed to deploy WinPE to a device and modify captured images.
+    - Information: https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install
+    - License: Subject to Microsoft's License (Link Unavailable)
+
+WinPE - Used to run the tools allowing for a bootable USB or ISO. Also provides the commands and tools needed to make deployment and image capturing possible.
+    - Information: https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-intro?view=windows-11
+    - License: Subject to Microsoft's License (Link Unavailable)
+    
+Sample Scripts - The Legacy scripts were based off a set of example scipts found at the link below.
+    - Available at: https://go.microsoft.com/fwlink/?linkid=872894
+    - Information:https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/oem-deployment-of-windows-desktop-editions-sample-scripts?view=windows-11
+
+Images a Used in Documentation
+    - Images used in the documentation may contain screenshots of software that is not from or included in this repository. 
+      The screenshots are labelled in any relevent documentation and the design of any software in the screenshots could be subject to copyright.
