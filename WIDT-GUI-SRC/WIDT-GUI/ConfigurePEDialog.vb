@@ -25,6 +25,6 @@ Public Class ConfigurePEDialog
     End Sub
 
     Private Sub ConfigurePEDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtWinPEPath.Text = Directory.GetParent(My.Application.Info.DirectoryPath).ToString
+        txtWinPEPath.Text = Directory.GetParent(AppContext.BaseDirectory).ToString
     End Sub
 End Class

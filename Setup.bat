@@ -76,8 +76,8 @@ echo Any config created by the program will be located in: %~dp0\WIDT-GUI\
 echo Press enter to automatically start the application.
 pause
 IF EXIST "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat" del "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat"
-echo start /D "%~dp0\WIDT-GUI\bin\" "" "%~dp0\WIDT-GUI\bin\WIDT-GUI-Setup.exe /S Setup" >> "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat"
-start /D "%~dp0\WIDT-GUI\bin\" "" "%~dp0\WIDT-GUI\bin\WIDT-GUI-Setup.exe"
+echo start /D "%~dp0\WIDT-GUI\bin\" "" "%~dp0\WIDT-GUI\bin\WIDT-GUI.exe /S Setup" >> "%~dp0\WIDT-GUI\WIDT-GUI-Setup.bat"
+start /D "%~dp0\WIDT-GUI\bin\" "" "%~dp0\WIDT-GUI\bin\WIDT-GUI.exe"
 goto :EOFNoPause
 
 :CompileError

@@ -25,6 +25,7 @@ Namespace My
 
     Partial Friend Class MyApplication
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
+            MsgBox(AppContext.BaseDirectory)
             If My.Settings.StartupApp.ToLower = "winpe" Then
                 Application.MainForm = Global.WIDT_GUI.WinPEForm
             End If
@@ -36,22 +37,22 @@ Namespace My
                 End If
                 If Application.CommandLineArgs.Item(0) = "/SetStartupApp" Then
                     If Application.CommandLineArgs.Item(1).ToLower = "winpe" Then
-                        Dim AppConfig = XDocument.Load(My.Application.Info.DirectoryPath + "/WIDT-GUI.dll.config")
+                        Dim AppConfig = XDocument.Load(+"/WIDT-GUI.dll.config")
                         For Each setting In From element In AppConfig.<configuration>.<applicationSettings>.<WIDT_GUI.My.MySettings>.<setting>
                             If setting.HasAttributes = True And setting.FirstAttribute.Value = "StartupApp" Then
                                 setting.<value>.Value = "WinPE"
                             End If
                         Next
-                        AppConfig.Save(My.Application.Info.DirectoryPath + "/WIDT-GUI.dll.config")
+                        AppConfig.Save(AppContext.BaseDirectory + "/WIDT-GUI.dll.config")
                         e.Cancel = True
                     ElseIf Application.CommandLineArgs.Item(1).ToLower = "setup" Then
-                        Dim AppConfig = XDocument.Load(My.Application.Info.DirectoryPath + "/WIDT-GUI.dll.config")
+                        Dim AppConfig = XDocument.Load(AppContext.BaseDirectory + "/WIDT-GUI.dll.config")
                         For Each setting In From element In AppConfig.<configuration>.<applicationSettings>.<WIDT_GUI.My.MySettings>.<setting>
                             If setting.HasAttributes = True And setting.FirstAttribute.Value = "StartupApp" Then
                                 setting.<value>.Value = "Setup"
                             End If
                         Next
-                        AppConfig.Save(My.Application.Info.DirectoryPath + "/WIDT-GUI.dll.config")
+                        AppConfig.Save(AppContext.BaseDirectory + "/WIDT-GUI.dll.config")
                         e.Cancel = True
                     End If
                 End If

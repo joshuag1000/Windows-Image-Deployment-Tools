@@ -13,8 +13,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Configurations>Debug;Release;Debug WinPE;Release WinPE</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <StartupObject>WIDT_GUI.My.MyApplication</StartupObject>
+    <Title>Windows Image Deployment Tools</Title>
   </PropertyGroup>
 
   <ItemGroup>
@@ -69,6 +70,12 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Update="Resources\7zr.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\startnet.cmd">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

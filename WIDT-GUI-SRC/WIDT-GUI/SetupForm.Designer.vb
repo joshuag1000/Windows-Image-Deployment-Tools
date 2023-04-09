@@ -38,13 +38,24 @@ Partial Class SetupForm
         FlowLayoutPanel4 = New FlowLayoutPanel()
         ChkWinPEStatus = New CheckBox()
         btnWinPESetup = New Button()
-        Button1 = New Button()
+        btnLocateWinPE = New Button()
+        Label5 = New Label()
+        FlowLayoutPanel6 = New FlowLayoutPanel()
+        CmbDrives = New ComboBox()
+        btnRefreshDrives = New Button()
+        ChkShowInternal = New CheckBox()
+        FlowLayoutPanel5 = New FlowLayoutPanel()
+        btnCreateUSB = New Button()
+        btnCreateISO = New Button()
+        FolderBrowserDialog1 = New FolderBrowserDialog()
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         TableLayoutPanel2.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
         FlowLayoutPanel4.SuspendLayout()
+        FlowLayoutPanel6.SuspendLayout()
+        FlowLayoutPanel5.SuspendLayout()
         SuspendLayout()
         ' 
         ' MenuStrip1
@@ -52,7 +63,7 @@ Partial Class SetupForm
         MenuStrip1.Items.AddRange(New ToolStripItem() {FileToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New Size(800, 24)
+        MenuStrip1.Size = New Size(811, 24)
         MenuStrip1.TabIndex = 0
         MenuStrip1.Text = "MenuStrip1"
         ' 
@@ -89,7 +100,7 @@ Partial Class SetupForm
         TableLayoutPanel1.RowCount = 2
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 62F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        TableLayoutPanel1.Size = New Size(800, 426)
+        TableLayoutPanel1.Size = New Size(811, 426)
         TableLayoutPanel1.TabIndex = 1
         ' 
         ' FlowLayoutPanel1
@@ -99,7 +110,7 @@ Partial Class SetupForm
         FlowLayoutPanel1.Dock = DockStyle.Fill
         FlowLayoutPanel1.Location = New Point(3, 3)
         FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        FlowLayoutPanel1.Size = New Size(394, 56)
+        FlowLayoutPanel1.Size = New Size(399, 56)
         FlowLayoutPanel1.TabIndex = 0
         ' 
         ' Label1
@@ -126,9 +137,9 @@ Partial Class SetupForm
         ' 
         FlowLayoutPanel3.Dock = DockStyle.Fill
         FlowLayoutPanel3.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel3.Location = New Point(403, 65)
+        FlowLayoutPanel3.Location = New Point(408, 65)
         FlowLayoutPanel3.Name = "FlowLayoutPanel3"
-        FlowLayoutPanel3.Size = New Size(394, 358)
+        FlowLayoutPanel3.Size = New Size(400, 358)
         FlowLayoutPanel3.TabIndex = 2
         ' 
         ' TableLayoutPanel2
@@ -143,7 +154,7 @@ Partial Class SetupForm
         TableLayoutPanel2.RowCount = 2
         TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 22F))
         TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        TableLayoutPanel2.Size = New Size(394, 358)
+        TableLayoutPanel2.Size = New Size(399, 358)
         TableLayoutPanel2.TabIndex = 3
         ' 
         ' Label3
@@ -160,11 +171,14 @@ Partial Class SetupForm
         ' 
         FlowLayoutPanel2.Controls.Add(Label4)
         FlowLayoutPanel2.Controls.Add(FlowLayoutPanel4)
+        FlowLayoutPanel2.Controls.Add(Label5)
+        FlowLayoutPanel2.Controls.Add(FlowLayoutPanel6)
+        FlowLayoutPanel2.Controls.Add(FlowLayoutPanel5)
         FlowLayoutPanel2.Dock = DockStyle.Fill
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(3, 25)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(388, 330)
+        FlowLayoutPanel2.Size = New Size(393, 330)
         FlowLayoutPanel2.TabIndex = 2
         ' 
         ' Label4
@@ -182,11 +196,11 @@ Partial Class SetupForm
         FlowLayoutPanel4.AutoSize = True
         FlowLayoutPanel4.Controls.Add(ChkWinPEStatus)
         FlowLayoutPanel4.Controls.Add(btnWinPESetup)
-        FlowLayoutPanel4.Controls.Add(Button1)
+        FlowLayoutPanel4.Controls.Add(btnLocateWinPE)
         FlowLayoutPanel4.Dock = DockStyle.Top
         FlowLayoutPanel4.Location = New Point(3, 23)
         FlowLayoutPanel4.Name = "FlowLayoutPanel4"
-        FlowLayoutPanel4.Size = New Size(266, 30)
+        FlowLayoutPanel4.Size = New Size(387, 30)
         FlowLayoutPanel4.TabIndex = 3
         ' 
         ' ChkWinPEStatus
@@ -205,29 +219,106 @@ Partial Class SetupForm
         ' 
         btnWinPESetup.Location = New Point(107, 3)
         btnWinPESetup.Name = "btnWinPESetup"
-        btnWinPESetup.Size = New Size(75, 23)
+        btnWinPESetup.Size = New Size(99, 23)
         btnWinPESetup.TabIndex = 3
-        btnWinPESetup.Text = "Setup"
+        btnWinPESetup.Text = "Setup WinPE"
         btnWinPESetup.UseVisualStyleBackColor = True
         ' 
-        ' Button1
+        ' btnLocateWinPE
         ' 
-        Button1.Location = New Point(188, 3)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 4
-        Button1.Text = "Locate..."
-        Button1.UseVisualStyleBackColor = True
+        btnLocateWinPE.Location = New Point(212, 3)
+        btnLocateWinPE.Name = "btnLocateWinPE"
+        btnLocateWinPE.Size = New Size(75, 23)
+        btnLocateWinPE.TabIndex = 4
+        btnLocateWinPE.Text = "Locate..."
+        btnLocateWinPE.UseVisualStyleBackColor = True
         ' 
-        ' StartForm
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label5.Location = New Point(3, 56)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(103, 20)
+        Label5.TabIndex = 4
+        Label5.Text = "Select a Drive:"
+        ' 
+        ' FlowLayoutPanel6
+        ' 
+        FlowLayoutPanel6.AutoSize = True
+        FlowLayoutPanel6.Controls.Add(CmbDrives)
+        FlowLayoutPanel6.Controls.Add(btnRefreshDrives)
+        FlowLayoutPanel6.Controls.Add(ChkShowInternal)
+        FlowLayoutPanel6.Location = New Point(3, 79)
+        FlowLayoutPanel6.Name = "FlowLayoutPanel6"
+        FlowLayoutPanel6.Size = New Size(387, 29)
+        FlowLayoutPanel6.TabIndex = 7
+        ' 
+        ' CmbDrives
+        ' 
+        CmbDrives.DropDownStyle = ComboBoxStyle.DropDownList
+        CmbDrives.FormattingEnabled = True
+        CmbDrives.Location = New Point(3, 3)
+        CmbDrives.Name = "CmbDrives"
+        CmbDrives.Size = New Size(169, 23)
+        CmbDrives.TabIndex = 5
+        ' 
+        ' btnRefreshDrives
+        ' 
+        btnRefreshDrives.Location = New Point(178, 3)
+        btnRefreshDrives.Name = "btnRefreshDrives"
+        btnRefreshDrives.Size = New Size(67, 23)
+        btnRefreshDrives.TabIndex = 6
+        btnRefreshDrives.Text = "Refresh"
+        btnRefreshDrives.UseVisualStyleBackColor = True
+        ' 
+        ' ChkShowInternal
+        ' 
+        ChkShowInternal.AutoSize = True
+        ChkShowInternal.Location = New Point(251, 3)
+        ChkShowInternal.Name = "ChkShowInternal"
+        ChkShowInternal.Size = New Size(133, 19)
+        ChkShowInternal.TabIndex = 7
+        ChkShowInternal.Text = "Show Internal Drives"
+        ChkShowInternal.UseVisualStyleBackColor = True
+        ' 
+        ' FlowLayoutPanel5
+        ' 
+        FlowLayoutPanel5.AutoSize = True
+        FlowLayoutPanel5.Controls.Add(btnCreateUSB)
+        FlowLayoutPanel5.Controls.Add(btnCreateISO)
+        FlowLayoutPanel5.Location = New Point(3, 114)
+        FlowLayoutPanel5.Name = "FlowLayoutPanel5"
+        FlowLayoutPanel5.Size = New Size(172, 29)
+        FlowLayoutPanel5.TabIndex = 6
+        ' 
+        ' btnCreateUSB
+        ' 
+        btnCreateUSB.Location = New Point(3, 3)
+        btnCreateUSB.Name = "btnCreateUSB"
+        btnCreateUSB.Size = New Size(80, 23)
+        btnCreateUSB.TabIndex = 3
+        btnCreateUSB.Text = "Create USB"
+        btnCreateUSB.UseVisualStyleBackColor = True
+        ' 
+        ' btnCreateISO
+        ' 
+        btnCreateISO.Location = New Point(89, 3)
+        btnCreateISO.Name = "btnCreateISO"
+        btnCreateISO.Size = New Size(80, 23)
+        btnCreateISO.TabIndex = 5
+        btnCreateISO.Text = "Create ISO"
+        btnCreateISO.UseVisualStyleBackColor = True
+        ' 
+        ' SetupForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(811, 450)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
-        Name = "StartForm"
+        Name = "SetupForm"
         Text = "Setup - Windows Image Deployment Tools"
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
@@ -240,6 +331,9 @@ Partial Class SetupForm
         FlowLayoutPanel2.PerformLayout()
         FlowLayoutPanel4.ResumeLayout(False)
         FlowLayoutPanel4.PerformLayout()
+        FlowLayoutPanel6.ResumeLayout(False)
+        FlowLayoutPanel6.PerformLayout()
+        FlowLayoutPanel5.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -260,5 +354,14 @@ Partial Class SetupForm
     Friend WithEvents ChkWinPEStatus As CheckBox
     Friend WithEvents FlowLayoutPanel4 As FlowLayoutPanel
     Friend WithEvents btnWinPESetup As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnLocateWinPE As Button
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents Label5 As Label
+    Friend WithEvents CmbDrives As ComboBox
+    Friend WithEvents FlowLayoutPanel5 As FlowLayoutPanel
+    Friend WithEvents btnCreateUSB As Button
+    Friend WithEvents btnCreateISO As Button
+    Friend WithEvents FlowLayoutPanel6 As FlowLayoutPanel
+    Friend WithEvents btnRefreshDrives As Button
+    Friend WithEvents ChkShowInternal As CheckBox
 End Class

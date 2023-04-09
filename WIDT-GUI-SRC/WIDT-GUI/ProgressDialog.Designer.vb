@@ -44,7 +44,7 @@ Partial Class ProgressDialog
         TableLayoutPanel1.RowCount = 2
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 27F))
-        TableLayoutPanel1.Size = New Size(399, 50)
+        TableLayoutPanel1.Size = New Size(372, 50)
         TableLayoutPanel1.TabIndex = 0
         ' 
         ' PictureBox1
@@ -64,7 +64,8 @@ Partial Class ProgressDialog
         ProgressBar1.Dock = DockStyle.Fill
         ProgressBar1.Location = New Point(73, 23)
         ProgressBar1.Name = "ProgressBar1"
-        ProgressBar1.Size = New Size(323, 24)
+        ProgressBar1.Size = New Size(296, 24)
+        ProgressBar1.Style = ProgressBarStyle.Continuous
         ProgressBar1.TabIndex = 1
         ' 
         ' lblInfo
@@ -73,7 +74,7 @@ Partial Class ProgressDialog
         lblInfo.Dock = DockStyle.Fill
         lblInfo.Location = New Point(73, 0)
         lblInfo.Name = "lblInfo"
-        lblInfo.Size = New Size(323, 20)
+        lblInfo.Size = New Size(296, 20)
         lblInfo.TabIndex = 2
         lblInfo.Text = "Label1"
         lblInfo.TextAlign = ContentAlignment.MiddleLeft
@@ -82,10 +83,11 @@ Partial Class ProgressDialog
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(419, 70)
+        ClientSize = New Size(392, 70)
         ControlBox = False
         Controls.Add(TableLayoutPanel1)
         MaximizeBox = False
+        MaximumSize = New Size(408, 109)
         MinimizeBox = False
         MinimumSize = New Size(408, 109)
         Name = "ProgressDialog"
@@ -93,7 +95,6 @@ Partial Class ProgressDialog
         ShowIcon = False
         ShowInTaskbar = False
         Text = "Progress..."
-        TopMost = True
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
