@@ -1,7 +1,9 @@
-# Windows Image Deployment Tools
+# Beta - Windows Image Deployment Tools
+THE NEW GUI TOOLS ARE IN BETA/ALPHA STAGES AND IT IS NOT RECOMMENDED TO USE THEM IN PRODUCTION AT THIS STAGE.W
 These tools are to be used to capture and modify a Windows Image for deployment to various computers. <br>
-There is 2 versions of these tools. A new GUI based set of tools which (will) offer the same functions as the original legacy scripts as well as some new features like adding drivers in the winpe environment.
-The Legacy scrips still exist but are in maintenance mode meaning they will recieve no new features.
+There is 2 versions of these tools. A new GUI based set of tools which (will) offer the same functions as the original legacy scripts as well as some new features like adding drivers in the winpe environment.<br>
+The Legacy scrips still exist but are in maintenance mode meaning they will recieve no new features. <br>
+The Legacy scripts will be included in WIDT-GUI so they will be accessible from within deployments containing the new app.
 
 ## Disclaimer
 I am not sponsored, endorsed or affiliated with Microsoft and these tools were created for my own use. <br>
@@ -15,28 +17,5 @@ Just create a pull request with the changes and state what changes you have made
 Alternatively, you can create an issue and I will consider any changes that are requested.
 
 ## License
-This project is licensed under the MIT License which can be seen below or in the LICENSE file.
-```
-The MIT License (MIT)
-
-Copyright (c) 2023 Joshua Glass (AKA: SuperNinja_4965)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
-
+This project is licensed under the MIT License which can found in the LICENSE file.<br>
+This project may also contain 3rd Party Software. Details about this can also be found in the LICENSE file.
