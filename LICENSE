@@ -30,6 +30,9 @@ The following is an incomplete list of the 3rd part software and where to find t
 .Net - Used as the framework for the WIDT-GUI app
     - Information: https://dotnet.microsoft.com/en-us/
     - License: https://dotnet.microsoft.com/en-us/platform/open-source
+    
+System.Management Nuget Package
+    - Licensed under MIT License.
 
 Windows ADK - Used to provide the tools needed to deploy WinPE to a device and modify captured images.
     - Information: https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install
