@@ -33,6 +33,9 @@ Namespace My
                     If Application.CommandLineArgs.Item(1).ToLower = "winpe" Then
                         Application.MainForm = Global.WIDT_GUI.WinPEForm
                     End If
+                    If Application.CommandLineArgs.Item(1).ToLower = "setup" Then
+                        Application.MainForm = Global.WIDT_GUI.SetupForm
+                    End If
                 End If
                 If Application.CommandLineArgs.Item(0) = "/SetStartupApp" Then
                     If Application.CommandLineArgs.Item(1).ToLower = "winpe" Then
