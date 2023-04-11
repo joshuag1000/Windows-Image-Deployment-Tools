@@ -24,9 +24,12 @@ Partial Class WinPEForm
     Private Sub InitializeComponent()
         MenuStrip1 = New MenuStrip()
         FileToolStripMenuItem = New ToolStripMenuItem()
+        QuitToConsoleToolStripMenuItem = New ToolStripMenuItem()
+        ShutdownWinPEToolStripMenuItem = New ToolStripMenuItem()
         ToolsToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         UseLegacyToolsToolStripMenuItem = New ToolStripMenuItem()
+        OpenConsoleToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -41,13 +44,27 @@ Partial Class WinPEForm
         ' 
         ' FileToolStripMenuItem
         ' 
+        FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {QuitToConsoleToolStripMenuItem, ShutdownWinPEToolStripMenuItem})
         FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         FileToolStripMenuItem.Size = New Size(37, 20)
         FileToolStripMenuItem.Text = "File"
         ' 
+        ' QuitToConsoleToolStripMenuItem
+        ' 
+        QuitToConsoleToolStripMenuItem.Name = "QuitToConsoleToolStripMenuItem"
+        QuitToConsoleToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
+        QuitToConsoleToolStripMenuItem.Size = New Size(199, 22)
+        QuitToConsoleToolStripMenuItem.Text = "Quit to Console"
+        ' 
+        ' ShutdownWinPEToolStripMenuItem
+        ' 
+        ShutdownWinPEToolStripMenuItem.Name = "ShutdownWinPEToolStripMenuItem"
+        ShutdownWinPEToolStripMenuItem.Size = New Size(199, 22)
+        ShutdownWinPEToolStripMenuItem.Text = "Shutdown WinPE"
+        ' 
         ' ToolsToolStripMenuItem
         ' 
-        ToolsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator1, UseLegacyToolsToolStripMenuItem})
+        ToolsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator1, UseLegacyToolsToolStripMenuItem, OpenConsoleToolStripMenuItem})
         ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         ToolsToolStripMenuItem.Size = New Size(46, 20)
         ToolsToolStripMenuItem.Text = "Tools"
@@ -62,6 +79,12 @@ Partial Class WinPEForm
         UseLegacyToolsToolStripMenuItem.Name = "UseLegacyToolsToolStripMenuItem"
         UseLegacyToolsToolStripMenuItem.Size = New Size(180, 22)
         UseLegacyToolsToolStripMenuItem.Text = "Use Legacy Tools"
+        ' 
+        ' OpenConsoleToolStripMenuItem
+        ' 
+        OpenConsoleToolStripMenuItem.Name = "OpenConsoleToolStripMenuItem"
+        OpenConsoleToolStripMenuItem.Size = New Size(180, 22)
+        OpenConsoleToolStripMenuItem.Text = "Open Console"
         ' 
         ' WinPEForm
         ' 
@@ -84,4 +107,7 @@ Partial Class WinPEForm
     Friend WithEvents ToolsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents UseLegacyToolsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents QuitToConsoleToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShutdownWinPEToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenConsoleToolStripMenuItem As ToolStripMenuItem
 End Class

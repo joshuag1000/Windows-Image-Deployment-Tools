@@ -107,7 +107,6 @@ Partial Class ConfigurePEDialog
         ' 
         txtWinPEPath.Location = New Point(3, 3)
         txtWinPEPath.Name = "txtWinPEPath"
-        txtWinPEPath.ReadOnly = True
         txtWinPEPath.Size = New Size(236, 23)
         txtWinPEPath.TabIndex = 3
         ' 

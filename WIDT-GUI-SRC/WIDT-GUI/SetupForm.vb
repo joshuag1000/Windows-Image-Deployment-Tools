@@ -2,7 +2,6 @@
 Imports System.Threading
 
 Public Class SetupForm
-
     Dim WinPEPath As String = ""
 
     Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -73,6 +72,32 @@ Public Class SetupForm
         If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return
         Percent.Report(30)
 
+        ' Add WinPE Optional Components
+        Info.Report("Adding WinPE Optional Components")
+        ' Bare minimum for the best WinPE Experience
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-HSP-Driver.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\lp.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-WMI.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-WMI_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-SecureStartup.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-SecureStartup_en-gb.cab""", DetailedInfo) Then Return
+        ' Very Nice to have. I plan to add an option to make these optional in the future.
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-HTA.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-HTA_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-NetFx.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-NetFx_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-Scripting.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-Scripting_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-PowerShell.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-PowerShell_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-PlatformId.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-DismCmdlets.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-DismCmdlets_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-SecureBootCmdlets.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-StorageWMI.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-StorageWMI_en-gb.cab""", DetailedInfo) Then Return
+        Percent.Report(40)
+
         ' Copy in the needed files
         Info.Report("Copying Files to WinPE")
         If File.Exists(WPEPath + "\mount\Windows\System32\startnet.cmd") Then
@@ -82,28 +107,39 @@ Public Class SetupForm
         Directory.CreateDirectory(WPEPath + "\mount\WIDT-GUI")
         If RunCmdCommand("Call xCopy """ + AppContext.BaseDirectory + """ """ + WPEPath + "\mount\WIDT-GUI\"" /e /q", DetailedInfo) Then Return
         If RunCmdCommand("Call """ + WPEPath + "\mount\WIDT-GUI\WIDT-GUI.exe"" /SetStartupApp WinPE", DetailedInfo) Then Return
-        Percent.Report(40)
+        Percent.Report(50)
+
+        ' Cleanup the WinPE image to reduce size
+        Info.Report("Cleaning up WinPE Image")
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Cleanup-Image /StartComponentCleanup", DetailedInfo) Then Return
 
         ' Unmount and Save the image
         Info.Report("Saving WinPE Image")
         If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit", DetailedInfo) Then Return
-        Percent.Report(50)
-
-        ' Create a 7z Archive at max compression 
-        Info.Report("Compressing WinPE to 7z Archive")
-        If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7zr.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return
         Percent.Report(60)
 
+        ' Export the optimised image
+        Info.Report("Exporting Cleaned Image")
+        If RunCmdCommand("call Dism /Export-Image /SourceImageFile:""" + WPEPath + "\media\sources\boot.wim"" /SourceIndex:1 /DestinationImageFile:""" + WPEPath + "\media\sources\boot.wim.new""", DetailedInfo) Then Return
+        File.Delete(WPEPath + "\media\sources\boot.wim")
+        File.Move(WPEPath + "\media\sources\boot.wim.new", WPEPath + "\media\sources\boot.wim")
+
+
         If IncludeDuplicateMagic = True Then
+            ' Create a 7z Archive at max compression 
+            Info.Report("Compressing WinPE to 7z Archive")
+            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7zr.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return
+            Percent.Report(70)
+
             ' ReMount the Image
             Info.Report("Mounting WinPE")
             If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return
-            Percent.Report(70)
+            Percent.Report(80)
 
             ' Move the file into the WinPE Environment
             Info.Report("Adding archive to WinPE")
             File.Move(WPEPath + "\WinPEMagic.7z", WPEPath + "\mount\WIDT-GUI\WinPEMagic.7z")
-            Percent.Report(80)
+            Percent.Report(90)
 
             ' Unmount and Save the image
             Info.Report("Saving WinPE Image")
@@ -128,36 +164,16 @@ Public Class SetupForm
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
     End Sub
 
-    Private Structure DriveStruct
-        Private DriveName As String
-        Private drive As DriveInfo
-
-        Public Sub New(name As String, newdrv As DriveInfo)
-            DriveName = name
-            drive = newdrv
-        End Sub
-
-        Public Function GetDriveInfo() As DriveInfo
-            Return drive
-        End Function
-
-        Public Overrides Function ToString() As String
-            Return DriveName
-        End Function
-    End Structure
-
-    Private Sub RefreshDrives(ByVal ShowInternal As Boolean, ByVal ShowUnknown As Boolean)
+    Private Async Sub RefreshDrives(ByVal ShowInternal As Boolean, ByVal ShowUnknown As Boolean)
+        Dim PotentialDrives As List(Of DriveInformation) = New List(Of DriveInformation)
+        Await Task.Run(Sub() PotentialDrives = GetAvailableDrives(ShowInternal, True, ShowUnknown))
         CmbDrives.Items.Clear()
-        For Each drive In DriveInfo.GetDrives
-            If drive.DriveType = IO.DriveType.Removable Or If(ShowUnknown = True, drive.DriveType = IO.DriveType.Unknown, False) Or If(ShowInternal = True, drive.DriveType = IO.DriveType.Fixed, False) Then
-                Dim driveToAdd As DriveStruct = New DriveStruct(drive.Name + " " + drive.VolumeLabel, drive)
-                CmbDrives.Items.Add(driveToAdd)
-            End If
-        Next
-        If CmbDrives.Items.Count = 0 Then
-            CmbDrives.Items.Add("No Usable Drives Found")
+        If PotentialDrives.Count > 0 Then
+            For Each drive As DriveInformation In PotentialDrives
+                CmbDrives.Items.Add(drive)
+            Next
+            CmbDrives.SelectedIndex = 0
         End If
-        CmbDrives.SelectedIndex = 0
     End Sub
 
     Private Sub RefreshWinPEPath()
@@ -218,17 +234,43 @@ Public Class SetupForm
 
         'Dim drive As DriveStruct = CmbDrives.SelectedItem
         'MsgBox(drive.ToString)
-        ProgressDialog.Show()
+        'ProgressDialog.Show()
+        'ProgressDialog.SetProgressBarAmount(10)
+        'Dim progressPercent = New Progress(Of Integer)(Sub(Percent)
+        '                                                   ProgressDialog.SetProgressBarAmount(Percent)
+        '                                               End Sub)
+        'Dim progressInfo = New Progress(Of String)(Sub(Info)
+        '                                               ProgressDialog.SetLabelText(Info)
+        '                                           End Sub)
+        'Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
+        '                                                       ProgressDialog.SetTextboxText(Info)
+        '                                                   End Sub)
+        'Await Task.Run(Sub() SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, WinPEPath))
+        'ProgressDialog.Close()
+    End Sub
 
-        Dim cmdOutput As String = ""
-        Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
-                                                               cmdOutput += Info + vbCrLf
-                                                           End Sub)
+    Private Sub SetupWinPEDrive(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String)
         Directory.CreateDirectory(AppContext.BaseDirectory + "\TemporaryFiles")
         My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\ListDisks.tmp", "list disk" + vbCrLf + "exit", False)
-        Await Task.Run(Sub() RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\ListDisks.tmp""", progressInfoDetailed))
-        Dim tmpDumb As String = cmdOutput
-        MsgBox(cmdOutput)
+        Dim DismListDisks() As String = RunCmdCommandSync("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\ListDisks.tmp""").Split(vbCrLf)
+        File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\ListDisks.tmp")
+
+        Dim Drives As New List(Of String)
+        For i = 0 To DismListDisks.Length - 1
+            If DismListDisks(i).Contains("Disk ###") And DismListDisks(i + 1).Contains("---") Then
+                i += 2
+                While DismListDisks(i).Contains("Disk")
+                    Drives.Add(DismListDisks(i))
+                    i += 1
+                End While
+                i = DismListDisks.Length - 1
+            End If
+        Next
+        For Each i In Drives
+            MsgBox(i)
+        Next
+
+
     End Sub
 
     Private Sub ChkShowUnknownDrives_CheckedChanged(sender As Object, e As EventArgs) Handles ChkShowUnknownDrives.CheckedChanged

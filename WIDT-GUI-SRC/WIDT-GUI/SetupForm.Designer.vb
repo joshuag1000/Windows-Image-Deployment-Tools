@@ -205,7 +205,7 @@ Partial Class SetupForm
         FlowLayoutPanel6.Controls.Add(FlowLayoutPanel7)
         FlowLayoutPanel6.Location = New Point(3, 103)
         FlowLayoutPanel6.Name = "FlowLayoutPanel6"
-        FlowLayoutPanel6.Size = New Size(295, 60)
+        FlowLayoutPanel6.Size = New Size(368, 60)
         FlowLayoutPanel6.TabIndex = 7
         ' 
         ' CmbDrives
@@ -214,12 +214,12 @@ Partial Class SetupForm
         CmbDrives.FormattingEnabled = True
         CmbDrives.Location = New Point(3, 3)
         CmbDrives.Name = "CmbDrives"
-        CmbDrives.Size = New Size(169, 23)
+        CmbDrives.Size = New Size(289, 23)
         CmbDrives.TabIndex = 5
         ' 
         ' btnRefreshDrives
         ' 
-        btnRefreshDrives.Location = New Point(178, 3)
+        btnRefreshDrives.Location = New Point(298, 3)
         btnRefreshDrives.Name = "btnRefreshDrives"
         btnRefreshDrives.Size = New Size(67, 23)
         btnRefreshDrives.TabIndex = 6
