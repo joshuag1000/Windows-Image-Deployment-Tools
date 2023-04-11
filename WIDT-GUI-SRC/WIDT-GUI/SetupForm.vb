@@ -128,7 +128,7 @@ Public Class SetupForm
         If IncludeDuplicateMagic = True Then
             ' Create a 7z Archive at max compression 
             Info.Report("Compressing WinPE to 7z Archive")
-            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7zr.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return
+            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return
             Percent.Report(70)
 
             ' ReMount the Image
