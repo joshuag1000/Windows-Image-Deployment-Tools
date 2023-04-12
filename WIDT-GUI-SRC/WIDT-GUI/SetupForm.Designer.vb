@@ -50,9 +50,11 @@ Partial Class SetupForm
         Label3 = New Label()
         FolderBrowserDialog1 = New FolderBrowserDialog()
         SaveFileDialog1 = New SaveFileDialog()
+        Button1 = New Button()
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
+        FlowLayoutPanel3.SuspendLayout()
         TableLayoutPanel2.SuspendLayout()
         FlowLayoutPanel5.SuspendLayout()
         FlowLayoutPanel6.SuspendLayout()
@@ -137,6 +139,7 @@ Partial Class SetupForm
         ' 
         ' FlowLayoutPanel3
         ' 
+        FlowLayoutPanel3.Controls.Add(Button1)
         FlowLayoutPanel3.Dock = DockStyle.Fill
         FlowLayoutPanel3.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel3.Location = New Point(407, 65)
@@ -333,6 +336,15 @@ Partial Class SetupForm
         SaveFileDialog1.Filter = "ISO Files|*.iso"
         SaveFileDialog1.Title = "Save ISO as..."
         ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(3, 3)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(75, 23)
+        Button1.TabIndex = 0
+        Button1.Text = "Button1"
+        Button1.UseVisualStyleBackColor = True
+        ' 
         ' SetupForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -348,6 +360,7 @@ Partial Class SetupForm
         TableLayoutPanel1.ResumeLayout(False)
         FlowLayoutPanel1.ResumeLayout(False)
         FlowLayoutPanel1.PerformLayout()
+        FlowLayoutPanel3.ResumeLayout(False)
         TableLayoutPanel2.ResumeLayout(False)
         TableLayoutPanel2.PerformLayout()
         FlowLayoutPanel5.ResumeLayout(False)
@@ -389,4 +402,5 @@ Partial Class SetupForm
     Friend WithEvents FlowLayoutPanel5 As FlowLayoutPanel
     Friend WithEvents FlowLayoutPanel7 As FlowLayoutPanel
     Friend WithEvents ChkShowUnknownDrives As CheckBox
+    Friend WithEvents Button1 As Button
 End Class

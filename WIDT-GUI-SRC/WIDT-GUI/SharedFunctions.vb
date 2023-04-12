@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Management
 
 Public Module SharedFunctions
@@ -158,7 +159,91 @@ Public Module SharedFunctions
     Public Function VerifyDrive(ByVal DriveToVerify As DriveInformation) As Boolean
         Return True
     End Function
+
+    ''' <summary>
+    '''     Gets 2 driver letters we can use for the winpe.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function Get2UnusedLetters() As Char()
+        Dim UsedDrives As List(Of String) = New List(Of String)
+        For Each disk In DriveInfo.GetDrives
+            UsedDrives.Add(disk.RootDirectory.ToString.Replace(":\", "").ToUpper)
+        Next
+        Dim DrivesToUse(2) As Char
+        Dim FoundDrives As Short = 0
+        For ascii = 65 To 90
+            If Not UsedDrives.Contains(Chr(ascii)) Then
+                DrivesToUse(FoundDrives) = Chr(ascii)
+                FoundDrives += 1
+                If FoundDrives = 2 Then Return DrivesToUse
+            End If
+        Next
+        Return DrivesToUse
+    End Function
+
+    ''' <summary>
+    '''     This creates a bootable WinPE drive from either a specofied folder or our duplication magic.
+    '''     Unlike the code that creates an ISO this function does not use MakeWinPEMedia for 2 reasons.
+    '''     Firstly it isnt really necassary at all (this could apply to other places but code cleanup is a future job rn)
+    '''     Secondly it allows us to really easily implement our duplication magic in one simple step.
+    '''     The steps used here are identical to the MakeWinPEMedia script give or take.
+    ''' </summary>
+    ''' <param name="Percent"></param>
+    ''' <param name="Info"></param>
+    ''' <param name="DetailedInfo"></param>
+    ''' <param name="drive"></param>
+    ''' <param name="WPEPath"></param>
+    ''' <param name="UseDuplicationMagic"></param>
+    Public Sub SetupWinPEDrive(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal drive As DriveInformation, ByVal WPEPath As String, ByVal UseDuplicationMagic As Boolean)
+        If WPEPath = "" And UseDuplicationMagic = False Then Return
+        ' Create the temporary directory to save the diskpart files. It it already exists delete it.
+        Info.Report("Creating Temporary Directory")
+        If Directory.Exists(AppContext.BaseDirectory + "\TemporaryFiles") Then Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
+        Directory.CreateDirectory(AppContext.BaseDirectory + "\TemporaryFiles")
+        Percent.Report(20)
+
+        ' Format a partition for WinPE and Data Storage
+        Info.Report("Creating and formatting partitions")
+        Dim LettersToUse() As Char = Get2UnusedLetters()
+        My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\DiskPart.tmp", "rescan" + vbCrLf +
+                                                "list disk" + vbCrLf +
+                                                "select disk " + drive.DiskpartID.ToString + vbCrLf +
+                                                "Automount Disable" + vbCrLf +
+                                                "clean" + vbCrLf +
+                                                "Automount Scrub" + vbCrLf +
+                                                "create partition primary size=2000" + vbCrLf +
+                                                "format quick fs=fat32 label=""WinPE""" + vbCrLf +
+                                                "assign letter=" + LettersToUse(0).ToString.ToUpper + vbCrLf +
+                                                "create partition primary" + vbCrLf +
+                                                "format quick fs=exfat label=""WIDT-Data""" + vbCrLf +
+                                                "assign letter=" + LettersToUse(1).ToString.ToUpper + vbCrLf +
+                                                "list vol" + vbCrLf +
+                                                "Automount enable" + vbCrLf +
+                                                "exit", False)
+        If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\DiskPart.tmp""", DetailedInfo) Then Return
+        Percent.Report(60)
+
+        Info.Report("Setting boot code on WinPE partition")
+        If RunCmdCommand("bootsect.exe /nt60 " + LettersToUse(0).ToString.ToUpper + ": /force /mbr", DetailedInfo) Then Return
+        Percent.Report(80)
+
+        If WPEPath <> "" And UseDuplicationMagic = False Then
+            Info.Report("Installing WinPE")
+            If RunCmdCommand("xcopy /herky " + WPEPath + "\media " + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return
+            Percent.Report(90)
+        ElseIf WPEPath = "" And UseDuplicationMagic = True Then
+            Info.Report("Installing WinPE from Duplication Magic")
+            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" x """ + AppContext.BaseDirectory + "\WinPEMagic.7z -o" + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return
+            Percent.Report(90)
+        End If
+
+        '''' TODO: copy config files - Will be added when congig is created
+
+        'Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
+    End Sub
 End Module
+
+
 
 '''''' Wall of memory for my pain figuring the GetAvailableDrives function out. This is incomplete but i think it shows enough.
 '''
