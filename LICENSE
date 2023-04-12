@@ -23,9 +23,9 @@ SOFTWARE.
 This project contains or uses other 3rd party software/files that are subject to different licenses.
 The following is an incomplete list of the 3rd part software and where to find their licenses:
 
-7-Zip - Prebuild binary (console version). Used for compression and decompression of files by the WIDT-GUI app.
+7-Zip - Prebuild binary (console version). Used for compression and decompression of files by the WIDT-GUI app. Uses binary downloaded from 7-zip.org.
     - Download: https://www.7-zip.org/download.html
-    - License can be found in the source code download on the link above.
+    - Licence: https://www.7-zip.org/license.txt
     
 .Net - Used as the framework for the WIDT-GUI app
     - Information: https://dotnet.microsoft.com/en-us/
