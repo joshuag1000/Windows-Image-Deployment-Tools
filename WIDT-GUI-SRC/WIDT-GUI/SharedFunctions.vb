@@ -238,7 +238,7 @@ Public Module SharedFunctions
 
             ' This is required as we cannot mount the wim in the WinPE Dir.
             Info.Report("Temporarily formatting partition of USB to NTFS")
-            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:NTFS /V:TEMP /Q ", DetailedInfo) Then Return
+            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:NTFS /V:TEMP /Q /Y", DetailedInfo) Then Return
             Percent.Report(93)
 
             Info.Report("Mounting the New WinPE")
@@ -255,7 +255,7 @@ Public Module SharedFunctions
             Percent.Report(98)
 
             Info.Report("Reformatting USB Partition to exFAT")
-            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:exFAT /V:TEMP /Q ", DetailedInfo) Then Return
+            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:exFAT /V:TEMP /Q /Y", DetailedInfo) Then Return
             Percent.Report(100)
         End If
 
