@@ -235,13 +235,33 @@ Public Module SharedFunctions
             Info.Report("Installing WinPE from Duplication Magic")
             If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" x """ + AppContext.BaseDirectory + "\WinPEMagic.7z"" -o""" + LettersToUse(0).ToString.ToUpper + ":\""", DetailedInfo) Then Return
             Percent.Report(90)
-            
-            ' TODO Add Duplication Magic into new device (mount then copy then save)
+
+            ' This is required as we cannot mount the wim in the WinPE Dir.
+            Info.Report("Temporarily formatting partition of USB to NTFS")
+            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:NTFS /V:TEMP /Q ", DetailedInfo) Then Return
+            Percent.Report(93)
+
+            Info.Report("Mounting the New WinPE")
+            Directory.CreateDirectory(LettersToUse(1).ToString.ToUpper + ":\Mount")
+            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + LettersToUse(0).ToString.ToUpper + ":\sources\boot.wim"" /Index:1 /MountDir:""" + LettersToUse(1).ToString.ToUpper + ":\Mount""", DetailedInfo) Then Return
+            Percent.Report(92)
+
+            Info.Report("Copying WinPE Archive to new WinPE install")
+            File.Copy(AppContext.BaseDirectory + "\WinPEMagic.7z", "X:\Mount\WIDT-GUI\WinPEMagic.7z")
+            Percent.Report(95)
+
+            Info.Report("Saving WinPE Image")
+            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""X:\Mount"" /Commit", DetailedInfo) Then Return
+            Percent.Report(98)
+
+            Info.Report("Reformatting USB Partition to exFAT")
+            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:exFAT /V:TEMP /Q ", DetailedInfo) Then Return
+            Percent.Report(100)
         End If
 
         '''' TODO: copy config files - Will be added when congig is created
 
-        'Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
+        Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
     End Sub
 End Module
 
