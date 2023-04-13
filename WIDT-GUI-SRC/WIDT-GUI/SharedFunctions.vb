@@ -229,12 +229,14 @@ Public Module SharedFunctions
 
         If WPEPath <> "" And UseDuplicationMagic = False Then
             Info.Report("Installing WinPE")
-            If RunCmdCommand("xcopy /herky " + WPEPath + "\media " + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return
+            If RunCmdCommand("call xcopy /herky " + WPEPath + "\media " + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return
             Percent.Report(90)
         ElseIf WPEPath = "" And UseDuplicationMagic = True Then
             Info.Report("Installing WinPE from Duplication Magic")
-            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" x """ + AppContext.BaseDirectory + "\WinPEMagic.7z -o" + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return
+            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" x """ + AppContext.BaseDirectory + "\WinPEMagic.7z"" -o""" + LettersToUse(0).ToString.ToUpper + ":\""", DetailedInfo) Then Return
             Percent.Report(90)
+            
+            ' TODO Add Duplication Magic into new device (mount then copy then save)
         End If
 
         '''' TODO: copy config files - Will be added when congig is created
