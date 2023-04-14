@@ -7,7 +7,7 @@ Public Class ConfigurePEDialog
         If txtWinPEPath.Text = "" Then
             MessageBox.Show("Please specify a location.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
-        ElseIf Directory.Equals(txtWinPEPath.Text, AppContext.BaseDirectory) Then
+        ElseIf If(txtWinPEPath.Text.Chars(txtWinPEPath.Text.Length - 1) = "\", txtWinPEPath.Text, txtWinPEPath.Text + "\") = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory, AppContext.BaseDirectory + "\") Then
             MessageBox.Show("WinPE cannot be inside the same folder as the tools.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
