@@ -36,6 +36,8 @@ Partial Class ConfigurePEDialog
         FolderBrowserDialog1 = New FolderBrowserDialog()
         FlowLayoutPanel1 = New FlowLayoutPanel()
         FlowLayoutPanel2 = New FlowLayoutPanel()
+        txtWinPEName = New TextBox()
+        Label3 = New Label()
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
@@ -50,7 +52,7 @@ Partial Class ConfigurePEDialog
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
         TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
-        TableLayoutPanel1.Location = New Point(159, 112)
+        TableLayoutPanel1.Location = New Point(159, 161)
         TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
@@ -147,13 +149,32 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.Controls.Add(chkDupMagic)
         FlowLayoutPanel2.Controls.Add(Label2)
         FlowLayoutPanel2.Controls.Add(FlowLayoutPanel1)
+        FlowLayoutPanel2.Controls.Add(Label3)
+        FlowLayoutPanel2.Controls.Add(txtWinPEName)
         FlowLayoutPanel2.Controls.Add(TableLayoutPanel1)
         FlowLayoutPanel2.Dock = DockStyle.Fill
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(0, 0)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(335, 181)
+        FlowLayoutPanel2.Size = New Size(335, 202)
         FlowLayoutPanel2.TabIndex = 7
+        ' 
+        ' txtWinPEName
+        ' 
+        txtWinPEName.Location = New Point(3, 132)
+        txtWinPEName.Name = "txtWinPEName"
+        txtWinPEName.Size = New Size(236, 23)
+        txtWinPEName.TabIndex = 7
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.Location = New Point(3, 109)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(174, 20)
+        Label3.TabIndex = 8
+        Label3.Text = "Name of WinPE Instance:"
         ' 
         ' ConfigurePEDialog
         ' 
@@ -161,7 +182,7 @@ Partial Class ConfigurePEDialog
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = Cancel_Button
-        ClientSize = New Size(335, 181)
+        ClientSize = New Size(335, 202)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(4, 3, 4, 3)
@@ -190,4 +211,6 @@ Partial Class ConfigurePEDialog
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
+    Friend WithEvents Label3 As Label
+    Friend WithEvents txtWinPEName As TextBox
 End Class

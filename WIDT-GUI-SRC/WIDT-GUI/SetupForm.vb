@@ -2,15 +2,20 @@
 Imports System.Threading
 
 Public Class SetupForm
-    Dim WinPEPath As String = ""
-
     Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Check to see if there is a WinPE install in the 'default' location. If there is select it.
-        If Directory.Exists(Directory.GetParent(AppContext.BaseDirectory.ToString).ToString + "\WIDT_WinPE_amd64") Then
-            WinPEPath = Directory.GetParent(AppContext.BaseDirectory.ToString).ToString + "\WIDT_WinPE_amd64"
-            RefreshWinPEPath()
+        'If Directory.Exists(Directory.GetParent(AppContext.BaseDirectory.ToString).ToString + "\WinPE-Instances\WIDT_WinPE_amd64") Then
+        '    WinPEPath = Directory.GetParent(AppContext.BaseDirectory.ToString).ToString + "\WIDT_WinPE_amd64"
+        '    RefreshWinPEPath()
+        'End If
+
+        Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
         End If
 
+        ' Detect any WinPE Instances including saved onces 
+        DetectWinPEInstances()
         ' Load the drives into the ui
         RefreshDrives(False, False)
     End Sub
@@ -19,11 +24,45 @@ Public Class SetupForm
         Me.Close()
     End Sub
 
-    Private Async Sub btnWinPESetup_Click(sender As Object, e As EventArgs) Handles btnWinPESetup.Click
+    Private Structure WinPEItem
+        Private InstanceName As String
+        Private InstancePath As String
+
+        Public Sub New(ByVal newInstanceName As String, ByVal newInstancePath As String)
+            InstanceName = newInstanceName
+            InstancePath = newInstancePath
+        End Sub
+
+        Public Overrides Function ToString() As String
+            Return InstanceName
+        End Function
+
+        Public Function GetInstancePath() As String
+            Return InstancePath
+        End Function
+
+        Public Function GetInstanceName() As String
+            Return InstanceName
+        End Function
+    End Structure
+
+    Private Sub DetectWinPEInstances()
+        BoxWinPEInstances.Items.Clear()
+        BoxWinPEInstances.Items.Add(New WinPEItem("---- Detected WinPE Instances ----", "N/A"))
+        Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
+        For Each Folder In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
+            BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\"))
+        Next
+
+        ' Add manually defined instances
+        BoxWinPEInstances.Items.Add(New WinPEItem("------ Saved WinPE Instances ------", "N/A"))
+    End Sub
+
+    Private Async Sub btnNewInstance_Click(sender As Object, e As EventArgs) Handles btnNewInstance.Click
         Dim ConfigureDialog As DialogResult = ConfigurePEDialog.ShowDialog()
         If ConfigureDialog = DialogResult.OK Then
             ' Get the WinPE config information
-            WinPEPath = ConfigurePEDialog.txtWinPEPath.Text + "\WIDT_WinPE_amd64"
+            Dim WinPEPath As String = ConfigurePEDialog.txtWinPEPath.Text + "\" + ConfigurePEDialog.txtWinPEName.Text.Replace(" ", "_")
             Dim IncludeDuplicateMagic As Boolean = ConfigurePEDialog.chkDupMagic.Checked
             ' close the dialog (frees memory etc)
             ConfigurePEDialog.Close()
@@ -45,8 +84,10 @@ Public Class SetupForm
             ProgressDialog.Close()
             Me.Enabled = True
             Me.BringToFront()
+            ' TODO: If the instance is in our detectable folder do nothing otherwise add it to our manually added Instances
+
             ' Update UI with the newly setup tools
-            RefreshWinPEPath()
+            DetectWinPEInstances()
         End If
     End Sub
 
@@ -165,13 +206,13 @@ Public Class SetupForm
         Thread.Sleep(300)
     End Sub
 
-    Private Sub btnLocateWinPE_Click(sender As Object, e As EventArgs) Handles btnLocateWinPE.Click
-        Dim WinPEPathDilogResult As DialogResult = FolderBrowserDialog1.ShowDialog
-        If WinPEPathDilogResult = DialogResult.OK Then
-            WinPEPath = FolderBrowserDialog1.SelectedPath
-            RefreshWinPEPath()
-        End If
-    End Sub
+    'Private Sub btnLocateWinPE_Click(sender As Object, e As EventArgs) Handles btnLocateWinPE.Click
+    '    Dim WinPEPathDilogResult As DialogResult = FolderBrowserDialog1.ShowDialog
+    '    If WinPEPathDilogResult = DialogResult.OK Then
+    '        WinPEPath = FolderBrowserDialog1.SelectedPath
+    '        RefreshWinPEPath()
+    '    End If
+    'End Sub
 
     Private Sub btnRefreshDrives_Click(sender As Object, e As EventArgs) Handles btnRefreshDrives.Click
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
@@ -191,10 +232,10 @@ Public Class SetupForm
         CmbDrives.SelectedIndex = 0
     End Sub
 
-    Private Sub RefreshWinPEPath()
+    Private Sub RefreshWinPEPath(ByVal WinPEInstanceName As String, ByVal WinPEInstancePath As String)
         ChkWinPEStatus.Checked = True
-        Dim StringCalc As String = Directory.GetParent(WinPEPath).ToString
-        ChkWinPEStatus.Text = "Found in: " + If(StringCalc.Length > 33, WinPEPath.Substring(0, 3) + "..." + StringCalc.Substring(StringCalc.Length - 30, 30), StringCalc)
+        ChkWinPEStatus.Text = "Using Instance: " & WinPEInstanceName
+        ToolTip1.SetToolTip(ChkWinPEStatus, WinPEInstancePath)
         btnCreateISO.Enabled = True
         btnCreateUSB.Enabled = True
     End Sub
@@ -204,7 +245,7 @@ Public Class SetupForm
     End Sub
 
     Private Async Sub btnCreateISO_Click(sender As Object, e As EventArgs) Handles btnCreateISO.Click
-        ProgressDialog.Show()
+        ProgressDialog.Show(Me)
         ProgressDialog.SetProgressBarAmount(50)
         ProgressDialog.SetLabelText("Creating WinPE ISO")
         Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
@@ -212,8 +253,9 @@ Public Class SetupForm
                                                            End Sub)
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
             If File.Exists(SaveFileDialog1.FileName) Then File.Delete(SaveFileDialog1.FileName)
+            Dim WinPEItem As WinPEItem = BoxWinPEInstances.SelectedItem
             Await Task.Run(Sub()
-                               If RunCmdCommand(ADKCommandLine + "call MakeWinPEMedia /ISO """ + WinPEPath + """ """ + SaveFileDialog1.FileName + """", progressInfoDetailed) Then Return
+                               If RunCmdCommand(ADKCommandLine + "call MakeWinPEMedia /ISO """ + WinPEItem.GetInstancePath + """ """ + SaveFileDialog1.FileName + """", progressInfoDetailed) Then Return
                                MessageBox.Show("Saved ISO Successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                            End Sub)
         End If
@@ -221,7 +263,7 @@ Public Class SetupForm
     End Sub
 
     Private Async Sub btnCreateUSB_Click(sender As Object, e As EventArgs) Handles btnCreateUSB.Click
-        CmbDrives.Enabled = False
+        Me.Enabled = False
         Dim drive As DriveInformation = CmbDrives.SelectedItem
         If CmbDrives.Text = "No Usable Drives Found" Then
             MessageBox.Show("There are no usable drives available.", "Drive Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -250,7 +292,7 @@ Public Class SetupForm
         End Select
         If VerifyDrive(drive) = False Then Return
 
-        ProgressDialog.Show()
+        ProgressDialog.Show(Me)
         ProgressDialog.SetProgressBarAmount(10)
         Dim progressPercent = New Progress(Of Integer)(Sub(Percent)
                                                            ProgressDialog.SetProgressBarAmount(Percent)
@@ -261,9 +303,10 @@ Public Class SetupForm
         Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
                                                                ProgressDialog.SetTextboxText(Info)
                                                            End Sub)
-        Await Task.Run(Sub() SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, WinPEPath, False))
+        Dim WinPEItem As WinPEItem = BoxWinPEInstances.SelectedItem
+        Await Task.Run(Sub() SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, WinPEItem.GetInstancePath, False))
         ProgressDialog.Close()
-        CmbDrives.Enabled = True
+        Me.Enabled = True
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
     End Sub
 
@@ -303,7 +346,7 @@ Public Class SetupForm
         End Select
         If VerifyDrive(drive) = False Then Return
 
-        ProgressDialog.Show()
+        ProgressDialog.Show(Me)
         ProgressDialog.SetProgressBarAmount(10)
         Dim progressPercent = New Progress(Of Integer)(Sub(Percent)
                                                            ProgressDialog.SetProgressBarAmount(Percent)
@@ -318,5 +361,29 @@ Public Class SetupForm
         ProgressDialog.Close()
         CmbDrives.Enabled = True
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
+    End Sub
+
+    Private Sub BoxWinPEInstances_SelectedIndexChanged(sender As Object, e As EventArgs) Handles BoxWinPEInstances.SelectedIndexChanged
+        Dim SelectedItem As WinPEItem = BoxWinPEInstances.SelectedItem
+        If SelectedItem.GetInstancePath = "N/A" Then
+            If BoxWinPEInstances.SelectedIndex + 1 > BoxWinPEInstances.Items.Count - 1 Then
+                BoxWinPEInstances.SelectedItem = Nothing
+            Else
+                BoxWinPEInstances.SelectedIndex += 1
+            End If
+        End If
+        If BoxWinPEInstances.SelectedItem IsNot Nothing Then
+            RefreshWinPEPath(SelectedItem.GetInstanceName, SelectedItem.GetInstancePath)
+        Else
+            ChkWinPEStatus.Checked = False
+            ChkWinPEStatus.Text = "Not Found"
+            ToolTip1.SetToolTip(ChkWinPEStatus, "")
+        End If
+    End Sub
+
+    Private Sub btnRemoveInstance_Click(sender As Object, e As EventArgs) Handles btnRemoveInstance.Click
+        If BoxWinPEInstances.SelectedItem IsNot Nothing Then
+            BoxWinPEInstances.Items.RemoveAt(BoxWinPEInstances.SelectedIndex)
+        End If
     End Sub
 End Class
