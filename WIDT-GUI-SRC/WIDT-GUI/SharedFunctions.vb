@@ -249,6 +249,7 @@ Public Module SharedFunctions
                                                 "list vol" + vbCrLf +
                                                 "exit", False)
             If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp""", DetailedInfo) Then Return
+            File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp")
             Percent.Report(93)
 
             Info.Report("Mounting the New WinPE")
@@ -266,11 +267,12 @@ Public Module SharedFunctions
 
             Info.Report("Unmount Virtual Disk")
             My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp", "rescan" + vbCrLf +
-                                    "select vdisk file=" + LettersToUse(1).ToString.ToUpper + ":\TEMPvdisk.vhd " + vbCrLf +
+                                    "select vdisk file=" + LettersToUse(1).ToString.ToUpper + ":\TEMPvdisk.vhd" + vbCrLf +
                                     "detach vdisk" + vbCrLf +
                                     "exit", False)
             If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp""", DetailedInfo) Then Return
-            File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp")
+            File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp")
+            File.Delete(LettersToUse(1).ToString.ToUpper + ":\TEMPvdisk.vhd")
             Percent.Report(100)
         End If
 
