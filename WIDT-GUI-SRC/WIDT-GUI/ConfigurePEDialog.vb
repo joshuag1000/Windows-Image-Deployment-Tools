@@ -7,6 +7,9 @@ Public Class ConfigurePEDialog
         If txtWinPEPath.Text = "" Then
             MessageBox.Show("Please specify a location.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
+        ElseIf Directory.Equals(txtWinPEPath.Text, AppContext.BaseDirectory) Then
+            MessageBox.Show("WinPE cannot be inside the same folder as the tools.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
         End If
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Hide()
@@ -25,6 +28,7 @@ Public Class ConfigurePEDialog
     End Sub
 
     Private Sub ConfigurePEDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtWinPEPath.Text = Directory.GetParent(AppContext.BaseDirectory).ToString
+        txtWinPEPath.Text = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString
+        FolderBrowserDialog1.InitialDirectory = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString
     End Sub
 End Class
