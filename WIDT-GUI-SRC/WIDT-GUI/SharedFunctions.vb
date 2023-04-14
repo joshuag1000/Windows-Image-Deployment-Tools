@@ -241,7 +241,7 @@ Public Module SharedFunctions
             Dim VHDLetters() As Char = Get2UnusedLetters()
             Dim InternalDisksBefore As List(Of DriveInformation) = GetAvailableDrives(True, False, False) ' used for validation so we can ensure that we dont select a disk from before.
             My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp", "rescan" + vbCrLf +
-                                                "create vdisk file=" + LettersToUse(1).ToString.ToUpper + ":\vdisk.vhd type=EXPANDABLE maximum=5000" + vbCrLf +
+                                                "create vdisk file=" + LettersToUse(1).ToString.ToUpper + ":\TEMPvdisk.vhd type=EXPANDABLE maximum=5000" + vbCrLf +
                                                 "attach vdisk" + vbCrLf +
                                                 "create partition primary" + vbCrLf +
                                                 "format quick fs=ntfs label=""TempVHD""" + vbCrLf +
@@ -265,26 +265,12 @@ Public Module SharedFunctions
             Percent.Report(96)
 
             Info.Report("Unmount Virtual Disk")
-            ' We now have to get our disk
-            Dim TmpInternalDisks As List(Of DriveInformation) = GetAvailableDrives(True, False, False)
-            Dim InternalDisks As List(Of DriveInformation) = TmpInternalDisks.ToArray.ToList
-            For Each InternalDisk In TmpInternalDisks.ToArray
-                For Each InternalDiskBef In InternalDisksBefore.ToArray
-                    If InternalDisk.DriveName = InternalDiskBef.DriveName And InternalDisk.DiskpartID = InternalDiskBef.DiskpartID And InternalDisk.Capacity = InternalDiskBef.Capacity Then
-                        InternalDisks.Remove(InternalDisk)
-                    End If
-                Next
-            Next
-            If InternalDisks.Count = 1 Then
-                My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp", "rescan" + vbCrLf +
-                                    "select disk " + InternalDisks(0).DiskpartID.ToString + vbCrLf +
+            My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp", "rescan" + vbCrLf +
+                                    "select vdisk file=" + LettersToUse(1).ToString.ToUpper + ":\TEMPvdisk.vhd " + vbCrLf +
                                     "detach vdisk" + vbCrLf +
                                     "exit", False)
-                If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp""", DetailedInfo) Then Return
-                File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp")
-            Else
-                MessageBox.Show("Unable to determine virtual disk Virtual Disk not unmounted. This should not be an issue", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
+            If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp""", DetailedInfo) Then Return
+            File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp")
             Percent.Report(100)
         End If
 
