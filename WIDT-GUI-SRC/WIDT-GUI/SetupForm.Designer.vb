@@ -31,6 +31,7 @@ Partial Class SetupForm
         Label1 = New Label()
         Label2 = New Label()
         FlowLayoutPanel3 = New FlowLayoutPanel()
+        Button1 = New Button()
         TableLayoutPanel2 = New TableLayoutPanel()
         FlowLayoutPanel5 = New FlowLayoutPanel()
         btnCreateUSB = New Button()
@@ -50,7 +51,6 @@ Partial Class SetupForm
         Label3 = New Label()
         FolderBrowserDialog1 = New FolderBrowserDialog()
         SaveFileDialog1 = New SaveFileDialog()
-        Button1 = New Button()
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
@@ -146,6 +146,15 @@ Partial Class SetupForm
         FlowLayoutPanel3.Name = "FlowLayoutPanel3"
         FlowLayoutPanel3.Size = New Size(401, 358)
         FlowLayoutPanel3.TabIndex = 2
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(3, 3)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(75, 23)
+        Button1.TabIndex = 0
+        Button1.Text = "Button1"
+        Button1.UseVisualStyleBackColor = True
         ' 
         ' TableLayoutPanel2
         ' 
@@ -335,15 +344,6 @@ Partial Class SetupForm
         SaveFileDialog1.DefaultExt = "iso"
         SaveFileDialog1.Filter = "ISO Files|*.iso"
         SaveFileDialog1.Title = "Save ISO as..."
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(3, 3)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 0
-        Button1.Text = "Button1"
-        Button1.UseVisualStyleBackColor = True
         ' 
         ' SetupForm
         ' 

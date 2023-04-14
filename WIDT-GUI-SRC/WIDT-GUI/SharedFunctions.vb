@@ -266,9 +266,10 @@ Public Module SharedFunctions
 
             Info.Report("Unmount Virtual Disk")
             ' We now have to get our disk
-            Dim InternalDisks As List(Of DriveInformation) = GetAvailableDrives(True, False, False)
-            For Each InternalDisk In InternalDisks
-                For Each InternalDiskBef In InternalDisksBefore
+            Dim TmpInternalDisks As List(Of DriveInformation) = GetAvailableDrives(True, False, False)
+            Dim InternalDisks As List(Of DriveInformation) = TmpInternalDisks.ToArray.ToList
+            For Each InternalDisk In TmpInternalDisks.ToArray
+                For Each InternalDiskBef In InternalDisksBefore.ToArray
                     If InternalDisk.DriveName = InternalDiskBef.DriveName And InternalDisk.DiskpartID = InternalDiskBef.DiskpartID And InternalDisk.Capacity = InternalDiskBef.Capacity Then
                         InternalDisks.Remove(InternalDisk)
                     End If
