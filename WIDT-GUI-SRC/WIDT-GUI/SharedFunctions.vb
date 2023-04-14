@@ -237,31 +237,63 @@ Public Module SharedFunctions
             Percent.Report(90)
 
             ' This is required as we cannot mount the wim in the WinPE Dir.
-            Info.Report("Temporarily formatting partition of USB to NTFS")
-            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:NTFS /V:TEMP /Q /Y", DetailedInfo) Then Return
+            Info.Report("Creating and Attaching Virtual Disk.")
+            Dim VHDLetters() As Char = Get2UnusedLetters()
+            Dim InternalDisksBefore As List(Of DriveInformation) = GetAvailableDrives(True, False, False) ' used for validation so we can ensure that we dont select a disk from before.
+            My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp", "rescan" + vbCrLf +
+                                                "create vdisk file=X:\vdisk.vhd type=fixed maximum=5000" + vbCrLf +
+                                                "attach vdisk" + vbCrLf +
+                                                "create partition primary" + vbCrLf +
+                                                "format quick fs=ntfs label=""TempVHD""" + vbCrLf +
+                                                "assign letter=" + VHDLetters(0).ToString.ToUpper + vbCrLf +
+                                                "list vol" + vbCrLf +
+                                                "exit", False)
+            If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp""", DetailedInfo) Then Return
             Percent.Report(93)
 
             Info.Report("Mounting the New WinPE")
-            Directory.CreateDirectory(LettersToUse(1).ToString.ToUpper + ":\Mount")
-            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + LettersToUse(0).ToString.ToUpper + ":\sources\boot.wim"" /Index:1 /MountDir:""" + LettersToUse(1).ToString.ToUpper + ":\Mount""", DetailedInfo) Then Return
+            Directory.CreateDirectory(VHDLetters(0).ToString.ToUpper + ":\Mount")
+            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + LettersToUse(0).ToString.ToUpper + ":\sources\boot.wim"" /Index:1 /MountDir:""" + VHDLetters(0).ToString.ToUpper + ":\Mount""", DetailedInfo) Then Return
             Percent.Report(92)
 
             Info.Report("Copying WinPE Archive to new WinPE install")
-            File.Copy(AppContext.BaseDirectory + "\WinPEMagic.7z", "X:\Mount\WIDT-GUI\WinPEMagic.7z")
+            File.Copy(AppContext.BaseDirectory + "\WinPEMagic.7z", VHDLetters(0).ToString.ToUpper + ":\Mount\WIDT-GUI\WinPEMagic.7z")
             Percent.Report(95)
 
             Info.Report("Saving WinPE Image")
-            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""X:\Mount"" /Commit", DetailedInfo) Then Return
-            Percent.Report(98)
+            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + VHDLetters(0).ToString.ToUpper + ":\Mount"" /Commit", DetailedInfo) Then Return
+            Percent.Report(96)
 
-            Info.Report("Reformatting USB Partition to exFAT")
-            If RunCmdCommand("format " + LettersToUse(1).ToString.ToUpper + ": /FS:exFAT /V:TEMP /Q /Y", DetailedInfo) Then Return
+            Info.Report("Unmount Virtual Disk")
+            ' We now have to get our disk
+            Dim InternalDisks As List(Of DriveInformation) = GetAvailableDrives(True, False, False)
+            For Each InternalDisk In InternalDisks
+                For Each InternalDiskBef In InternalDisksBefore
+                    If InternalDisk.DriveName = InternalDiskBef.DriveName And InternalDisk.DiskpartID = InternalDiskBef.DiskpartID And InternalDisk.Capacity = InternalDiskBef.Capacity Then
+                        InternalDisks.Remove(InternalDisk)
+                    End If
+                Next
+            Next
+            If InternalDisks.Count = 1 Then
+                My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp", "rescan" + vbCrLf +
+                                    "select disk " + InternalDisks(0).DiskpartID + vbCrLf +
+                                    "detach vdisk" + vbCrLf +
+                                    "exit", False)
+                If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp""", DetailedInfo) Then Return
+                File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp")
+            Else
+                MessageBox.Show("Unable to determine virtual disk Virtual Disk not unmounted. This should not be an issue", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
             Percent.Report(100)
         End If
 
         '''' TODO: copy config files - Will be added when congig is created
 
         Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
+    End Sub
+
+    Public Sub UpdateWinPE()
+
     End Sub
 End Module
 
