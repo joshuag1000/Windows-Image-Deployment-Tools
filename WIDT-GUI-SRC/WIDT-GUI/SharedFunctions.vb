@@ -241,7 +241,7 @@ Public Module SharedFunctions
             Dim VHDLetters() As Char = Get2UnusedLetters()
             Dim InternalDisksBefore As List(Of DriveInformation) = GetAvailableDrives(True, False, False) ' used for validation so we can ensure that we dont select a disk from before.
             My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp", "rescan" + vbCrLf +
-                                                "create vdisk file=X:\vdisk.vhd type=fixed maximum=5000" + vbCrLf +
+                                                "create vdisk file=" + LettersToUse(1).ToString.ToUpper + ":\vdisk.vhd type=fixed maximum=5000" + vbCrLf +
                                                 "attach vdisk" + vbCrLf +
                                                 "create partition primary" + vbCrLf +
                                                 "format quick fs=ntfs label=""TempVHD""" + vbCrLf +
