@@ -277,7 +277,7 @@ Public Module SharedFunctions
             Next
             If InternalDisks.Count = 1 Then
                 My.Computer.FileSystem.WriteAllText(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp", "rescan" + vbCrLf +
-                                    "select disk " + InternalDisks(0).DiskpartID + vbCrLf +
+                                    "select disk " + InternalDisks(0).DiskpartID.ToString + vbCrLf +
                                     "detach vdisk" + vbCrLf +
                                     "exit", False)
                 If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp""", DetailedInfo) Then Return
