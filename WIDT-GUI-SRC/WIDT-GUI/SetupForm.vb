@@ -51,7 +51,7 @@ Public Class SetupForm
         BoxWinPEInstances.Items.Add(New WinPEItem("---- Detected WinPE Instances ----", "N/A"))
         Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
         For Each Folder In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
-            BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\" + Folder + "\"))
+            BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Folder))
         Next
 
         ' Add manually defined instances
@@ -378,6 +378,8 @@ Public Class SetupForm
             ChkWinPEStatus.Checked = False
             ChkWinPEStatus.Text = "Not Found"
             ToolTip1.SetToolTip(ChkWinPEStatus, "")
+            btnCreateISO.Enabled = False
+            btnCreateUSB.Enabled = False
         End If
     End Sub
 
