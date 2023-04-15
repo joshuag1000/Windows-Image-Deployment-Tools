@@ -36,8 +36,8 @@ Partial Class ConfigurePEDialog
         FolderBrowserDialog1 = New FolderBrowserDialog()
         FlowLayoutPanel1 = New FlowLayoutPanel()
         FlowLayoutPanel2 = New FlowLayoutPanel()
-        txtWinPEName = New TextBox()
         Label3 = New Label()
+        txtWinPEName = New TextBox()
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
@@ -105,6 +105,9 @@ Partial Class ConfigurePEDialog
         ToolTip1.SetToolTip(chkDupMagic, resources.GetString("chkDupMagic.ToolTip"))
         chkDupMagic.UseVisualStyleBackColor = True
         ' 
+        ' ToolTip1
+        ' 
+        ' 
         ' txtWinPEPath
         ' 
         txtWinPEPath.Location = New Point(3, 3)
@@ -131,6 +134,9 @@ Partial Class ConfigurePEDialog
         Label2.Size = New Size(320, 20)
         Label2.TabIndex = 5
         Label2.Text = "Select a destination. (Default is recommended)"
+        ' 
+        ' FolderBrowserDialog1
+        ' 
         ' 
         ' FlowLayoutPanel1
         ' 
@@ -159,13 +165,6 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.Size = New Size(335, 202)
         FlowLayoutPanel2.TabIndex = 7
         ' 
-        ' txtWinPEName
-        ' 
-        txtWinPEName.Location = New Point(3, 132)
-        txtWinPEName.Name = "txtWinPEName"
-        txtWinPEName.Size = New Size(236, 23)
-        txtWinPEName.TabIndex = 7
-        ' 
         ' Label3
         ' 
         Label3.AutoSize = True
@@ -175,6 +174,14 @@ Partial Class ConfigurePEDialog
         Label3.Size = New Size(174, 20)
         Label3.TabIndex = 8
         Label3.Text = "Name of WinPE Instance:"
+        ' 
+        ' txtWinPEName
+        ' 
+        txtWinPEName.Location = New Point(3, 132)
+        txtWinPEName.Name = "txtWinPEName"
+        txtWinPEName.PlaceholderText = "WinPE-Instance"
+        txtWinPEName.Size = New Size(236, 23)
+        txtWinPEName.TabIndex = 7
         ' 
         ' ConfigurePEDialog
         ' 

@@ -105,7 +105,7 @@ Public Class SetupForm
         ' Create the folder
         Info.Report("Creating Folder")
         If Directory.Exists(WPEPath) Then
-            If MessageBox.Show("The folder WIDT_WinPE_amd64 already exists in the folder you selected. Is it ok if it is deleted?", "Folder Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            If MessageBox.Show("The WinPE Instance already exists in the folder you selected. Is it ok if it is deleted?", "Folder Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Directory.Delete(WPEPath, True)
             End If
         End If
@@ -310,56 +310,7 @@ Public Class SetupForm
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
     End Sub
 
-
-
     Private Sub ChkShowUnknownDrives_CheckedChanged(sender As Object, e As EventArgs) Handles ChkShowUnknownDrives.CheckedChanged
-        RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
-    End Sub
-
-    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        CmbDrives.Enabled = False
-        Dim drive As DriveInformation = CmbDrives.SelectedItem
-        If CmbDrives.Text = "No Usable Drives Found" Then
-            MessageBox.Show("There are no usable drives available.", "Drive Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-        Select Case drive.ThisDriveType
-            Case IO.DriveType.CDRom
-                MessageBox.Show("It is not possible at this time to create a CD/DVD WinPE install using this option." + vbCrLf + "If you wish to create a CD/DVD use the ISO option to create an ISO that can be written to a CD/DVD", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-            Case IO.DriveType.Network
-                MessageBox.Show("You cannot use a network share as a drive to install WinPE", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-            Case IO.DriveType.Ram
-                MessageBox.Show("You cannot use a Ramdisk as a WinPE destination", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-            Case IO.DriveType.NoRootDirectory
-                MessageBox.Show("Windows does not detect a drive at this location", "Invalid Drive Type", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-            Case IO.DriveType.Unknown
-                If MessageBox.Show("Windows cannot identify what type of drive this is." + vbCrLf + "Are you sure you want to continue?", "Unknown Drive Type", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
-                    Return
-                End If
-            Case IO.DriveType.Fixed
-                If MessageBox.Show("Windows has identified this drive as an internal drive." + vbCrLf + "Are you sure you want to continue?", "Internal Drive Type", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
-                    Return
-                End If
-        End Select
-        If VerifyDrive(drive) = False Then Return
-
-        ProgressDialog.Show(Me)
-        ProgressDialog.SetProgressBarAmount(10)
-        Dim progressPercent = New Progress(Of Integer)(Sub(Percent)
-                                                           ProgressDialog.SetProgressBarAmount(Percent)
-                                                       End Sub)
-        Dim progressInfo = New Progress(Of String)(Sub(Info)
-                                                       ProgressDialog.SetLabelText(Info)
-                                                   End Sub)
-        Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
-                                                               ProgressDialog.SetTextboxText(Info)
-                                                           End Sub)
-        Await Task.Run(Sub() SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, "", True))
-        ProgressDialog.Close()
-        CmbDrives.Enabled = True
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
     End Sub
 

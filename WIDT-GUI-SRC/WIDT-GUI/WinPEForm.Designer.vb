@@ -30,6 +30,7 @@ Partial Class WinPEForm
         ToolStripSeparator1 = New ToolStripSeparator()
         UseLegacyToolsToolStripMenuItem = New ToolStripMenuItem()
         OpenConsoleToolStripMenuItem = New ToolStripMenuItem()
+        DuplicateWinPEUSBKeyToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -52,19 +53,18 @@ Partial Class WinPEForm
         ' QuitToConsoleToolStripMenuItem
         ' 
         QuitToConsoleToolStripMenuItem.Name = "QuitToConsoleToolStripMenuItem"
-        QuitToConsoleToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
-        QuitToConsoleToolStripMenuItem.Size = New Size(199, 22)
+        QuitToConsoleToolStripMenuItem.Size = New Size(165, 22)
         QuitToConsoleToolStripMenuItem.Text = "Quit to Console"
         ' 
         ' ShutdownWinPEToolStripMenuItem
         ' 
         ShutdownWinPEToolStripMenuItem.Name = "ShutdownWinPEToolStripMenuItem"
-        ShutdownWinPEToolStripMenuItem.Size = New Size(199, 22)
+        ShutdownWinPEToolStripMenuItem.Size = New Size(165, 22)
         ShutdownWinPEToolStripMenuItem.Text = "Shutdown WinPE"
         ' 
         ' ToolsToolStripMenuItem
         ' 
-        ToolsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator1, UseLegacyToolsToolStripMenuItem, OpenConsoleToolStripMenuItem})
+        ToolsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator1, UseLegacyToolsToolStripMenuItem, OpenConsoleToolStripMenuItem, DuplicateWinPEUSBKeyToolStripMenuItem})
         ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         ToolsToolStripMenuItem.Size = New Size(46, 20)
         ToolsToolStripMenuItem.Text = "Tools"
@@ -72,19 +72,26 @@ Partial Class WinPEForm
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(177, 6)
+        ToolStripSeparator1.Size = New Size(204, 6)
         ' 
         ' UseLegacyToolsToolStripMenuItem
         ' 
         UseLegacyToolsToolStripMenuItem.Name = "UseLegacyToolsToolStripMenuItem"
-        UseLegacyToolsToolStripMenuItem.Size = New Size(180, 22)
+        UseLegacyToolsToolStripMenuItem.Size = New Size(207, 22)
         UseLegacyToolsToolStripMenuItem.Text = "Use Legacy Tools"
         ' 
         ' OpenConsoleToolStripMenuItem
         ' 
         OpenConsoleToolStripMenuItem.Name = "OpenConsoleToolStripMenuItem"
-        OpenConsoleToolStripMenuItem.Size = New Size(180, 22)
+        OpenConsoleToolStripMenuItem.Size = New Size(207, 22)
         OpenConsoleToolStripMenuItem.Text = "Open Console"
+        ' 
+        ' DuplicateWinPEUSBKeyToolStripMenuItem
+        ' 
+        DuplicateWinPEUSBKeyToolStripMenuItem.Enabled = False
+        DuplicateWinPEUSBKeyToolStripMenuItem.Name = "DuplicateWinPEUSBKeyToolStripMenuItem"
+        DuplicateWinPEUSBKeyToolStripMenuItem.Size = New Size(207, 22)
+        DuplicateWinPEUSBKeyToolStripMenuItem.Text = "Duplicate WinPE USB Key"
         ' 
         ' WinPEForm
         ' 
@@ -110,4 +117,5 @@ Partial Class WinPEForm
     Friend WithEvents QuitToConsoleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShutdownWinPEToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenConsoleToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DuplicateWinPEUSBKeyToolStripMenuItem As ToolStripMenuItem
 End Class

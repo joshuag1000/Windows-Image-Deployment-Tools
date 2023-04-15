@@ -33,5 +33,6 @@ Public Class ConfigurePEDialog
     Private Sub ConfigurePEDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtWinPEPath.Text = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
         FolderBrowserDialog1.InitialDirectory = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
+        txtWinPEName.Select()
     End Sub
 End Class
