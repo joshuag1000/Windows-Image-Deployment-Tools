@@ -8,9 +8,17 @@ Public Class WinPEForm
     End Sub
 
     Dim overrideCloseMessage As Boolean = False
-    Private Sub ShutdownWinPEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShutdownWinPEToolStripMenuItem.Click
-        If MessageBox.Show("Are you sure you would like to shutdown WinPE?", "Shutdown WinPE?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+    Private Sub ShutdownComputerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShutdownComputerToolStripMenuItem.Click
+        If MessageBox.Show("Are you sure you would like to shutdown the computer?", "Shutdown Computer?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             RunCmdCommandSync("wpeutil shutdown")
+            overrideCloseMessage = True
+            Me.Close()
+        End If
+    End Sub
+
+    Private Sub RebootComputerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RebootComputerToolStripMenuItem.Click
+        If MessageBox.Show("Are you sure you would like to reboot the computer?", "Reboot Computer?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            RunCmdCommandSync("wpeutil reboot")
             overrideCloseMessage = True
             Me.Close()
         End If

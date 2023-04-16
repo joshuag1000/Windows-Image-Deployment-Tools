@@ -25,12 +25,13 @@ Partial Class WinPEForm
         MenuStrip1 = New MenuStrip()
         FileToolStripMenuItem = New ToolStripMenuItem()
         QuitToConsoleToolStripMenuItem = New ToolStripMenuItem()
-        ShutdownWinPEToolStripMenuItem = New ToolStripMenuItem()
+        ShutdownComputerToolStripMenuItem = New ToolStripMenuItem()
         ToolsToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         UseLegacyToolsToolStripMenuItem = New ToolStripMenuItem()
         OpenConsoleToolStripMenuItem = New ToolStripMenuItem()
         DuplicateWinPEUSBKeyToolStripMenuItem = New ToolStripMenuItem()
+        RebootComputerToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -45,7 +46,7 @@ Partial Class WinPEForm
         ' 
         ' FileToolStripMenuItem
         ' 
-        FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {QuitToConsoleToolStripMenuItem, ShutdownWinPEToolStripMenuItem})
+        FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {QuitToConsoleToolStripMenuItem, ShutdownComputerToolStripMenuItem, RebootComputerToolStripMenuItem})
         FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         FileToolStripMenuItem.Size = New Size(37, 20)
         FileToolStripMenuItem.Text = "File"
@@ -53,14 +54,14 @@ Partial Class WinPEForm
         ' QuitToConsoleToolStripMenuItem
         ' 
         QuitToConsoleToolStripMenuItem.Name = "QuitToConsoleToolStripMenuItem"
-        QuitToConsoleToolStripMenuItem.Size = New Size(165, 22)
+        QuitToConsoleToolStripMenuItem.Size = New Size(185, 22)
         QuitToConsoleToolStripMenuItem.Text = "Quit to Console"
         ' 
-        ' ShutdownWinPEToolStripMenuItem
+        ' ShutdownComputerToolStripMenuItem
         ' 
-        ShutdownWinPEToolStripMenuItem.Name = "ShutdownWinPEToolStripMenuItem"
-        ShutdownWinPEToolStripMenuItem.Size = New Size(165, 22)
-        ShutdownWinPEToolStripMenuItem.Text = "Shutdown WinPE"
+        ShutdownComputerToolStripMenuItem.Name = "ShutdownComputerToolStripMenuItem"
+        ShutdownComputerToolStripMenuItem.Size = New Size(185, 22)
+        ShutdownComputerToolStripMenuItem.Text = "Shutdown Computer"
         ' 
         ' ToolsToolStripMenuItem
         ' 
@@ -93,6 +94,12 @@ Partial Class WinPEForm
         DuplicateWinPEUSBKeyToolStripMenuItem.Size = New Size(208, 22)
         DuplicateWinPEUSBKeyToolStripMenuItem.Text = "Duplicate WinPE USB/ISO"
         ' 
+        ' RebootComputerToolStripMenuItem
+        ' 
+        RebootComputerToolStripMenuItem.Name = "RebootComputerToolStripMenuItem"
+        RebootComputerToolStripMenuItem.Size = New Size(185, 22)
+        RebootComputerToolStripMenuItem.Text = "Reboot Computer"
+        ' 
         ' WinPEForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -115,7 +122,8 @@ Partial Class WinPEForm
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents UseLegacyToolsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents QuitToConsoleToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ShutdownWinPEToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShutdownComputerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenConsoleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DuplicateWinPEUSBKeyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RebootComputerToolStripMenuItem As ToolStripMenuItem
 End Class
