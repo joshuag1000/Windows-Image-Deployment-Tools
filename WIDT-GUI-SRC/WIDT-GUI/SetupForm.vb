@@ -13,6 +13,12 @@ Public Class SetupForm
         If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances") Then
             Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
         End If
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Drivers") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Drivers")
+        End If
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers")
+        End If
 
         ' Detect any WinPE Instances including saved onces 
         DetectWinPEInstances()
@@ -76,6 +82,8 @@ Public Class SetupForm
                 End If
             Next
             Dim Language As String = ConfigurePEDialog.cmbLanguage.SelectedItem.ToString
+            Dim AddWinPEDrivers As Boolean = ConfigurePEDialog.ChkIncludeDrivers.Checked
+            Dim WinPEDriversPath As String = ConfigurePEDialog.txtWinPEDrivers.Text
             ' close the dialog (frees memory etc)
             ConfigurePEDialog.Close()
             ' show our progress bar information
@@ -93,7 +101,7 @@ Public Class SetupForm
                                                                    ProgressDialog.SetTextboxText(Info)
                                                                End Sub)
             Await Task.Run(Sub()
-                               If SetupWinPE(progressPercent, progressInfo, progressInfoDetailed, WinPEPath, OptionalComponents, Language) Then Return
+                               If SetupWinPE(progressPercent, progressInfo, progressInfoDetailed, WinPEPath, OptionalComponents, Language, AddWinPEDrivers, WinPEDriversPath) Then Return
                                MessageBox.Show("WinPE Instance Created Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                            End Sub)
             ProgressDialog.Close()
@@ -113,7 +121,7 @@ Public Class SetupForm
 
     ReadOnly ADKCommandLine As String = "call ""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"" && "
 
-    Public Function SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String, ByVal OptionalComponents As List(Of ConfigPEOptional), ByVal Language As String)
+    Public Function SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String, ByVal OptionalComponents As List(Of ConfigPEOptional), ByVal Language As String, ByVal AddWinPEDrivers As Boolean, ByVal WinPEDriversPath As String)
         If WPEPath = "" Then
             MessageBox.Show("Please specify a location.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return True
@@ -141,6 +149,13 @@ Public Class SetupForm
         If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return True
         Percent.Report(30)
 
+        ' Add in any WinPE Drivers if they are needed.
+        If AddWinPEDrivers = True Then
+            Info.Report("Adding WinPE Drivers")
+            If RunCmdCommand("call Dism /Add-Driver /Image:""" + WPEPath + "\mount"" /Driver:""" + WinPEDriversPath + """ /recurse", DetailedInfo) Then Return True
+            Percent.Report(35)
+        End If
+
         ' Add WinPE Optional Components
         Info.Report("Adding WinPE Optional Components")
         If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\" + Language + "\lp.cab""", DetailedInfo) Then Return True
@@ -155,7 +170,7 @@ Public Class SetupForm
         Percent.Report(40)
 
         ' Setting Keyboard layout to en-GB.
-        Info.Report("' Setting Keyboard layout to en-GB")
+        Info.Report("Setting Keyboard layout to en-GB")
         If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Set-InputLocale:0809:00000809", DetailedInfo) Then Return True
         Percent.Report(45)
 
@@ -186,7 +201,7 @@ Public Class SetupForm
         File.Move(WPEPath + "\media\sources\boot.wim.new", WPEPath + "\media\sources\boot.wim")
 
 
-        If OptionalComponents.Contains(New ConfigPEOptional("# WIDT/DuplicationMagic", True, "DuplicationMagic", Nothing, False)) Then
+        If OptionalComponents.Contains(New ConfigPEOptional("WIDT/DuplicationMagic", True, "DuplicationMagic", Nothing, False)) Then
             ' Create a 7z Archive at max compression 
             Info.Report("Compressing WinPE to 7z Archive")
             If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return True

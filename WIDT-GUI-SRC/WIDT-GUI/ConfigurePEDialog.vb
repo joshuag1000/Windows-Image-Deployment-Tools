@@ -1,8 +1,4 @@
 ﻿Imports System.IO
-Imports System.Text
-Imports System.Windows.Forms
-Imports Microsoft
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class ConfigurePEDialog
 
@@ -27,6 +23,7 @@ Public Class ConfigurePEDialog
     End Sub
 
     Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
+        FolderBrowserDialog1.InitialDirectory = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
         Dim WinPEPath As DialogResult = FolderBrowserDialog1.ShowDialog
         If WinPEPath = DialogResult.OK Then
             txtWinPEPath.Text = FolderBrowserDialog1.SelectedPath
@@ -35,7 +32,7 @@ Public Class ConfigurePEDialog
 
     ' List of things that WinPE NEEDS to have for out program to work
     Dim NonOptionalComponents() As String = {"Scripting/WinPE-WMI", "Startup/WinPE-HSP-Driver", "Startup/WinPE-SecureStartup"}
-    Dim DefaultOptions() As String = {"# WIDT/DuplicationMagic", "HTML/WinPE-HTA", "Microsoft .NET/WinPE-NetFx", "Scripting/WinPE-Scripting", "Windows PowerShell/WinPE-PowerShell", "Windows PowerShell/WinPE-PlatformID", "Windows PowerShell/WinPE-DismCmdlets", "Windows PowerShell/WinPE-SecureBootCmdlets", "Windows PowerShell/WinPE-StorageWMI"}
+    Dim DefaultOptions() As String = {"WIDT/DuplicationMagic", "HTML/WinPE-HTA", "Microsoft .NET/WinPE-NetFx", "Scripting/WinPE-Scripting", "Windows PowerShell/WinPE-PowerShell", "Windows PowerShell/WinPE-PlatformID", "Windows PowerShell/WinPE-DismCmdlets", "Windows PowerShell/WinPE-SecureBootCmdlets", "Windows PowerShell/WinPE-StorageWMI"}
 
     Private Sub ConfigurePEDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtWinPEPath.Text = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
@@ -51,7 +48,7 @@ Public Class ConfigurePEDialog
         Dim WinPE_Powershell As ConfigPEOptional = New ConfigPEOptional("Windows PowerShell/WinPE-PowerShell", False, "WinPE-PowerShell", New List(Of ConfigPEOptional) From {WinPE_WMI, WinPE_NetFx, WinPE_Scripting}, True)
         Dim WinPE_Setup As ConfigPEOptional = New ConfigPEOptional("Setup/WinPE-Setup", False, "WinPE-Setup", Nothing, True)
         Dim OptionalComponents As New List(Of ConfigPEOptional) From {
-            New ConfigPEOptional("# WIDT/DuplicationMagic", True, "DuplicationMagic", Nothing, False),
+            New ConfigPEOptional("WIDT/DuplicationMagic", True, "DuplicationMagic", Nothing, False),
             WinPE_WMI,
             WinPE_SecureStartup,
             WinPE_NetFx,
@@ -138,5 +135,11 @@ Public Class ConfigurePEDialog
         End If
     End Sub
 
-
+    Private Sub btnSelectDriversDir_Click(sender As Object, e As EventArgs) Handles btnSelectDriversDir.Click
+        FolderBrowserDialog1.InitialDirectory = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Drivers"
+        Dim WinPEDrvPath As DialogResult = FolderBrowserDialog1.ShowDialog
+        If WinPEDrvPath = DialogResult.OK Then
+            txtWinPEDrivers.Text = FolderBrowserDialog1.SelectedPath
+        End If
+    End Sub
 End Class

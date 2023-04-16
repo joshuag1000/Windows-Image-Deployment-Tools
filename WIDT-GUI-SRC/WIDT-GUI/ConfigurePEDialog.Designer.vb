@@ -35,6 +35,11 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel1 = New FlowLayoutPanel()
         FlowLayoutPanel2 = New FlowLayoutPanel()
         ChkOptionalComp = New CheckedListBox()
+        ChkIncludeDrivers = New CheckBox()
+        Label5 = New Label()
+        FlowLayoutPanel3 = New FlowLayoutPanel()
+        txtWinPEDrivers = New TextBox()
+        btnSelectDriversDir = New Button()
         Label4 = New Label()
         cmbLanguage = New ComboBox()
         Label3 = New Label()
@@ -42,6 +47,7 @@ Partial Class ConfigurePEDialog
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
+        FlowLayoutPanel3.SuspendLayout()
         SuspendLayout()
         ' 
         ' TableLayoutPanel1
@@ -53,7 +59,7 @@ Partial Class ConfigurePEDialog
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
         TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
-        TableLayoutPanel1.Location = New Point(210, 344)
+        TableLayoutPanel1.Location = New Point(210, 433)
         TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
@@ -88,9 +94,9 @@ Partial Class ConfigurePEDialog
         Label1.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         Label1.Location = New Point(3, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(294, 20)
+        Label1.Size = New Size(202, 20)
         Label1.TabIndex = 1
-        Label1.Text = "Hover over an option for more information"
+        Label1.Text = "Select Optional Components:"
         ' 
         ' txtWinPEPath
         ' 
@@ -114,7 +120,7 @@ Partial Class ConfigurePEDialog
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label2.Location = New Point(3, 233)
+        Label2.Location = New Point(3, 322)
         Label2.Name = "Label2"
         Label2.Size = New Size(320, 20)
         Label2.TabIndex = 5
@@ -126,7 +132,7 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel1.Controls.Add(txtWinPEPath)
         FlowLayoutPanel1.Controls.Add(btnBrowse)
         FlowLayoutPanel1.Dock = DockStyle.Top
-        FlowLayoutPanel1.Location = New Point(3, 256)
+        FlowLayoutPanel1.Location = New Point(3, 345)
         FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         FlowLayoutPanel1.Size = New Size(378, 33)
         FlowLayoutPanel1.TabIndex = 6
@@ -135,6 +141,9 @@ Partial Class ConfigurePEDialog
         ' 
         FlowLayoutPanel2.Controls.Add(Label1)
         FlowLayoutPanel2.Controls.Add(ChkOptionalComp)
+        FlowLayoutPanel2.Controls.Add(ChkIncludeDrivers)
+        FlowLayoutPanel2.Controls.Add(Label5)
+        FlowLayoutPanel2.Controls.Add(FlowLayoutPanel3)
         FlowLayoutPanel2.Controls.Add(Label4)
         FlowLayoutPanel2.Controls.Add(cmbLanguage)
         FlowLayoutPanel2.Controls.Add(Label2)
@@ -146,7 +155,7 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(4, 4)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(384, 383)
+        FlowLayoutPanel2.Size = New Size(384, 509)
         FlowLayoutPanel2.TabIndex = 7
         ' 
         ' ChkOptionalComp
@@ -160,11 +169,61 @@ Partial Class ConfigurePEDialog
         ChkOptionalComp.Size = New Size(378, 158)
         ChkOptionalComp.TabIndex = 9
         ' 
+        ' ChkIncludeDrivers
+        ' 
+        ChkIncludeDrivers.AutoSize = True
+        ChkIncludeDrivers.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        ChkIncludeDrivers.Location = New Point(3, 187)
+        ChkIncludeDrivers.Name = "ChkIncludeDrivers"
+        ChkIncludeDrivers.Size = New Size(179, 24)
+        ChkIncludeDrivers.TabIndex = 14
+        ChkIncludeDrivers.Text = "Inlcude WinPE Drivers?"
+        ChkIncludeDrivers.UseVisualStyleBackColor = True
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label5.Location = New Point(3, 214)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(273, 20)
+        Label5.TabIndex = 12
+        Label5.Text = "Select Folders Containing WinPE Drivers"
+        ' 
+        ' FlowLayoutPanel3
+        ' 
+        FlowLayoutPanel3.AutoSize = True
+        FlowLayoutPanel3.Controls.Add(txtWinPEDrivers)
+        FlowLayoutPanel3.Controls.Add(btnSelectDriversDir)
+        FlowLayoutPanel3.Dock = DockStyle.Top
+        FlowLayoutPanel3.Location = New Point(3, 237)
+        FlowLayoutPanel3.Name = "FlowLayoutPanel3"
+        FlowLayoutPanel3.Size = New Size(378, 33)
+        FlowLayoutPanel3.TabIndex = 13
+        ' 
+        ' txtWinPEDrivers
+        ' 
+        txtWinPEDrivers.Location = New Point(3, 3)
+        txtWinPEDrivers.Name = "txtWinPEDrivers"
+        txtWinPEDrivers.Size = New Size(285, 23)
+        txtWinPEDrivers.TabIndex = 3
+        ' 
+        ' btnSelectDriversDir
+        ' 
+        btnSelectDriversDir.Anchor = AnchorStyles.None
+        btnSelectDriversDir.AutoSize = True
+        btnSelectDriversDir.Location = New Point(295, 3)
+        btnSelectDriversDir.Margin = New Padding(4, 3, 4, 3)
+        btnSelectDriversDir.Name = "btnSelectDriversDir"
+        btnSelectDriversDir.Size = New Size(77, 27)
+        btnSelectDriversDir.TabIndex = 4
+        btnSelectDriversDir.Text = "Browse"
+        ' 
         ' Label4
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label4.Location = New Point(3, 184)
+        Label4.Location = New Point(3, 273)
         Label4.Name = "Label4"
         Label4.Size = New Size(200, 20)
         Label4.TabIndex = 10
@@ -174,7 +233,7 @@ Partial Class ConfigurePEDialog
         ' 
         cmbLanguage.DropDownStyle = ComboBoxStyle.DropDownList
         cmbLanguage.FormattingEnabled = True
-        cmbLanguage.Location = New Point(3, 207)
+        cmbLanguage.Location = New Point(3, 296)
         cmbLanguage.Name = "cmbLanguage"
         cmbLanguage.Size = New Size(200, 23)
         cmbLanguage.TabIndex = 11
@@ -183,7 +242,7 @@ Partial Class ConfigurePEDialog
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label3.Location = New Point(3, 292)
+        Label3.Location = New Point(3, 381)
         Label3.Name = "Label3"
         Label3.Size = New Size(174, 20)
         Label3.TabIndex = 8
@@ -191,7 +250,7 @@ Partial Class ConfigurePEDialog
         ' 
         ' txtWinPEName
         ' 
-        txtWinPEName.Location = New Point(3, 315)
+        txtWinPEName.Location = New Point(3, 404)
         txtWinPEName.Name = "txtWinPEName"
         txtWinPEName.PlaceholderText = "WinPE-Instance"
         txtWinPEName.Size = New Size(236, 23)
@@ -203,7 +262,7 @@ Partial Class ConfigurePEDialog
         AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
         CancelButton = Cancel_Button
-        ClientSize = New Size(392, 391)
+        ClientSize = New Size(392, 517)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(4, 3, 4, 3)
@@ -219,6 +278,8 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel1.PerformLayout()
         FlowLayoutPanel2.ResumeLayout(False)
         FlowLayoutPanel2.PerformLayout()
+        FlowLayoutPanel3.ResumeLayout(False)
+        FlowLayoutPanel3.PerformLayout()
         ResumeLayout(False)
     End Sub
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
@@ -237,4 +298,9 @@ Partial Class ConfigurePEDialog
     Friend WithEvents ChkOptionalComp As CheckedListBox
     Friend WithEvents Label4 As Label
     Friend WithEvents cmbLanguage As ComboBox
+    Friend WithEvents ChkIncludeDrivers As CheckBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
+    Friend WithEvents txtWinPEDrivers As TextBox
+    Friend WithEvents btnSelectDriversDir As Button
 End Class
