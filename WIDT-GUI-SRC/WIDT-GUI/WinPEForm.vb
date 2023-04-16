@@ -4,6 +4,7 @@ Imports System.IO
 Public Class WinPEForm
     Private Sub UseLegacyToolsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UseLegacyToolsToolStripMenuItem.Click
         Process.Start(AppContext.BaseDirectory + "\Resources\LegacyWinPERuntimeScripts\Entrypoint.Bat")
+        overrideCloseMessage = True
         Me.Close()
     End Sub
 
