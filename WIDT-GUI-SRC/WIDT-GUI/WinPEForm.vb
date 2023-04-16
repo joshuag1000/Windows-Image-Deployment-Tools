@@ -81,6 +81,7 @@ Public Class WinPEForm
         End Select
         If VerifyDrive(drive) = False Then Return
 
+        Me.Enabled = False
         ProgressDialog.Show(Me)
         ProgressDialog.SetProgressBarAmount(10)
         Dim progressPercent = New Progress(Of Integer)(Sub(Percent)
@@ -94,6 +95,6 @@ Public Class WinPEForm
                                                            End Sub)
         Await Task.Run(Sub() SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, "", True))
         ProgressDialog.Close()
-
+        Me.Enabled = True
     End Sub
 End Class

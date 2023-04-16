@@ -27,10 +27,12 @@ Public Class SetupForm
     Private Structure WinPEItem
         Private InstanceName As String
         Private InstancePath As String
+        Private IsInstanceDetected As Boolean
 
-        Public Sub New(ByVal newInstanceName As String, ByVal newInstancePath As String)
+        Public Sub New(ByVal newInstanceName As String, ByVal newInstancePath As String, ByVal newIsInstanceDetected As Boolean)
             InstanceName = newInstanceName
             InstancePath = newInstancePath
+            IsInstanceDetected = newIsInstanceDetected
         End Sub
 
         Public Overrides Function ToString() As String
@@ -44,18 +46,22 @@ Public Class SetupForm
         Public Function GetInstanceName() As String
             Return InstanceName
         End Function
+
+        Public Function GetIsInstanceDetected() As Boolean
+            Return IsInstanceDetected
+        End Function
     End Structure
 
     Private Sub DetectWinPEInstances()
         BoxWinPEInstances.Items.Clear()
-        BoxWinPEInstances.Items.Add(New WinPEItem("---- Detected WinPE Instances ----", "N/A"))
+        BoxWinPEInstances.Items.Add(New WinPEItem("---- Detected WinPE Instances ----", "N/A", True))
         Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
         For Each Folder In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
-            BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Folder))
+            BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Folder, True))
         Next
 
         ' Add manually defined instances
-        BoxWinPEInstances.Items.Add(New WinPEItem("------ Saved WinPE Instances ------", "N/A"))
+        BoxWinPEInstances.Items.Add(New WinPEItem("------ Saved WinPE Instances ------", "N/A", False))
     End Sub
 
     Private Async Sub btnNewInstance_Click(sender As Object, e As EventArgs) Handles btnNewInstance.Click
@@ -336,7 +342,30 @@ Public Class SetupForm
 
     Private Sub btnRemoveInstance_Click(sender As Object, e As EventArgs) Handles btnRemoveInstance.Click
         If BoxWinPEInstances.SelectedItem IsNot Nothing Then
-            BoxWinPEInstances.Items.RemoveAt(BoxWinPEInstances.SelectedIndex)
+            Dim ItemToRemove As WinPEItem = BoxWinPEInstances.SelectedItem
+            If ItemToRemove.GetIsInstanceDetected = False Then
+                If MessageBox.Show("Are you sure you would like to remove this instance?" + vbCrLf + "It can be added again using the locate instance button", "Remove Instance?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                    BoxWinPEInstances.Items.RemoveAt(BoxWinPEInstances.SelectedIndex)
+                    If MessageBox.Show("Would you like to delete this instance from your computer?", "Delete Instance from Computer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                        Directory.Delete(ItemToRemove.GetInstancePath, True)
+                    End If
+                    ' TODO: Remove instance from saved config
+                End If
+            ElseIf ItemToRemove.GetIsInstanceDetected = True Then
+                If MessageBox.Show("Removing this instance will delete the instance from your computer." + vbCrLf + "Are you sure you would like to continue?", "Remove Instance?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                    BoxWinPEInstances.Items.RemoveAt(BoxWinPEInstances.SelectedIndex)
+                    Directory.Delete(ItemToRemove.GetInstancePath, True)
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub btnLocateExistingInstance_Click(sender As Object, e As EventArgs) Handles btnLocateExistingInstance.Click
+        Dim WinPEPathDilogResult As DialogResult = FolderBrowserDialog1.ShowDialog
+        If WinPEPathDilogResult = DialogResult.OK Then
+            Dim PathCalc As String = If(FolderBrowserDialog1.SelectedPath.Chars(FolderBrowserDialog1.SelectedPath.Length - 1) = "\", FolderBrowserDialog1.SelectedPath.Substring(0, FolderBrowserDialog1.SelectedPath.Length - 2), FolderBrowserDialog1.SelectedPath)
+            BoxWinPEInstances.Items.Add(New WinPEItem(PathCalc.ToString.Replace(Directory.GetParent(PathCalc).ToString, ""), PathCalc, False))
+            ' TODO: Add instance to config
         End If
     End Sub
 End Class

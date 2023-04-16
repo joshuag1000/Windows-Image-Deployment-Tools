@@ -61,8 +61,8 @@
     <value>17, 17</value>
   </metadata>
   <data name="chkDupMagic.ToolTip" xml:space="preserve">
-    <value>Include a duplicate copy of the tools to allow the WinPE install on the USB device to create duplicate copies of itself.
-This option will use extra storage.
+    <value>Warning: Enabling this option could potentially cause WinPE boot times to be slower.
+Include a duplicate copy of the tools to allow the WinPE install on the USB device to create duplicate copies of itself.
 This option is recommended to make it easier to create new USB boot keys using existing USB boot keys.</value>
   </data>
   <metadata name="FolderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

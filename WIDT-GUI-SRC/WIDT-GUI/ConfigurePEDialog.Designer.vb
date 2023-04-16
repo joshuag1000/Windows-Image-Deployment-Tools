@@ -105,9 +105,6 @@ Partial Class ConfigurePEDialog
         ToolTip1.SetToolTip(chkDupMagic, resources.GetString("chkDupMagic.ToolTip"))
         chkDupMagic.UseVisualStyleBackColor = True
         ' 
-        ' ToolTip1
-        ' 
-        ' 
         ' txtWinPEPath
         ' 
         txtWinPEPath.Location = New Point(3, 3)
@@ -135,9 +132,6 @@ Partial Class ConfigurePEDialog
         Label2.TabIndex = 5
         Label2.Text = "Select a destination. (Default is recommended)"
         ' 
-        ' FolderBrowserDialog1
-        ' 
-        ' 
         ' FlowLayoutPanel1
         ' 
         FlowLayoutPanel1.AutoSize = True
@@ -162,7 +156,7 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(0, 0)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(335, 202)
+        FlowLayoutPanel2.Size = New Size(333, 202)
         FlowLayoutPanel2.TabIndex = 7
         ' 
         ' Label3
