@@ -181,8 +181,8 @@ Partial Class ConfigurePEDialog
         ' ConfigurePEDialog
         ' 
         AcceptButton = OK_Button
-        AutoScaleDimensions = New SizeF(7F, 15F)
-        AutoScaleMode = AutoScaleMode.Font
+        AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         CancelButton = Cancel_Button
         ClientSize = New Size(341, 202)
         Controls.Add(FlowLayoutPanel2)
