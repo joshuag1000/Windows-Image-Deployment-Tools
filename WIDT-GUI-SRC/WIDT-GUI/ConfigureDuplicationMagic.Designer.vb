@@ -184,7 +184,9 @@ Partial Class ConfigureDuplicationMagic
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(389, 164)
         Controls.Add(FlowLayoutPanel2)
+        FormBorderStyle = FormBorderStyle.FixedDialog
         Name = "ConfigureDuplicationMagic"
+        StartPosition = FormStartPosition.CenterParent
         Text = "ConfigureDuplicationMagic"
         FlowLayoutPanel2.ResumeLayout(False)
         FlowLayoutPanel2.PerformLayout()

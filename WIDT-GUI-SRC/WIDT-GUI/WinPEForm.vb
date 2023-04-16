@@ -108,4 +108,8 @@ Public Class WinPEForm
         ProgressDialog.Close()
         Me.Enabled = True
     End Sub
+
+    Private Sub AboutWIDTGUIToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutWIDTGUIToolStripMenuItem.Click
+        AboutBox.ShowDialog(Me)
+    End Sub
 End Class

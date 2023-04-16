@@ -25,7 +25,7 @@ Partial Class SetupForm
         components = New ComponentModel.Container()
         MenuStrip1 = New MenuStrip()
         FileToolStripMenuItem = New ToolStripMenuItem()
-        AboutToolStripMenuItem = New ToolStripMenuItem()
+        AboutWIDTGUIToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         QuitToolStripMenuItem = New ToolStripMenuItem()
         TableLayoutPanel1 = New TableLayoutPanel()
@@ -79,27 +79,27 @@ Partial Class SetupForm
         ' 
         ' FileToolStripMenuItem
         ' 
-        FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {AboutToolStripMenuItem, ToolStripSeparator1, QuitToolStripMenuItem})
+        FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {AboutWIDTGUIToolStripMenuItem, ToolStripSeparator1, QuitToolStripMenuItem})
         FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         FileToolStripMenuItem.Size = New Size(37, 20)
         FileToolStripMenuItem.Text = "File"
         ' 
-        ' AboutToolStripMenuItem
+        ' AboutWIDTGUIToolStripMenuItem
         ' 
-        AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(139, 22)
-        AboutToolStripMenuItem.Text = "About"
+        AboutWIDTGUIToolStripMenuItem.Name = "AboutWIDTGUIToolStripMenuItem"
+        AboutWIDTGUIToolStripMenuItem.Size = New Size(180, 22)
+        AboutWIDTGUIToolStripMenuItem.Text = "About WIDT-GUI"
         ' 
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(136, 6)
+        ToolStripSeparator1.Size = New Size(177, 6)
         ' 
         ' QuitToolStripMenuItem
         ' 
         QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
         QuitToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
-        QuitToolStripMenuItem.Size = New Size(139, 22)
+        QuitToolStripMenuItem.Size = New Size(180, 22)
         QuitToolStripMenuItem.Text = "Quit"
         ' 
         ' TableLayoutPanel1
@@ -482,5 +482,5 @@ Partial Class SetupForm
     Friend WithEvents btnRemoveInstance As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutWIDTGUIToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -107,6 +107,7 @@ Partial Class ProgressDialog
         ClientSize = New Size(584, 351)
         ControlBox = False
         Controls.Add(TableLayoutPanel1)
+        FormBorderStyle = FormBorderStyle.FixedDialog
         MaximizeBox = False
         MaximumSize = New Size(600, 390)
         MinimizeBox = False
@@ -115,6 +116,7 @@ Partial Class ProgressDialog
         Padding = New Padding(10)
         ShowIcon = False
         ShowInTaskbar = False
+        StartPosition = FormStartPosition.CenterParent
         Text = "Progress..."
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
