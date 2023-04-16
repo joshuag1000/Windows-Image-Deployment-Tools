@@ -37,7 +37,7 @@ Partial Class ConfigurePEDialog
         ChkOptionalComp = New CheckedListBox()
         ChkIncludeDrivers = New CheckBox()
         Label5 = New Label()
-        FlowLayoutPanel3 = New FlowLayoutPanel()
+        FlowDriverPath = New FlowLayoutPanel()
         txtWinPEDrivers = New TextBox()
         btnSelectDriversDir = New Button()
         Label4 = New Label()
@@ -47,7 +47,7 @@ Partial Class ConfigurePEDialog
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
-        FlowLayoutPanel3.SuspendLayout()
+        FlowDriverPath.SuspendLayout()
         SuspendLayout()
         ' 
         ' TableLayoutPanel1
@@ -143,7 +143,7 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.Controls.Add(ChkOptionalComp)
         FlowLayoutPanel2.Controls.Add(ChkIncludeDrivers)
         FlowLayoutPanel2.Controls.Add(Label5)
-        FlowLayoutPanel2.Controls.Add(FlowLayoutPanel3)
+        FlowLayoutPanel2.Controls.Add(FlowDriverPath)
         FlowLayoutPanel2.Controls.Add(Label4)
         FlowLayoutPanel2.Controls.Add(cmbLanguage)
         FlowLayoutPanel2.Controls.Add(Label2)
@@ -155,7 +155,7 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(4, 4)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(384, 509)
+        FlowLayoutPanel2.Size = New Size(384, 470)
         FlowLayoutPanel2.TabIndex = 7
         ' 
         ' ChkOptionalComp
@@ -190,16 +190,16 @@ Partial Class ConfigurePEDialog
         Label5.TabIndex = 12
         Label5.Text = "Select Folders Containing WinPE Drivers"
         ' 
-        ' FlowLayoutPanel3
+        ' FlowDriverPath
         ' 
-        FlowLayoutPanel3.AutoSize = True
-        FlowLayoutPanel3.Controls.Add(txtWinPEDrivers)
-        FlowLayoutPanel3.Controls.Add(btnSelectDriversDir)
-        FlowLayoutPanel3.Dock = DockStyle.Top
-        FlowLayoutPanel3.Location = New Point(3, 237)
-        FlowLayoutPanel3.Name = "FlowLayoutPanel3"
-        FlowLayoutPanel3.Size = New Size(378, 33)
-        FlowLayoutPanel3.TabIndex = 13
+        FlowDriverPath.AutoSize = True
+        FlowDriverPath.Controls.Add(txtWinPEDrivers)
+        FlowDriverPath.Controls.Add(btnSelectDriversDir)
+        FlowDriverPath.Dock = DockStyle.Top
+        FlowDriverPath.Location = New Point(3, 237)
+        FlowDriverPath.Name = "FlowDriverPath"
+        FlowDriverPath.Size = New Size(378, 33)
+        FlowDriverPath.TabIndex = 13
         ' 
         ' txtWinPEDrivers
         ' 
@@ -262,7 +262,7 @@ Partial Class ConfigurePEDialog
         AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
         CancelButton = Cancel_Button
-        ClientSize = New Size(392, 517)
+        ClientSize = New Size(392, 478)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(4, 3, 4, 3)
@@ -278,8 +278,8 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel1.PerformLayout()
         FlowLayoutPanel2.ResumeLayout(False)
         FlowLayoutPanel2.PerformLayout()
-        FlowLayoutPanel3.ResumeLayout(False)
-        FlowLayoutPanel3.PerformLayout()
+        FlowDriverPath.ResumeLayout(False)
+        FlowDriverPath.PerformLayout()
         ResumeLayout(False)
     End Sub
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
@@ -300,7 +300,7 @@ Partial Class ConfigurePEDialog
     Friend WithEvents cmbLanguage As ComboBox
     Friend WithEvents ChkIncludeDrivers As CheckBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
+    Friend WithEvents FlowDriverPath As FlowLayoutPanel
     Friend WithEvents txtWinPEDrivers As TextBox
     Friend WithEvents btnSelectDriversDir As Button
 End Class
