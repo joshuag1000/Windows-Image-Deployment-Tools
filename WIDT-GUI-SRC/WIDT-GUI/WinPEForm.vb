@@ -93,7 +93,10 @@ Public Class WinPEForm
         Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
                                                                ProgressDialog.SetTextboxText(Info)
                                                            End Sub)
-        Await Task.Run(Sub() SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, "", True))
+        Await Task.Run(Sub()
+                           If SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, "", True) Then Return
+                           MessageBox.Show("USB Drive Created Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                       End Sub)
         ProgressDialog.Close()
         Me.Enabled = True
     End Sub
