@@ -421,7 +421,7 @@ Partial Class SetupForm
         ' SetupForm
         ' 
         AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         ClientSize = New Size(811, 450)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(MenuStrip1)

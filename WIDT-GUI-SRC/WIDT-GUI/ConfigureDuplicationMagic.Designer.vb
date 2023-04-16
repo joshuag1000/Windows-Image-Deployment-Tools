@@ -181,7 +181,7 @@ Partial Class ConfigureDuplicationMagic
         ' ConfigureDuplicationMagic
         ' 
         AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         ClientSize = New Size(385, 168)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
