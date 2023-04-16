@@ -62,15 +62,6 @@ Namespace My
                 Return CType(Me("StartupApp"),String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property EnableWindowsFormsHighDpiAutoResizing() As Boolean
-            Get
-                Return CType(Me("EnableWindowsFormsHighDpiAutoResizing"),Boolean)
-            End Get
-        End Property
     End Class
 End Namespace
 

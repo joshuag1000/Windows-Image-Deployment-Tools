@@ -5,8 +5,5 @@
     <Setting Name="StartupApp" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Setup</Value>
     </Setting>
-    <Setting Name="EnableWindowsFormsHighDpiAutoResizing" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

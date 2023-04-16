@@ -157,7 +157,7 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(4, 4)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(333, 197)
+        FlowLayoutPanel2.Size = New Size(333, 194)
         FlowLayoutPanel2.TabIndex = 7
         ' 
         ' Label3
@@ -184,7 +184,7 @@ Partial Class ConfigurePEDialog
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = Cancel_Button
-        ClientSize = New Size(341, 205)
+        ClientSize = New Size(341, 202)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(4, 3, 4, 3)
