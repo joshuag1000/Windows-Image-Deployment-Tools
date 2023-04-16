@@ -52,7 +52,7 @@ Partial Class ConfigurePEDialog
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
         TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
-        TableLayoutPanel1.Location = New Point(159, 161)
+        TableLayoutPanel1.Location = New Point(159, 158)
         TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
@@ -115,6 +115,7 @@ Partial Class ConfigurePEDialog
         ' btnBrowse
         ' 
         btnBrowse.Anchor = AnchorStyles.None
+        btnBrowse.AutoSize = True
         btnBrowse.Location = New Point(246, 3)
         btnBrowse.Margin = New Padding(4, 3, 4, 3)
         btnBrowse.Name = "btnBrowse"
@@ -154,24 +155,24 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.Controls.Add(TableLayoutPanel1)
         FlowLayoutPanel2.Dock = DockStyle.Fill
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel2.Location = New Point(0, 0)
+        FlowLayoutPanel2.Location = New Point(4, 4)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(333, 202)
+        FlowLayoutPanel2.Size = New Size(333, 197)
         FlowLayoutPanel2.TabIndex = 7
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point)
         Label3.Location = New Point(3, 109)
         Label3.Name = "Label3"
-        Label3.Size = New Size(174, 20)
+        Label3.Size = New Size(153, 17)
         Label3.TabIndex = 8
         Label3.Text = "Name of WinPE Instance:"
         ' 
         ' txtWinPEName
         ' 
-        txtWinPEName.Location = New Point(3, 132)
+        txtWinPEName.Location = New Point(3, 129)
         txtWinPEName.Name = "txtWinPEName"
         txtWinPEName.PlaceholderText = "WinPE-Instance"
         txtWinPEName.Size = New Size(236, 23)
@@ -183,13 +184,14 @@ Partial Class ConfigurePEDialog
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = Cancel_Button
-        ClientSize = New Size(335, 202)
+        ClientSize = New Size(341, 205)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(4, 3, 4, 3)
         MaximizeBox = False
         MinimizeBox = False
         Name = "ConfigurePEDialog"
+        Padding = New Padding(4)
         ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterParent
         Text = "Configure WinPE"

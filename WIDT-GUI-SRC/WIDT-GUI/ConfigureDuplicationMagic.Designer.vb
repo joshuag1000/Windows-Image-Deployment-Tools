@@ -51,9 +51,9 @@ Partial Class ConfigureDuplicationMagic
         FlowLayoutPanel2.Controls.Add(TableLayoutPanel1)
         FlowLayoutPanel2.Dock = DockStyle.Fill
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel2.Location = New Point(0, 0)
+        FlowLayoutPanel2.Location = New Point(4, 4)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(389, 164)
+        FlowLayoutPanel2.Size = New Size(381, 166)
         FlowLayoutPanel2.TabIndex = 8
         ' 
         ' Label6
@@ -182,10 +182,11 @@ Partial Class ConfigureDuplicationMagic
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(389, 164)
+        ClientSize = New Size(389, 174)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Name = "ConfigureDuplicationMagic"
+        Padding = New Padding(4)
         StartPosition = FormStartPosition.CenterParent
         Text = "ConfigureDuplicationMagic"
         FlowLayoutPanel2.ResumeLayout(False)
