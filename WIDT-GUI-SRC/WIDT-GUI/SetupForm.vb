@@ -92,6 +92,11 @@ Public Class SetupForm
             Me.BringToFront()
             ' TODO: If the instance is in our detectable folder do nothing otherwise add it to our manually added Instances
 
+            Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
+            If Not WinPEPath.Contains(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\") Then
+                ' Add to our config
+            End If
+
             ' Update UI with the newly setup tools
             DetectWinPEInstances()
         End If
@@ -211,14 +216,6 @@ Public Class SetupForm
 
         Thread.Sleep(300)
     End Sub
-
-    'Private Sub btnLocateWinPE_Click(sender As Object, e As EventArgs) Handles btnLocateWinPE.Click
-    '    Dim WinPEPathDilogResult As DialogResult = FolderBrowserDialog1.ShowDialog
-    '    If WinPEPathDilogResult = DialogResult.OK Then
-    '        WinPEPath = FolderBrowserDialog1.SelectedPath
-    '        RefreshWinPEPath()
-    '    End If
-    'End Sub
 
     Private Sub btnRefreshDrives_Click(sender As Object, e As EventArgs) Handles btnRefreshDrives.Click
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
