@@ -34,6 +34,9 @@ The following is an incomplete list of the 3rd part software and where to find t
 System.Management Nuget Package
     - Licensed under MIT License.
 
+System.CodeDom Nuget Package
+    - Licensed under MIT License.
+
 Windows ADK - Used to provide the tools needed to deploy WinPE to a device and modify captured images.
     - Information: https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install
     - License: Subject to Microsoft's License (Link Unavailable)
