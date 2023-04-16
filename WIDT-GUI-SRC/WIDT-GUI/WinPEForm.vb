@@ -25,7 +25,7 @@ Public Class WinPEForm
     End Sub
 
     Private Sub QuitToConsoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToConsoleToolStripMenuItem.Click
-        If MessageBox.Show("Are you sure you would like to close WIDT-GUI?" + vbCrLf + "To reopen the application WIDT-GUI.exe in the console." + vbCrLf + "If all you need is a console you can open one in the tools menu.", "Close WIDT-GUI?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you would like to close WIDT-GUI?" + vbCrLf + "To reopen the application run X:\WIDT-GUI\WIDT-GUI.exe in the console." + vbCrLf + "If all you need is a console you can open one in the tools menu.", "Close WIDT-GUI?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             overrideCloseMessage = True
             Me.Close()
         End If
