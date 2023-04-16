@@ -73,7 +73,6 @@ Public Class SetupForm
             For i = 0 To ConfigurePEDialog.ChkOptionalComp.Items.Count - 1
                 If ConfigurePEDialog.ChkOptionalComp.GetItemChecked(i) = True Then
                     OptionalComponents.Add(ConfigurePEDialog.ChkOptionalComp.Items(i))
-                    MsgBox(ConfigurePEDialog.ChkOptionalComp.Items(i).ToString)
                 End If
             Next
             Dim Language As String = ConfigurePEDialog.cmbLanguage.SelectedItem.ToString
