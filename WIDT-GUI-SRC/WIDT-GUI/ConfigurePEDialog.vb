@@ -35,7 +35,7 @@ Public Class ConfigurePEDialog
 
     ' List of things that WinPE NEEDS to have for out program to work
     Dim NonOptionalComponents() As String = {"Scripting/WinPE-WMI", "Startup/WinPE-HSP-Driver", "Startup/WinPE-SecureStartup"}
-    Dim DefaultOptions() As String = {"HTML/WinPE-HTA", "Microsoft .NET/WinPE-NetFx", "Scripting/WinPE-Scripting", "Windows PowerShell/WinPE-PowerShell", "Windows PowerShell/WinPE-PlatformID", "Windows PowerShell/WinPE-DismCmdlets", "Windows PowerShell/WinPE-SecureBootCmdlets", "Windows PowerShell/WinPE-StorageWMI"}
+    Dim DefaultOptions() As String = {"# WIDT/DuplicationMagic", "HTML/WinPE-HTA", "Microsoft .NET/WinPE-NetFx", "Scripting/WinPE-Scripting", "Windows PowerShell/WinPE-PowerShell", "Windows PowerShell/WinPE-PlatformID", "Windows PowerShell/WinPE-DismCmdlets", "Windows PowerShell/WinPE-SecureBootCmdlets", "Windows PowerShell/WinPE-StorageWMI"}
 
     Private Sub ConfigurePEDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtWinPEPath.Text = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
