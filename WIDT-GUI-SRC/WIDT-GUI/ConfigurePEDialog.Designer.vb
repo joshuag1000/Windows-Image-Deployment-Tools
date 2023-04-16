@@ -35,10 +35,10 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel1 = New FlowLayoutPanel()
         FlowLayoutPanel2 = New FlowLayoutPanel()
         ChkOptionalComp = New CheckedListBox()
-        Label3 = New Label()
-        txtWinPEName = New TextBox()
         Label4 = New Label()
         cmbLanguage = New ComboBox()
+        Label3 = New Label()
+        txtWinPEName = New TextBox()
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
@@ -158,26 +158,7 @@ Partial Class ConfigurePEDialog
         ChkOptionalComp.Name = "ChkOptionalComp"
         ChkOptionalComp.ScrollAlwaysVisible = True
         ChkOptionalComp.Size = New Size(378, 158)
-        ChkOptionalComp.Sorted = True
         ChkOptionalComp.TabIndex = 9
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label3.Location = New Point(3, 292)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(174, 20)
-        Label3.TabIndex = 8
-        Label3.Text = "Name of WinPE Instance:"
-        ' 
-        ' txtWinPEName
-        ' 
-        txtWinPEName.Location = New Point(3, 315)
-        txtWinPEName.Name = "txtWinPEName"
-        txtWinPEName.PlaceholderText = "WinPE-Instance"
-        txtWinPEName.Size = New Size(236, 23)
-        txtWinPEName.TabIndex = 7
         ' 
         ' Label4
         ' 
@@ -197,6 +178,24 @@ Partial Class ConfigurePEDialog
         cmbLanguage.Name = "cmbLanguage"
         cmbLanguage.Size = New Size(200, 23)
         cmbLanguage.TabIndex = 11
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.Location = New Point(3, 292)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(174, 20)
+        Label3.TabIndex = 8
+        Label3.Text = "Name of WinPE Instance:"
+        ' 
+        ' txtWinPEName
+        ' 
+        txtWinPEName.Location = New Point(3, 315)
+        txtWinPEName.Name = "txtWinPEName"
+        txtWinPEName.PlaceholderText = "WinPE-Instance"
+        txtWinPEName.Size = New Size(236, 23)
+        txtWinPEName.TabIndex = 7
         ' 
         ' ConfigurePEDialog
         ' 

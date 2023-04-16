@@ -42,6 +42,7 @@ Public Class ConfigurePEDialog
         FolderBrowserDialog1.InitialDirectory = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
         txtWinPEName.Select()
 
+        ' The order these are defined is critical. As if something has a dependancy then it needs to be installed first. This defines that order.
         ' Add optional components to the checked list box
         Dim WinPE_WMI As ConfigPEOptional = New ConfigPEOptional("Scripting/WinPE-WMI", False, "WinPE-WMI", Nothing, True)
         Dim WinPE_SecureStartup As ConfigPEOptional = New ConfigPEOptional("Startup/WinPE-SecureStartup", False, "WinPE-SecureStartup", New List(Of ConfigPEOptional) From {WinPE_WMI}, True)
@@ -73,14 +74,14 @@ Public Class ConfigurePEDialog
             New ConfigPEOptional("Network/WinPE-WDS-Tools", False, "WinPE-WDS-Tools", Nothing, True),
             New ConfigPEOptional("Recovery/WinPE-WinReCfg", False, "WinPE-WinReCfg", Nothing, True),
             New ConfigPEOptional("Setup/Winpe-LegacySetup", False, "WinPE-LegacySetup", Nothing, True),
+            New ConfigPEOptional("Setup/WinPE-Setup-Client", False, "WinPE-Setup-Client", New List(Of ConfigPEOptional) From {WinPE_Setup}, True),
+            New ConfigPEOptional("Setup/WinPE-Setup-Server", False, "WinPE-Setup-Server", New List(Of ConfigPEOptional) From {WinPE_Setup}, True),
             New ConfigPEOptional("Startup/WinPE-HSP-Driver", False, "WinPE-HSP-Driver", Nothing, False),
             New ConfigPEOptional("Storage/WinPE-EnhancedStorage", False, "WinPE-EnhancedStorage", Nothing, True),
             New ConfigPEOptional("Windows PowerShell/WinPE-PlatformID", False, "WinPE-PlatformId", New List(Of ConfigPEOptional) From {WinPE_WMI, WinPE_SecureStartup}, False),
             New ConfigPEOptional("Windows PowerShell/WinPE-DismCmdlets", False, "WinPE-DismCmdlets", New List(Of ConfigPEOptional) From {WinPE_WMI, WinPE_NetFx, WinPE_Scripting, WinPE_Powershell}, True),
             New ConfigPEOptional("Windows PowerShell/WinPE-SecureBootCmdlets", False, "WinPE-SecureBootCmdlets", New List(Of ConfigPEOptional) From {WinPE_WMI, WinPE_NetFx, WinPE_Scripting, WinPE_Powershell}, False),
-            New ConfigPEOptional("Windows PowerShell/WinPE-StorageWMI", False, "WinPE-StorageWMI", New List(Of ConfigPEOptional) From {WinPE_WMI, WinPE_NetFx, WinPE_Scripting, WinPE_Powershell}, True),
-            New ConfigPEOptional("Setup/WinPE-Setup-Client", False, "WinPE-Setup-Client", New List(Of ConfigPEOptional) From {WinPE_Setup}, True),
-            New ConfigPEOptional("Setup/WinPE-Setup-Server", False, "WinPE-Setup-Server", New List(Of ConfigPEOptional) From {WinPE_Setup}, True)
+            New ConfigPEOptional("Windows PowerShell/WinPE-StorageWMI", False, "WinPE-StorageWMI", New List(Of ConfigPEOptional) From {WinPE_WMI, WinPE_NetFx, WinPE_Scripting, WinPE_Powershell}, True)
         }
         ChkOptionalComp.Items.Clear()
 

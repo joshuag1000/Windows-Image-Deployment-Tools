@@ -27,8 +27,11 @@ Partial Class ProgressDialog
         lblInfo = New Label()
         ProgressBar1 = New ProgressBar()
         txtboxInfo = New TextBox()
+        MenuStrip1 = New MenuStrip()
+        AltF4OverrideToolStripMenuItem = New ToolStripMenuItem()
         TableLayoutPanel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' TableLayoutPanel1
@@ -41,13 +44,13 @@ Partial Class ProgressDialog
         TableLayoutPanel1.Controls.Add(ProgressBar1, 1, 2)
         TableLayoutPanel1.Controls.Add(txtboxInfo, 1, 1)
         TableLayoutPanel1.Dock = DockStyle.Fill
-        TableLayoutPanel1.Location = New Point(10, 10)
+        TableLayoutPanel1.Location = New Point(10, 34)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 3
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 27F))
-        TableLayoutPanel1.Size = New Size(564, 331)
+        TableLayoutPanel1.Size = New Size(564, 307)
         TableLayoutPanel1.TabIndex = 0
         ' 
         ' PictureBox1
@@ -80,7 +83,7 @@ Partial Class ProgressDialog
         ' ProgressBar1
         ' 
         ProgressBar1.Dock = DockStyle.Top
-        ProgressBar1.Location = New Point(73, 307)
+        ProgressBar1.Location = New Point(73, 283)
         ProgressBar1.MaximumSize = New Size(0, 23)
         ProgressBar1.MinimumSize = New Size(0, 23)
         ProgressBar1.Name = "ProgressBar1"
@@ -96,9 +99,26 @@ Partial Class ProgressDialog
         txtboxInfo.Name = "txtboxInfo"
         txtboxInfo.ReadOnly = True
         txtboxInfo.ScrollBars = ScrollBars.Both
-        txtboxInfo.Size = New Size(488, 278)
+        txtboxInfo.Size = New Size(488, 254)
         txtboxInfo.TabIndex = 4
         txtboxInfo.WordWrap = False
+        ' 
+        ' MenuStrip1
+        ' 
+        MenuStrip1.Items.AddRange(New ToolStripItem() {AltF4OverrideToolStripMenuItem})
+        MenuStrip1.Location = New Point(10, 10)
+        MenuStrip1.Name = "MenuStrip1"
+        MenuStrip1.Size = New Size(564, 24)
+        MenuStrip1.TabIndex = 1
+        MenuStrip1.Text = "MenuStrip1"
+        MenuStrip1.Visible = False
+        ' 
+        ' AltF4OverrideToolStripMenuItem
+        ' 
+        AltF4OverrideToolStripMenuItem.Name = "AltF4OverrideToolStripMenuItem"
+        AltF4OverrideToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
+        AltF4OverrideToolStripMenuItem.Size = New Size(108, 20)
+        AltF4OverrideToolStripMenuItem.Text = "Alt + F4 Override"
         ' 
         ' ProgressDialog
         ' 
@@ -107,7 +127,9 @@ Partial Class ProgressDialog
         ClientSize = New Size(584, 351)
         ControlBox = False
         Controls.Add(TableLayoutPanel1)
+        Controls.Add(MenuStrip1)
         FormBorderStyle = FormBorderStyle.FixedDialog
+        MainMenuStrip = MenuStrip1
         MaximizeBox = False
         MaximumSize = New Size(600, 390)
         MinimizeBox = False
@@ -121,7 +143,10 @@ Partial Class ProgressDialog
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        MenuStrip1.ResumeLayout(False)
+        MenuStrip1.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
@@ -129,4 +154,6 @@ Partial Class ProgressDialog
     Friend WithEvents lblInfo As Label
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents txtboxInfo As TextBox
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents AltF4OverrideToolStripMenuItem As ToolStripMenuItem
 End Class
