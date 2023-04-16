@@ -5,6 +5,7 @@ Imports System.Management
 Public Module SharedFunctions
     ''' <summary>
     '''     Runs a command asynchronously and allows for a live return of the commands output.
+    '''     Returns True if an error occured.
     ''' </summary>
     ''' <param name="CommandToRun"></param>
     ''' <param name="Info"></param>
@@ -187,6 +188,7 @@ Public Module SharedFunctions
     '''     Firstly it isnt really necassary at all (this could apply to other places but code cleanup is a future job rn)
     '''     Secondly it allows us to really easily implement our duplication magic in one simple step.
     '''     The steps used here are identical to the MakeWinPEMedia script give or take.
+    '''     Returns True if an error occured.
     ''' </summary>
     ''' <param name="Percent"></param>
     ''' <param name="Info"></param>
@@ -194,8 +196,8 @@ Public Module SharedFunctions
     ''' <param name="drive"></param>
     ''' <param name="WPEPath"></param>
     ''' <param name="UseDuplicationMagic"></param>
-    Public Sub SetupWinPEDrive(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal drive As DriveInformation, ByVal WPEPath As String, ByVal UseDuplicationMagic As Boolean)
-        If WPEPath = "" And UseDuplicationMagic = False Then Return
+    Public Function SetupWinPEDrive(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal drive As DriveInformation, ByVal WPEPath As String, ByVal UseDuplicationMagic As Boolean) As Boolean
+        If WPEPath = "" And UseDuplicationMagic = False Then Return True
         ' Create the temporary directory to save the diskpart files. It it already exists delete it.
         Info.Report("Creating Temporary Directory")
         If Directory.Exists(AppContext.BaseDirectory + "\TemporaryFiles") Then Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
@@ -220,20 +222,20 @@ Public Module SharedFunctions
                                                 "list vol" + vbCrLf +
                                                 "Automount enable" + vbCrLf +
                                                 "exit", False)
-        If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\DiskPart.tmp""", DetailedInfo) Then Return
+        If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\DiskPart.tmp""", DetailedInfo) Then Return True
         Percent.Report(60)
 
         Info.Report("Setting boot code on WinPE partition")
-        If RunCmdCommand("bootsect.exe /nt60 " + LettersToUse(0).ToString.ToUpper + ": /force /mbr", DetailedInfo) Then Return
+        If RunCmdCommand("bootsect.exe /nt60 " + LettersToUse(0).ToString.ToUpper + ": /force /mbr", DetailedInfo) Then Return True
         Percent.Report(80)
 
         If WPEPath <> "" And UseDuplicationMagic = False Then
             Info.Report("Installing WinPE")
-            If RunCmdCommand("call xcopy /herky " + WPEPath + "\media " + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return
+            If RunCmdCommand("call xcopy /herky " + WPEPath + "\media " + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return True
             Percent.Report(90)
         ElseIf WPEPath = "" And UseDuplicationMagic = True Then
             Info.Report("Installing WinPE from Duplication Magic")
-            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" x """ + AppContext.BaseDirectory + "\WinPEMagic.7z"" -o""" + LettersToUse(0).ToString.ToUpper + ":\""", DetailedInfo) Then Return
+            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" x """ + AppContext.BaseDirectory + "\WinPEMagic.7z"" -o""" + LettersToUse(0).ToString.ToUpper + ":\""", DetailedInfo) Then Return True
             Percent.Report(90)
 
             ' This is required as we cannot mount the wim in the WinPE Dir.
@@ -248,13 +250,13 @@ Public Module SharedFunctions
                                                 "assign letter=" + VHDLetters(0).ToString.ToUpper + vbCrLf +
                                                 "list vol" + vbCrLf +
                                                 "exit", False)
-            If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp""", DetailedInfo) Then Return
+            If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp""", DetailedInfo) Then Return True
             File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\CreateVirtualDisk.tmp")
             Percent.Report(93)
 
             Info.Report("Mounting the New WinPE")
             Directory.CreateDirectory(VHDLetters(0).ToString.ToUpper + ":\Mount")
-            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + LettersToUse(0).ToString.ToUpper + ":\sources\boot.wim"" /Index:1 /MountDir:""" + VHDLetters(0).ToString.ToUpper + ":\Mount""", DetailedInfo) Then Return
+            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + LettersToUse(0).ToString.ToUpper + ":\sources\boot.wim"" /Index:1 /MountDir:""" + VHDLetters(0).ToString.ToUpper + ":\Mount""", DetailedInfo) Then Return True
             Percent.Report(92)
 
             Info.Report("Copying WinPE Archive to new WinPE install")
@@ -262,7 +264,7 @@ Public Module SharedFunctions
             Percent.Report(95)
 
             Info.Report("Saving WinPE Image")
-            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + VHDLetters(0).ToString.ToUpper + ":\Mount"" /Commit", DetailedInfo) Then Return
+            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + VHDLetters(0).ToString.ToUpper + ":\Mount"" /Commit", DetailedInfo) Then Return True
             Percent.Report(96)
 
             Info.Report("Unmount Virtual Disk")
@@ -270,7 +272,7 @@ Public Module SharedFunctions
                                     "select vdisk file=" + LettersToUse(1).ToString.ToUpper + ":\TEMPvdisk.vhd" + vbCrLf +
                                     "detach vdisk" + vbCrLf +
                                     "exit", False)
-            If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp""", DetailedInfo) Then Return
+            If RunCmdCommand("Diskpart /s """ + AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp""", DetailedInfo) Then Return True
             File.Delete(AppContext.BaseDirectory + "\TemporaryFiles\RemoveVirtualDisk.tmp")
             File.Delete(LettersToUse(1).ToString.ToUpper + ":\TEMPvdisk.vhd")
             Percent.Report(100)
@@ -279,7 +281,8 @@ Public Module SharedFunctions
         '''' TODO: copy config files - Will be added when congig is created
 
         Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
-    End Sub
+        Return False
+    End Function
 
     Public Sub UpdateWinPE()
 

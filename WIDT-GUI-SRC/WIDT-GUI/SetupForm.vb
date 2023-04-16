@@ -86,7 +86,10 @@ Public Class SetupForm
             Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
                                                                    ProgressDialog.SetTextboxText(Info)
                                                                End Sub)
-            Await Task.Run(Sub() SetupWinPE(progressPercent, progressInfo, progressInfoDetailed, WinPEPath, IncludeDuplicateMagic))
+            Await Task.Run(Sub()
+                               If SetupWinPE(progressPercent, progressInfo, progressInfoDetailed, WinPEPath, IncludeDuplicateMagic) Then Return
+                               MessageBox.Show("WinPE Instance Created Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                           End Sub)
             ProgressDialog.Close()
             Me.Enabled = True
             Me.BringToFront()
@@ -104,13 +107,13 @@ Public Class SetupForm
 
     ReadOnly ADKCommandLine As String = "call ""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"" && "
 
-    Public Sub SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String, ByVal IncludeDuplicateMagic As Boolean)
+    Public Function SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String, ByVal IncludeDuplicateMagic As Boolean)
         If WPEPath = "" Then
             MessageBox.Show("Please specify a location.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
+            Return True
         ElseIf If(WPEPath.Chars(WPEPath.Length - 1) = "\", WPEPath, WPEPath + "\") = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory, AppContext.BaseDirectory + "\") Then
             MessageBox.Show("WinPE cannot be inside the same folder as the tools.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
+            Return True
         End If
 
         ' Create the folder
@@ -124,43 +127,43 @@ Public Class SetupForm
 
         ' Copy winpe to folder
         Info.Report("Copying WinPE to folder")
-        If RunCmdCommand(ADKCommandLine + "call copype amd64 """ + WPEPath + """", DetailedInfo) Then Return
+        If RunCmdCommand(ADKCommandLine + "call copype amd64 """ + WPEPath + """", DetailedInfo) Then Return True
         Percent.Report(20)
 
         ' Mount the Image
         Info.Report("Mounting WinPE")
-        If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return True
         Percent.Report(30)
 
         ' Add WinPE Optional Components
         Info.Report("Adding WinPE Optional Components")
         ' Bare minimum for the best WinPE Experience
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-HSP-Driver.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\lp.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-WMI.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-WMI_en-gb.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-SecureStartup.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-SecureStartup_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-HSP-Driver.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\lp.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-WMI.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-WMI_en-gb.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-SecureStartup.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-SecureStartup_en-gb.cab""", DetailedInfo) Then Return True
         ' Very Nice to have. I plan to add an option to make these optional in the future.
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-HTA.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-HTA_en-gb.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-NetFx.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-NetFx_en-gb.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-Scripting.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-Scripting_en-gb.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-PowerShell.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-PowerShell_en-gb.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-PlatformId.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-DismCmdlets.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-DismCmdlets_en-gb.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-SecureBootCmdlets.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-StorageWMI.cab""", DetailedInfo) Then Return
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-StorageWMI_en-gb.cab""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-HTA.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-HTA_en-gb.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-NetFx.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-NetFx_en-gb.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-Scripting.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-Scripting_en-gb.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-PowerShell.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-PowerShell_en-gb.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-PlatformId.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-DismCmdlets.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-DismCmdlets_en-gb.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-SecureBootCmdlets.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-StorageWMI.cab""", DetailedInfo) Then Return True
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\WinPE-StorageWMI_en-gb.cab""", DetailedInfo) Then Return True
         Percent.Report(40)
 
         ' Setting Keyboard layout to en-GB.
         Info.Report("' Setting Keyboard layout to en-GB")
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Set-InputLocale:0809:00000809", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Set-InputLocale:0809:00000809", DetailedInfo) Then Return True
         Percent.Report(45)
 
         ' Copy in the needed files
@@ -170,22 +173,22 @@ Public Class SetupForm
         End If
         File.WriteAllText(WPEPath + "\mount\Windows\System32\startnet.cmd", My.Resources.startnet)
         Directory.CreateDirectory(WPEPath + "\mount\WIDT-GUI")
-        If RunCmdCommand("Call xCopy """ + AppContext.BaseDirectory + """ """ + WPEPath + "\mount\WIDT-GUI\"" /e /q", DetailedInfo) Then Return
-        If RunCmdCommand("Call """ + WPEPath + "\mount\WIDT-GUI\WIDT-GUI.exe"" /SetStartupApp WinPE", DetailedInfo) Then Return
+        If RunCmdCommand("Call xCopy """ + AppContext.BaseDirectory + """ """ + WPEPath + "\mount\WIDT-GUI\"" /e /q", DetailedInfo) Then Return True
+        If RunCmdCommand("Call """ + WPEPath + "\mount\WIDT-GUI\WIDT-GUI.exe"" /SetStartupApp WinPE", DetailedInfo) Then Return True
         Percent.Report(50)
 
         ' Cleanup the WinPE image to reduce size
         Info.Report("Cleaning up WinPE Image")
-        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Cleanup-Image /StartComponentCleanup", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Cleanup-Image /StartComponentCleanup", DetailedInfo) Then Return True
 
         ' Unmount and Save the image
         Info.Report("Saving WinPE Image")
-        If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit", DetailedInfo) Then Return True
         Percent.Report(60)
 
         ' Export the optimised image
         Info.Report("Exporting Cleaned Image")
-        If RunCmdCommand("call Dism /Export-Image /SourceImageFile:""" + WPEPath + "\media\sources\boot.wim"" /SourceIndex:1 /DestinationImageFile:""" + WPEPath + "\media\sources\boot.wim.new""", DetailedInfo) Then Return
+        If RunCmdCommand("call Dism /Export-Image /SourceImageFile:""" + WPEPath + "\media\sources\boot.wim"" /SourceIndex:1 /DestinationImageFile:""" + WPEPath + "\media\sources\boot.wim.new""", DetailedInfo) Then Return True
         File.Delete(WPEPath + "\media\sources\boot.wim")
         File.Move(WPEPath + "\media\sources\boot.wim.new", WPEPath + "\media\sources\boot.wim")
 
@@ -193,12 +196,12 @@ Public Class SetupForm
         If IncludeDuplicateMagic = True Then
             ' Create a 7z Archive at max compression 
             Info.Report("Compressing WinPE to 7z Archive")
-            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return
+            If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return True
             Percent.Report(70)
 
             ' ReMount the Image
             Info.Report("Mounting WinPE")
-            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return
+            If RunCmdCommand("call Dism /Mount-Image /ImageFile:""" + WPEPath + "\media\sources\boot.wim"" /Index:1 /MountDir:""" + WPEPath + "\mount""", DetailedInfo) Then Return True
             Percent.Report(80)
 
             ' Move the file into the WinPE Environment
@@ -208,14 +211,13 @@ Public Class SetupForm
 
             ' Unmount and Save the image
             Info.Report("Saving WinPE Image")
-            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit", DetailedInfo) Then Return
+            If RunCmdCommand("call Dism /Unmount-Image /MountDir:""" + WPEPath + "\Mount"" /Commit", DetailedInfo) Then Return True
             Percent.Report(100)
         Else
             Percent.Report(100)
         End If
-
-        Thread.Sleep(300)
-    End Sub
+        Return False
+    End Function
 
     Private Sub btnRefreshDrives_Click(sender As Object, e As EventArgs) Handles btnRefreshDrives.Click
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
@@ -307,7 +309,10 @@ Public Class SetupForm
                                                                ProgressDialog.SetTextboxText(Info)
                                                            End Sub)
         Dim WinPEItem As WinPEItem = BoxWinPEInstances.SelectedItem
-        Await Task.Run(Sub() SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, WinPEItem.GetInstancePath, False))
+        Await Task.Run(Sub()
+                           If SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, WinPEItem.GetInstancePath, False) Then Return
+                           MessageBox.Show("USB Drive Created Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                       End Sub)
         ProgressDialog.Close()
         Me.Enabled = True
         RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)

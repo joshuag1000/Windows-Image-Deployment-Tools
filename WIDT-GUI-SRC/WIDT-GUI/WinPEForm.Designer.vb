@@ -72,26 +72,26 @@ Partial Class WinPEForm
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(204, 6)
+        ToolStripSeparator1.Size = New Size(205, 6)
         ' 
         ' UseLegacyToolsToolStripMenuItem
         ' 
         UseLegacyToolsToolStripMenuItem.Name = "UseLegacyToolsToolStripMenuItem"
-        UseLegacyToolsToolStripMenuItem.Size = New Size(207, 22)
+        UseLegacyToolsToolStripMenuItem.Size = New Size(208, 22)
         UseLegacyToolsToolStripMenuItem.Text = "Use Legacy Tools"
         ' 
         ' OpenConsoleToolStripMenuItem
         ' 
         OpenConsoleToolStripMenuItem.Name = "OpenConsoleToolStripMenuItem"
-        OpenConsoleToolStripMenuItem.Size = New Size(207, 22)
+        OpenConsoleToolStripMenuItem.Size = New Size(208, 22)
         OpenConsoleToolStripMenuItem.Text = "Open Console"
         ' 
         ' DuplicateWinPEUSBKeyToolStripMenuItem
         ' 
         DuplicateWinPEUSBKeyToolStripMenuItem.Enabled = False
         DuplicateWinPEUSBKeyToolStripMenuItem.Name = "DuplicateWinPEUSBKeyToolStripMenuItem"
-        DuplicateWinPEUSBKeyToolStripMenuItem.Size = New Size(207, 22)
-        DuplicateWinPEUSBKeyToolStripMenuItem.Text = "Duplicate WinPE USB Key"
+        DuplicateWinPEUSBKeyToolStripMenuItem.Size = New Size(208, 22)
+        DuplicateWinPEUSBKeyToolStripMenuItem.Text = "Duplicate WinPE USB/ISO"
         ' 
         ' WinPEForm
         ' 

@@ -53,7 +53,7 @@ Partial Class ConfigureDuplicationMagic
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(0, 0)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(381, 164)
+        FlowLayoutPanel2.Size = New Size(389, 164)
         FlowLayoutPanel2.TabIndex = 8
         ' 
         ' Label6
@@ -62,9 +62,9 @@ Partial Class ConfigureDuplicationMagic
         Label6.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         Label6.Location = New Point(3, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(138, 25)
+        Label6.Size = New Size(147, 25)
         Label6.TabIndex = 9
-        Label6.Text = "Duplicate USB"
+        Label6.Text = "Duplicate Tools"
         ' 
         ' Label1
         ' 
@@ -182,7 +182,7 @@ Partial Class ConfigureDuplicationMagic
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(381, 164)
+        ClientSize = New Size(389, 164)
         Controls.Add(FlowLayoutPanel2)
         Name = "ConfigureDuplicationMagic"
         Text = "ConfigureDuplicationMagic"
