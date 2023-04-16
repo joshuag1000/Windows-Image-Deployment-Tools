@@ -60,12 +60,6 @@
   <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="chkDupMagic.ToolTip" xml:space="preserve">
-    <value>Warning: Enabling this option could potentially cause WinPE boot times to be slower.
-Include a duplicate copy of the tools to allow the WinPE install on the USB device to create duplicate copies of itself.
-This option is recommended to make it easier to create new USB boot keys using existing USB boot keys.
-This option also allows an ISO to be used to create USB Keys with the tools installed.</value>
-  </data>
   <metadata name="FolderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>116, 17</value>
   </metadata>

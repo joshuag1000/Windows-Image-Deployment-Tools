@@ -287,6 +287,46 @@ Public Module SharedFunctions
     Public Sub UpdateWinPE()
 
     End Sub
+
+    Public Structure ConfigPEOptional
+        Private Name As String
+        Private CustomOptional As Boolean
+        Private RootName As String
+        Private DependsOn As List(Of ConfigPEOptional)
+        Private HasLanguage As Boolean
+
+        Public Sub New(ByVal newName As String, ByVal newCustomOptional As Boolean, ByVal newRootName As String, ByVal newDepends As List(Of ConfigPEOptional), ByVal newHasLanguage As Boolean)
+            Name = newName
+            CustomOptional = newCustomOptional
+            RootName = newRootName
+            DependsOn = newDepends
+            HasLanguage = newHasLanguage
+        End Sub
+
+        Public Overrides Function ToString() As String
+            Return Name.ToString
+        End Function
+
+        Public Function GetName() As String
+            Return Name
+        End Function
+
+        Public Function GetCustomOptional() As Boolean
+            Return CustomOptional
+        End Function
+
+        Public Function GetRootName() As String
+            Return RootName
+        End Function
+
+        Public Function GetDepends() As List(Of ConfigPEOptional)
+            Return DependsOn
+        End Function
+
+        Public Function GetHasLanguage() As Boolean
+            Return HasLanguage
+        End Function
+    End Structure
 End Module
 
 

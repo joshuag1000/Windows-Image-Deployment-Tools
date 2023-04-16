@@ -132,7 +132,7 @@
     <None Update="Resources\LegacyWinPERuntimeScripts\Entrypoint.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\startnet.cmd">
+    <None Update="Resources\Winpeshl.ini">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>

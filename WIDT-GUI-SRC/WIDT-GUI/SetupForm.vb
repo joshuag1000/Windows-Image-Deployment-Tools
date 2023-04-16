@@ -69,7 +69,14 @@ Public Class SetupForm
         If ConfigureDialog = DialogResult.OK Then
             ' Get the WinPE config information
             Dim WinPEPath As String = ConfigurePEDialog.txtWinPEPath.Text + "\" + ConfigurePEDialog.txtWinPEName.Text.Replace(" ", "_")
-            Dim IncludeDuplicateMagic As Boolean = ConfigurePEDialog.chkDupMagic.Checked
+            Dim OptionalComponents As List(Of ConfigPEOptional) = New List(Of ConfigPEOptional)
+            For i = 0 To ConfigurePEDialog.ChkOptionalComp.Items.Count - 1
+                If ConfigurePEDialog.ChkOptionalComp.GetItemChecked(i) = True Then
+                    OptionalComponents.Add(ConfigurePEDialog.ChkOptionalComp.Items(i))
+                    MsgBox(ConfigurePEDialog.ChkOptionalComp.Items(i).ToString)
+                End If
+            Next
+            Dim Language As String = ConfigurePEDialog.cmbLanguage.SelectedItem.ToString
             ' close the dialog (frees memory etc)
             ConfigurePEDialog.Close()
             ' show our progress bar information
@@ -87,7 +94,7 @@ Public Class SetupForm
                                                                    ProgressDialog.SetTextboxText(Info)
                                                                End Sub)
             Await Task.Run(Sub()
-                               If SetupWinPE(progressPercent, progressInfo, progressInfoDetailed, WinPEPath, IncludeDuplicateMagic) Then Return
+                               If SetupWinPE(progressPercent, progressInfo, progressInfoDetailed, WinPEPath, OptionalComponents, Language) Then Return
                                MessageBox.Show("WinPE Instance Created Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                            End Sub)
             ProgressDialog.Close()
@@ -107,7 +114,7 @@ Public Class SetupForm
 
     ReadOnly ADKCommandLine As String = "call ""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat"" && "
 
-    Public Function SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String, ByVal IncludeDuplicateMagic As Boolean)
+    Public Function SetupWinPE(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal WPEPath As String, ByVal OptionalComponents As List(Of ConfigPEOptional), ByVal Language As String)
         If WPEPath = "" Then
             MessageBox.Show("Please specify a location.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return True
@@ -137,6 +144,15 @@ Public Class SetupForm
 
         ' Add WinPE Optional Components
         Info.Report("Adding WinPE Optional Components")
+        If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\" + Language + "\lp.cab""", DetailedInfo) Then Return True
+        For Each component In OptionalComponents
+            If component.GetCustomOptional = False Then
+                If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\" + component.GetRootName + ".cab""", DetailedInfo) Then Return True
+                If component.GetHasLanguage() = True Then
+                    If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\" + Language + "\" + component.GetRootName + "_" + Language + ".cab""", DetailedInfo) Then Return True
+                End If
+            End If
+        Next
         ' Bare minimum for the best WinPE Experience
         If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\WinPE-HSP-Driver.cab""", DetailedInfo) Then Return True
         If RunCmdCommand("call Dism /Image:""" + WPEPath + "\mount"" /Add-Package /PackagePath:""C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\en-gb\lp.cab""", DetailedInfo) Then Return True
@@ -168,10 +184,10 @@ Public Class SetupForm
 
         ' Copy in the needed files
         Info.Report("Copying Files to WinPE")
-        If File.Exists(WPEPath + "\mount\Windows\System32\startnet.cmd") Then
-            File.Delete(WPEPath + "\mount\Windows\System32\startnet.cmd")
+        If File.Exists(WPEPath + "\mount\Windows\System32\Winpeshl.ini") Then
+            File.Delete(WPEPath + "\mount\Windows\System32\Winpeshl.ini")
         End If
-        File.WriteAllText(WPEPath + "\mount\Windows\System32\startnet.cmd", My.Resources.startnet)
+        File.WriteAllText(WPEPath + "\mount\Windows\System32\Winpeshl.ini", My.Resources.Winpeshl)
         Directory.CreateDirectory(WPEPath + "\mount\WIDT-GUI")
         If RunCmdCommand("Call xCopy """ + AppContext.BaseDirectory + """ """ + WPEPath + "\mount\WIDT-GUI\"" /e /q", DetailedInfo) Then Return True
         If RunCmdCommand("Call """ + WPEPath + "\mount\WIDT-GUI\WIDT-GUI.exe"" /SetStartupApp WinPE", DetailedInfo) Then Return True
@@ -193,7 +209,7 @@ Public Class SetupForm
         File.Move(WPEPath + "\media\sources\boot.wim.new", WPEPath + "\media\sources\boot.wim")
 
 
-        If IncludeDuplicateMagic = True Then
+        If OptionalComponents.Contains(New ConfigPEOptional("# WIDT/DuplicationMagic", True, "DuplicationMagic", Nothing, False)) Then
             ' Create a 7z Archive at max compression 
             Info.Report("Compressing WinPE to 7z Archive")
             If RunCmdCommand("call """ + AppContext.BaseDirectory + "\Resources\7z\7za.exe"" a -t7z -m0=lzma2 -mx=9 """ + WPEPath + "\WinPEMagic.7z"" """ + WPEPath + "\media\*""", DetailedInfo) Then Return True

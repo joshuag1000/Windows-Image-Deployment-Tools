@@ -158,8 +158,8 @@ Partial Class AboutBox
         ' 
         ' AboutBox
         ' 
-        AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        AutoScaleDimensions = New SizeF(96F, 96F)
+        AutoScaleMode = AutoScaleMode.Dpi
         CancelButton = OKButton
         ClientSize = New Size(718, 411)
         Controls.Add(TableLayoutPanel)

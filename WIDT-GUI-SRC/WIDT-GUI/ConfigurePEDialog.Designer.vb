@@ -23,12 +23,10 @@ Partial Class ConfigurePEDialog
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(ConfigurePEDialog))
         TableLayoutPanel1 = New TableLayoutPanel()
         OK_Button = New Button()
         Cancel_Button = New Button()
         Label1 = New Label()
-        chkDupMagic = New CheckBox()
         ToolTip1 = New ToolTip(components)
         txtWinPEPath = New TextBox()
         btnBrowse = New Button()
@@ -36,8 +34,11 @@ Partial Class ConfigurePEDialog
         FolderBrowserDialog1 = New FolderBrowserDialog()
         FlowLayoutPanel1 = New FlowLayoutPanel()
         FlowLayoutPanel2 = New FlowLayoutPanel()
+        ChkOptionalComp = New CheckedListBox()
         Label3 = New Label()
         txtWinPEName = New TextBox()
+        Label4 = New Label()
+        cmbLanguage = New ComboBox()
         TableLayoutPanel1.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
@@ -52,7 +53,7 @@ Partial Class ConfigurePEDialog
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
         TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
-        TableLayoutPanel1.Location = New Point(159, 158)
+        TableLayoutPanel1.Location = New Point(210, 344)
         TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
@@ -91,32 +92,18 @@ Partial Class ConfigurePEDialog
         Label1.TabIndex = 1
         Label1.Text = "Hover over an option for more information"
         ' 
-        ' chkDupMagic
-        ' 
-        chkDupMagic.AutoSize = True
-        chkDupMagic.Checked = True
-        chkDupMagic.CheckState = CheckState.Checked
-        chkDupMagic.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        chkDupMagic.Location = New Point(3, 23)
-        chkDupMagic.Name = "chkDupMagic"
-        chkDupMagic.Size = New Size(202, 24)
-        chkDupMagic.TabIndex = 2
-        chkDupMagic.Text = "Include Duplication Magic"
-        ToolTip1.SetToolTip(chkDupMagic, resources.GetString("chkDupMagic.ToolTip"))
-        chkDupMagic.UseVisualStyleBackColor = True
-        ' 
         ' txtWinPEPath
         ' 
         txtWinPEPath.Location = New Point(3, 3)
         txtWinPEPath.Name = "txtWinPEPath"
-        txtWinPEPath.Size = New Size(236, 23)
+        txtWinPEPath.Size = New Size(285, 23)
         txtWinPEPath.TabIndex = 3
         ' 
         ' btnBrowse
         ' 
         btnBrowse.Anchor = AnchorStyles.None
         btnBrowse.AutoSize = True
-        btnBrowse.Location = New Point(246, 3)
+        btnBrowse.Location = New Point(295, 3)
         btnBrowse.Margin = New Padding(4, 3, 4, 3)
         btnBrowse.Name = "btnBrowse"
         btnBrowse.Size = New Size(77, 27)
@@ -127,7 +114,7 @@ Partial Class ConfigurePEDialog
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label2.Location = New Point(3, 50)
+        Label2.Location = New Point(3, 233)
         Label2.Name = "Label2"
         Label2.Size = New Size(320, 20)
         Label2.TabIndex = 5
@@ -139,15 +126,17 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel1.Controls.Add(txtWinPEPath)
         FlowLayoutPanel1.Controls.Add(btnBrowse)
         FlowLayoutPanel1.Dock = DockStyle.Top
-        FlowLayoutPanel1.Location = New Point(3, 73)
+        FlowLayoutPanel1.Location = New Point(3, 256)
         FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        FlowLayoutPanel1.Size = New Size(327, 33)
+        FlowLayoutPanel1.Size = New Size(378, 33)
         FlowLayoutPanel1.TabIndex = 6
         ' 
         ' FlowLayoutPanel2
         ' 
         FlowLayoutPanel2.Controls.Add(Label1)
-        FlowLayoutPanel2.Controls.Add(chkDupMagic)
+        FlowLayoutPanel2.Controls.Add(ChkOptionalComp)
+        FlowLayoutPanel2.Controls.Add(Label4)
+        FlowLayoutPanel2.Controls.Add(cmbLanguage)
         FlowLayoutPanel2.Controls.Add(Label2)
         FlowLayoutPanel2.Controls.Add(FlowLayoutPanel1)
         FlowLayoutPanel2.Controls.Add(Label3)
@@ -157,34 +146,65 @@ Partial Class ConfigurePEDialog
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(4, 4)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(333, 194)
+        FlowLayoutPanel2.Size = New Size(384, 383)
         FlowLayoutPanel2.TabIndex = 7
+        ' 
+        ' ChkOptionalComp
+        ' 
+        ChkOptionalComp.CheckOnClick = True
+        ChkOptionalComp.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        ChkOptionalComp.FormattingEnabled = True
+        ChkOptionalComp.Location = New Point(3, 23)
+        ChkOptionalComp.Name = "ChkOptionalComp"
+        ChkOptionalComp.ScrollAlwaysVisible = True
+        ChkOptionalComp.Size = New Size(378, 158)
+        ChkOptionalComp.Sorted = True
+        ChkOptionalComp.TabIndex = 9
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point)
-        Label3.Location = New Point(3, 109)
+        Label3.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.Location = New Point(3, 292)
         Label3.Name = "Label3"
-        Label3.Size = New Size(153, 17)
+        Label3.Size = New Size(174, 20)
         Label3.TabIndex = 8
         Label3.Text = "Name of WinPE Instance:"
         ' 
         ' txtWinPEName
         ' 
-        txtWinPEName.Location = New Point(3, 129)
+        txtWinPEName.Location = New Point(3, 315)
         txtWinPEName.Name = "txtWinPEName"
         txtWinPEName.PlaceholderText = "WinPE-Instance"
         txtWinPEName.Size = New Size(236, 23)
         txtWinPEName.TabIndex = 7
         ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label4.Location = New Point(3, 184)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(200, 20)
+        Label4.TabIndex = 10
+        Label4.Text = "Select Language And Region"
+        ' 
+        ' cmbLanguage
+        ' 
+        cmbLanguage.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbLanguage.FormattingEnabled = True
+        cmbLanguage.Location = New Point(3, 207)
+        cmbLanguage.Name = "cmbLanguage"
+        cmbLanguage.Size = New Size(200, 23)
+        cmbLanguage.TabIndex = 11
+        ' 
         ' ConfigurePEDialog
         ' 
         AcceptButton = OK_Button
-        AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        AutoScaleDimensions = New SizeF(96F, 96F)
+        AutoScaleMode = AutoScaleMode.Dpi
         CancelButton = Cancel_Button
-        ClientSize = New Size(341, 202)
+        ClientSize = New Size(392, 391)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(4, 3, 4, 3)
@@ -206,7 +226,6 @@ Partial Class ConfigurePEDialog
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents chkDupMagic As CheckBox
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents txtWinPEPath As TextBox
     Friend WithEvents btnBrowse As Button
@@ -216,4 +235,7 @@ Partial Class ConfigurePEDialog
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents Label3 As Label
     Friend WithEvents txtWinPEName As TextBox
+    Friend WithEvents ChkOptionalComp As CheckedListBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents cmbLanguage As ComboBox
 End Class
