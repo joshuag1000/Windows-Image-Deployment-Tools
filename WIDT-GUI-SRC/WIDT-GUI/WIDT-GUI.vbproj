@@ -84,43 +84,43 @@
     <None Update="Resources\7z\7zxa.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\ApplyImage.bat">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\ApplyImage.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\ApplyRecovery.bat">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\ApplyRecovery.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\Build.bat">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\Build.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\CaptureImage.bat">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\CaptureImage.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-BIOS-FFU.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\CreatePartitions-BIOS-FFU.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-BIOS.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\CreatePartitions-BIOS.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-UEFI-FFU.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\CreatePartitions-UEFI-FFU.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\CreatePartitions-UEFI.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\CreatePartitions-UEFI.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\CreateRecoveryPartitions-BIOS.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\CreateRecoveryPartitions-BIOS.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\CreateRecoveryPartitions-UEFI.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\CreateRecoveryPartitions-UEFI.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\HideRecoveryPartitions-BIOS.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\HideRecoveryPartitions-BIOS.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Deployment\HideRecoveryPartitions-UEFI.txt">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Deployment\HideRecoveryPartitions-UEFI.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\LegacyScripts\Entrypoint.bat">
+    <None Update="Resources\LegacyWinPERuntimeScripts\Entrypoint.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\startnet.cmd">

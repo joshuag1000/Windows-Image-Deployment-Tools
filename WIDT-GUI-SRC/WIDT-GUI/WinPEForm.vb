@@ -3,7 +3,7 @@ Imports System.IO
 
 Public Class WinPEForm
     Private Sub UseLegacyToolsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UseLegacyToolsToolStripMenuItem.Click
-        Process.Start(AppContext.BaseDirectory + "\Resources\LegacyScripts\Entrypoint.Bat")
+        Process.Start(AppContext.BaseDirectory + "\Resources\LegacyWinPERuntimeScripts\Entrypoint.Bat")
         Me.Close()
     End Sub
 
