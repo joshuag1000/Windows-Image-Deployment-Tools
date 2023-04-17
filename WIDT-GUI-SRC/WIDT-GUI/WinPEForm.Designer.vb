@@ -24,6 +24,8 @@ Partial Class WinPEForm
     Private Sub InitializeComponent()
         MenuStrip1 = New MenuStrip()
         FileToolStripMenuItem = New ToolStripMenuItem()
+        AboutWIDTGUIToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripSeparator2 = New ToolStripSeparator()
         QuitToConsoleToolStripMenuItem = New ToolStripMenuItem()
         ShutdownComputerToolStripMenuItem = New ToolStripMenuItem()
         RebootComputerToolStripMenuItem = New ToolStripMenuItem()
@@ -32,8 +34,7 @@ Partial Class WinPEForm
         UseLegacyToolsToolStripMenuItem = New ToolStripMenuItem()
         OpenConsoleToolStripMenuItem = New ToolStripMenuItem()
         DuplicateWinPEUSBKeyToolStripMenuItem = New ToolStripMenuItem()
-        ToolStripSeparator2 = New ToolStripSeparator()
-        AboutWIDTGUIToolStripMenuItem = New ToolStripMenuItem()
+        OpenPowershellToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -52,6 +53,17 @@ Partial Class WinPEForm
         FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         FileToolStripMenuItem.Size = New Size(37, 20)
         FileToolStripMenuItem.Text = "File"
+        ' 
+        ' AboutWIDTGUIToolStripMenuItem
+        ' 
+        AboutWIDTGUIToolStripMenuItem.Name = "AboutWIDTGUIToolStripMenuItem"
+        AboutWIDTGUIToolStripMenuItem.Size = New Size(185, 22)
+        AboutWIDTGUIToolStripMenuItem.Text = "About WIDT-GUI"
+        ' 
+        ' ToolStripSeparator2
+        ' 
+        ToolStripSeparator2.Name = "ToolStripSeparator2"
+        ToolStripSeparator2.Size = New Size(182, 6)
         ' 
         ' QuitToConsoleToolStripMenuItem
         ' 
@@ -73,7 +85,7 @@ Partial Class WinPEForm
         ' 
         ' ToolsToolStripMenuItem
         ' 
-        ToolsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator1, UseLegacyToolsToolStripMenuItem, OpenConsoleToolStripMenuItem, DuplicateWinPEUSBKeyToolStripMenuItem})
+        ToolsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator1, UseLegacyToolsToolStripMenuItem, OpenConsoleToolStripMenuItem, OpenPowershellToolStripMenuItem, DuplicateWinPEUSBKeyToolStripMenuItem})
         ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         ToolsToolStripMenuItem.Size = New Size(46, 20)
         ToolsToolStripMenuItem.Text = "Tools"
@@ -102,21 +114,16 @@ Partial Class WinPEForm
         DuplicateWinPEUSBKeyToolStripMenuItem.Size = New Size(208, 22)
         DuplicateWinPEUSBKeyToolStripMenuItem.Text = "Duplicate WinPE USB/ISO"
         ' 
-        ' ToolStripSeparator2
+        ' OpenPowershellToolStripMenuItem
         ' 
-        ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(182, 6)
-        ' 
-        ' AboutWIDTGUIToolStripMenuItem
-        ' 
-        AboutWIDTGUIToolStripMenuItem.Name = "AboutWIDTGUIToolStripMenuItem"
-        AboutWIDTGUIToolStripMenuItem.Size = New Size(185, 22)
-        AboutWIDTGUIToolStripMenuItem.Text = "About WIDT-GUI"
+        OpenPowershellToolStripMenuItem.Name = "OpenPowershellToolStripMenuItem"
+        OpenPowershellToolStripMenuItem.Size = New Size(208, 22)
+        OpenPowershellToolStripMenuItem.Text = "Open Powershell"
         ' 
         ' WinPEForm
         ' 
-        AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        AutoScaleDimensions = New SizeF(96F, 96F)
+        AutoScaleMode = AutoScaleMode.Dpi
         ClientSize = New Size(800, 450)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
@@ -141,4 +148,5 @@ Partial Class WinPEForm
     Friend WithEvents RebootComputerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutWIDTGUIToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents OpenPowershellToolStripMenuItem As ToolStripMenuItem
 End Class

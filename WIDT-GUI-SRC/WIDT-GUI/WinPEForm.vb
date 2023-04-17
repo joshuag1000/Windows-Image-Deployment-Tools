@@ -112,4 +112,8 @@ Public Class WinPEForm
     Private Sub AboutWIDTGUIToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutWIDTGUIToolStripMenuItem.Click
         AboutBox.ShowDialog(Me)
     End Sub
+
+    Private Sub OpenPowershellToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenPowershellToolStripMenuItem.Click
+        Process.Start("powershell", "")
+    End Sub
 End Class
