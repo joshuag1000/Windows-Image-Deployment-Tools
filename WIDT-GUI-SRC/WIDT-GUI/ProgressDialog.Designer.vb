@@ -123,7 +123,7 @@ Partial Class ProgressDialog
         ' ProgressDialog
         ' 
         AutoScaleDimensions = New SizeF(96F, 96F)
-        'AutoScaleMode = AutoScaleMode.Dpi
+        AutoScaleMode = AutoScaleMode.Dpi
         ClientSize = New Size(584, 351)
         ControlBox = False
         Controls.Add(TableLayoutPanel1)

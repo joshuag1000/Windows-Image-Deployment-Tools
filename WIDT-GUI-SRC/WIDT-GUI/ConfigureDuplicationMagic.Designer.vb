@@ -53,7 +53,7 @@ Partial Class ConfigureDuplicationMagic
         FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel2.Location = New Point(4, 4)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(377, 160)
+        FlowLayoutPanel2.Size = New Size(381, 165)
         FlowLayoutPanel2.TabIndex = 8
         ' 
         ' Label6
@@ -145,16 +145,16 @@ Partial Class ConfigureDuplicationMagic
         TableLayoutPanel1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         TableLayoutPanel1.AutoSize = True
         TableLayoutPanel1.ColumnCount = 2
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
         TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
         TableLayoutPanel1.Location = New Point(203, 124)
         TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20.0F))
         TableLayoutPanel1.Size = New Size(170, 33)
         TableLayoutPanel1.TabIndex = 0
         ' 
@@ -180,11 +180,13 @@ Partial Class ConfigureDuplicationMagic
         ' 
         ' ConfigureDuplicationMagic
         ' 
-        AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-        'AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        ClientSize = New Size(385, 168)
+        AutoScaleDimensions = New SizeF(96.0F, 96.0F)
+        AutoScaleMode = AutoScaleMode.Dpi
+        ClientSize = New Size(389, 173)
         Controls.Add(FlowLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
+        MaximizeBox = False
+        MinimizeBox = False
         Name = "ConfigureDuplicationMagic"
         Padding = New Padding(4)
         StartPosition = FormStartPosition.CenterParent
