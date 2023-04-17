@@ -114,6 +114,6 @@ Public Class WinPEForm
     End Sub
 
     Private Sub OpenPowershellToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenPowershellToolStripMenuItem.Click
-        Process.Start("powershell", "")
+        Process.Start("cmd", "/c powershell")
     End Sub
 End Class
