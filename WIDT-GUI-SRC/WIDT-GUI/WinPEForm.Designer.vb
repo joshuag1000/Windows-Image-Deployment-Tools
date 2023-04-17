@@ -123,7 +123,7 @@ Partial Class WinPEForm
         ' WinPEForm
         ' 
         AutoScaleDimensions = New SizeF(96F, 96F)
-        AutoScaleMode = AutoScaleMode.Dpi
+        'AutoScaleMode = AutoScaleMode.Dpi
         ClientSize = New Size(800, 450)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
