@@ -23,76 +23,52 @@ Partial Class ConfigureDuplicationMagic
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        FlowLayoutPanel2 = New FlowLayoutPanel()
         Label6 = New Label()
         Label1 = New Label()
-        FlowLayoutPanel6 = New FlowLayoutPanel()
         CmbDrives = New ComboBox()
         btnRefreshDrives = New Button()
-        FlowLayoutPanel7 = New FlowLayoutPanel()
         ChkShowInternal = New CheckBox()
         ChkShowUnknownDrives = New CheckBox()
-        TableLayoutPanel1 = New TableLayoutPanel()
         OK_Button = New Button()
         Cancel_Button = New Button()
         ToolTip1 = New ToolTip(components)
         FolderBrowserDialog1 = New FolderBrowserDialog()
-        FlowLayoutPanel2.SuspendLayout()
-        FlowLayoutPanel6.SuspendLayout()
-        FlowLayoutPanel7.SuspendLayout()
-        TableLayoutPanel1.SuspendLayout()
+        TableLayoutPanel2 = New TableLayoutPanel()
+        TableLayoutPanel2.SuspendLayout()
         SuspendLayout()
-        ' 
-        ' FlowLayoutPanel2
-        ' 
-        FlowLayoutPanel2.Controls.Add(Label6)
-        FlowLayoutPanel2.Controls.Add(Label1)
-        FlowLayoutPanel2.Controls.Add(FlowLayoutPanel6)
-        FlowLayoutPanel2.Controls.Add(TableLayoutPanel1)
-        FlowLayoutPanel2.Dock = DockStyle.Fill
-        FlowLayoutPanel2.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel2.Location = New Point(4, 4)
-        FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        FlowLayoutPanel2.Size = New Size(381, 165)
-        FlowLayoutPanel2.TabIndex = 8
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
+        Label6.Dock = DockStyle.Fill
         Label6.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         Label6.Location = New Point(3, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(147, 25)
+        Label6.Size = New Size(164, 28)
         Label6.TabIndex = 9
         Label6.Text = "Duplicate Tools"
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
+        Label1.Dock = DockStyle.Fill
         Label1.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(3, 25)
+        Label1.Location = New Point(3, 28)
         Label1.Name = "Label1"
-        Label1.Size = New Size(131, 20)
+        Label1.Size = New Size(164, 19)
         Label1.TabIndex = 1
         Label1.Text = "Select a USB Drive"
         ' 
-        ' FlowLayoutPanel6
-        ' 
-        FlowLayoutPanel6.AutoSize = True
-        FlowLayoutPanel6.Controls.Add(CmbDrives)
-        FlowLayoutPanel6.Controls.Add(btnRefreshDrives)
-        FlowLayoutPanel6.Controls.Add(FlowLayoutPanel7)
-        FlowLayoutPanel6.Location = New Point(3, 48)
-        FlowLayoutPanel6.Name = "FlowLayoutPanel6"
-        FlowLayoutPanel6.Size = New Size(371, 70)
-        FlowLayoutPanel6.TabIndex = 9
-        ' 
         ' CmbDrives
         ' 
+        TableLayoutPanel2.SetColumnSpan(CmbDrives, 3)
+        CmbDrives.Dock = DockStyle.Fill
         CmbDrives.DropDownStyle = ComboBoxStyle.DropDownList
         CmbDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         CmbDrives.FormattingEnabled = True
-        CmbDrives.Location = New Point(3, 3)
+        CmbDrives.Location = New Point(3, 50)
+        CmbDrives.MaximumSize = New Size(289, 0)
+        CmbDrives.MinimumSize = New Size(289, 0)
         CmbDrives.Name = "CmbDrives"
         CmbDrives.Size = New Size(289, 26)
         CmbDrives.TabIndex = 5
@@ -100,29 +76,25 @@ Partial Class ConfigureDuplicationMagic
         ' btnRefreshDrives
         ' 
         btnRefreshDrives.AutoSize = True
+        btnRefreshDrives.Dock = DockStyle.Fill
         btnRefreshDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRefreshDrives.Location = New Point(298, 3)
+        btnRefreshDrives.Location = New Point(298, 50)
+        btnRefreshDrives.MaximumSize = New Size(76, 28)
+        btnRefreshDrives.MinimumSize = New Size(76, 28)
         btnRefreshDrives.Name = "btnRefreshDrives"
-        btnRefreshDrives.Size = New Size(70, 28)
+        btnRefreshDrives.Size = New Size(76, 28)
         btnRefreshDrives.TabIndex = 6
         btnRefreshDrives.Text = "Refresh"
         btnRefreshDrives.UseVisualStyleBackColor = True
         ' 
-        ' FlowLayoutPanel7
-        ' 
-        FlowLayoutPanel7.AutoSize = True
-        FlowLayoutPanel7.Controls.Add(ChkShowInternal)
-        FlowLayoutPanel7.Controls.Add(ChkShowUnknownDrives)
-        FlowLayoutPanel7.Location = New Point(3, 37)
-        FlowLayoutPanel7.Name = "FlowLayoutPanel7"
-        FlowLayoutPanel7.Size = New Size(348, 30)
-        FlowLayoutPanel7.TabIndex = 8
-        ' 
         ' ChkShowInternal
         ' 
         ChkShowInternal.AutoSize = True
+        ChkShowInternal.Dock = DockStyle.Fill
         ChkShowInternal.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowInternal.Location = New Point(3, 3)
+        ChkShowInternal.Location = New Point(3, 84)
+        ChkShowInternal.MaximumSize = New Size(162, 22)
+        ChkShowInternal.MinimumSize = New Size(162, 22)
         ChkShowInternal.Name = "ChkShowInternal"
         ChkShowInternal.Size = New Size(162, 22)
         ChkShowInternal.TabIndex = 7
@@ -132,58 +104,77 @@ Partial Class ConfigureDuplicationMagic
         ' ChkShowUnknownDrives
         ' 
         ChkShowUnknownDrives.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(ChkShowUnknownDrives, 3)
+        ChkShowUnknownDrives.Dock = DockStyle.Fill
         ChkShowUnknownDrives.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowUnknownDrives.Location = New Point(171, 3)
+        ChkShowUnknownDrives.Location = New Point(173, 84)
+        ChkShowUnknownDrives.MaximumSize = New Size(174, 22)
+        ChkShowUnknownDrives.MinimumSize = New Size(174, 22)
         ChkShowUnknownDrives.Name = "ChkShowUnknownDrives"
-        ChkShowUnknownDrives.Size = New Size(174, 24)
+        ChkShowUnknownDrives.Size = New Size(174, 22)
         ChkShowUnknownDrives.TabIndex = 8
         ChkShowUnknownDrives.Text = "Show Unknown Drives"
         ChkShowUnknownDrives.UseVisualStyleBackColor = True
         ' 
-        ' TableLayoutPanel1
-        ' 
-        TableLayoutPanel1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        TableLayoutPanel1.AutoSize = True
-        TableLayoutPanel1.ColumnCount = 2
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
-        TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
-        TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
-        TableLayoutPanel1.Location = New Point(203, 124)
-        TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
-        TableLayoutPanel1.Name = "TableLayoutPanel1"
-        TableLayoutPanel1.RowCount = 1
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20.0F))
-        TableLayoutPanel1.Size = New Size(170, 33)
-        TableLayoutPanel1.TabIndex = 0
-        ' 
         ' OK_Button
         ' 
-        OK_Button.Anchor = AnchorStyles.None
-        OK_Button.Location = New Point(4, 3)
+        OK_Button.Dock = DockStyle.Fill
+        OK_Button.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        OK_Button.Location = New Point(215, 112)
         OK_Button.Margin = New Padding(4, 3, 4, 3)
+        OK_Button.MaximumSize = New Size(76, 28)
+        OK_Button.MinimumSize = New Size(76, 28)
         OK_Button.Name = "OK_Button"
-        OK_Button.Size = New Size(77, 27)
+        OK_Button.Size = New Size(76, 28)
         OK_Button.TabIndex = 0
         OK_Button.Text = "Go"
         ' 
         ' Cancel_Button
         ' 
-        Cancel_Button.Anchor = AnchorStyles.None
-        Cancel_Button.Location = New Point(89, 3)
+        Cancel_Button.Dock = DockStyle.Fill
+        Cancel_Button.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Cancel_Button.Location = New Point(299, 112)
         Cancel_Button.Margin = New Padding(4, 3, 4, 3)
+        Cancel_Button.MaximumSize = New Size(76, 28)
+        Cancel_Button.MinimumSize = New Size(76, 28)
         Cancel_Button.Name = "Cancel_Button"
-        Cancel_Button.Size = New Size(77, 27)
+        Cancel_Button.Size = New Size(76, 28)
         Cancel_Button.TabIndex = 1
         Cancel_Button.Text = "Cancel"
         ' 
+        ' TableLayoutPanel2
+        ' 
+        TableLayoutPanel2.ColumnCount = 4
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 170F))
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 41F))
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 84F))
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel2.Controls.Add(ChkShowUnknownDrives, 1, 3)
+        TableLayoutPanel2.Controls.Add(ChkShowInternal, 0, 3)
+        TableLayoutPanel2.Controls.Add(CmbDrives, 0, 2)
+        TableLayoutPanel2.Controls.Add(Label1, 0, 1)
+        TableLayoutPanel2.Controls.Add(Label6, 0, 0)
+        TableLayoutPanel2.Controls.Add(Cancel_Button, 3, 4)
+        TableLayoutPanel2.Controls.Add(OK_Button, 2, 4)
+        TableLayoutPanel2.Controls.Add(btnRefreshDrives, 3, 2)
+        TableLayoutPanel2.Dock = DockStyle.Fill
+        TableLayoutPanel2.Location = New Point(4, 4)
+        TableLayoutPanel2.Name = "TableLayoutPanel2"
+        TableLayoutPanel2.RowCount = 5
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 28F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 19F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 34F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 28F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 66F))
+        TableLayoutPanel2.Size = New Size(379, 144)
+        TableLayoutPanel2.TabIndex = 9
+        ' 
         ' ConfigureDuplicationMagic
         ' 
-        AutoScaleDimensions = New SizeF(96.0F, 96.0F)
+        AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
-        ClientSize = New Size(389, 173)
-        Controls.Add(FlowLayoutPanel2)
+        ClientSize = New Size(387, 152)
+        Controls.Add(TableLayoutPanel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
         MaximizeBox = False
         MinimizeBox = False
@@ -191,28 +182,19 @@ Partial Class ConfigureDuplicationMagic
         Padding = New Padding(4)
         StartPosition = FormStartPosition.CenterParent
         Text = "ConfigureDuplicationMagic"
-        FlowLayoutPanel2.ResumeLayout(False)
-        FlowLayoutPanel2.PerformLayout()
-        FlowLayoutPanel6.ResumeLayout(False)
-        FlowLayoutPanel6.PerformLayout()
-        FlowLayoutPanel7.ResumeLayout(False)
-        FlowLayoutPanel7.PerformLayout()
-        TableLayoutPanel1.ResumeLayout(False)
+        TableLayoutPanel2.ResumeLayout(False)
+        TableLayoutPanel2.PerformLayout()
         ResumeLayout(False)
     End Sub
-
-    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents Label1 As Label
     Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents OK_Button As Button
     Friend WithEvents Cancel_Button As Button
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
-    Friend WithEvents FlowLayoutPanel6 As FlowLayoutPanel
     Friend WithEvents CmbDrives As ComboBox
     Friend WithEvents btnRefreshDrives As Button
-    Friend WithEvents FlowLayoutPanel7 As FlowLayoutPanel
     Friend WithEvents ChkShowInternal As CheckBox
     Friend WithEvents ChkShowUnknownDrives As CheckBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
 End Class
