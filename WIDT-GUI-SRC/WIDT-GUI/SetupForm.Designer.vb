@@ -57,6 +57,8 @@ Partial Class SetupForm
         ' 
         MenuStrip1.Items.AddRange(New ToolStripItem() {FileToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
+        MenuStrip1.MaximumSize = New Size(0, 24)
+        MenuStrip1.MinimumSize = New Size(0, 24)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Size = New Size(652, 24)
         MenuStrip1.TabIndex = 0
@@ -128,7 +130,7 @@ Partial Class SetupForm
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
-        TableLayoutPanel1.Size = New Size(652, 421)
+        TableLayoutPanel1.Size = New Size(652, 425)
         TableLayoutPanel1.TabIndex = 1
         ' 
         ' btnCreateISO
@@ -368,10 +370,11 @@ Partial Class SetupForm
         ' 
         AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
-        ClientSize = New Size(652, 445)
+        ClientSize = New Size(652, 449)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
+        MinimumSize = New Size(668, 488)
         Name = "SetupForm"
         Text = "Setup - Windows Image Deployment Tools"
         MenuStrip1.ResumeLayout(False)
