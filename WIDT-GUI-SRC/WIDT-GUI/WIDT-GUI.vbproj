@@ -27,6 +27,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ConfigureDuplicationMagic.vb~RF2e2f1e.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
