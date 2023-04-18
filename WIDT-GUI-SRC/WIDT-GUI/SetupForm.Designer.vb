@@ -29,7 +29,6 @@ Partial Class SetupForm
         ToolStripSeparator1 = New ToolStripSeparator()
         QuitToolStripMenuItem = New ToolStripMenuItem()
         TableLayoutPanel1 = New TableLayoutPanel()
-        FlowLayoutPanel3 = New FlowLayoutPanel()
         TableLayoutPanel2 = New TableLayoutPanel()
         btnCreateUSB = New Button()
         btnCreateISO = New Button()
@@ -100,7 +99,6 @@ Partial Class SetupForm
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel1.Controls.Add(Label2, 0, 1)
         TableLayoutPanel1.Controls.Add(Label1, 0, 0)
-        TableLayoutPanel1.Controls.Add(FlowLayoutPanel3, 2, 2)
         TableLayoutPanel1.Controls.Add(TableLayoutPanel2, 1, 2)
         TableLayoutPanel1.Controls.Add(TableLayoutPanel3, 0, 2)
         TableLayoutPanel1.Dock = DockStyle.Fill
@@ -112,15 +110,6 @@ Partial Class SetupForm
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.Size = New Size(811, 426)
         TableLayoutPanel1.TabIndex = 1
-        ' 
-        ' FlowLayoutPanel3
-        ' 
-        FlowLayoutPanel3.Dock = DockStyle.Fill
-        FlowLayoutPanel3.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel3.Location = New Point(644, 60)
-        FlowLayoutPanel3.Name = "FlowLayoutPanel3"
-        FlowLayoutPanel3.Size = New Size(164, 363)
-        FlowLayoutPanel3.TabIndex = 2
         ' 
         ' TableLayoutPanel2
         ' 
@@ -416,7 +405,6 @@ Partial Class SetupForm
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents Label3 As Label
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
