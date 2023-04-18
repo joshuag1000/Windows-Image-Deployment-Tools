@@ -240,7 +240,7 @@ Partial Class SetupForm
         ' Label1
         ' 
         Label1.AutoSize = True
-        TableLayoutPanel1.SetColumnSpan(Label1, 3)
+        TableLayoutPanel1.SetColumnSpan(Label1, 5)
         Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point)
         Label1.Location = New Point(3, 0)
         Label1.Name = "Label1"
@@ -251,7 +251,7 @@ Partial Class SetupForm
         ' Label2
         ' 
         Label2.AutoSize = True
-        TableLayoutPanel1.SetColumnSpan(Label2, 3)
+        TableLayoutPanel1.SetColumnSpan(Label2, 5)
         Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point)
         Label2.Location = New Point(3, 32)
         Label2.Name = "Label2"
