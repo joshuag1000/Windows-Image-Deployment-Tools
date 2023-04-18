@@ -29,26 +29,26 @@ Partial Class SetupForm
         ToolStripSeparator1 = New ToolStripSeparator()
         QuitToolStripMenuItem = New ToolStripMenuItem()
         TableLayoutPanel1 = New TableLayoutPanel()
-        btnCreateUSB = New Button()
         btnCreateISO = New Button()
-        Label5 = New Label()
-        Label4 = New Label()
-        Label3 = New Label()
-        btnRefreshDrives = New Button()
-        ChkShowInternal = New CheckBox()
+        CmbDrives = New ComboBox()
+        btnCreateUSB = New Button()
         ChkShowUnknownDrives = New CheckBox()
-        Label1 = New Label()
+        ChkShowInternal = New CheckBox()
         Label2 = New Label()
-        btnLocateExistingInstance = New Button()
-        Label6 = New Label()
+        btnRefreshDrives = New Button()
+        Label5 = New Label()
+        ChkWinPEStatus = New CheckBox()
+        Label4 = New Label()
         BoxWinPEInstances = New ListBox()
+        Label3 = New Label()
+        Label6 = New Label()
+        Label1 = New Label()
+        btnLocateExistingInstance = New Button()
         btnNewInstance = New Button()
         btnRemoveInstance = New Button()
         FolderBrowserDialog1 = New FolderBrowserDialog()
         SaveFileDialog1 = New SaveFileDialog()
         ToolTip1 = New ToolTip(components)
-        ChkWinPEStatus = New CheckBox()
-        CmbDrives = New ComboBox()
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
@@ -131,21 +131,6 @@ Partial Class SetupForm
         TableLayoutPanel1.Size = New Size(647, 421)
         TableLayoutPanel1.TabIndex = 1
         ' 
-        ' btnCreateUSB
-        ' 
-        btnCreateUSB.AutoSize = True
-        btnCreateUSB.Dock = DockStyle.Top
-        btnCreateUSB.Enabled = False
-        btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateUSB.Location = New Point(242, 213)
-        btnCreateUSB.MaximumSize = New Size(100, 28)
-        btnCreateUSB.MinimumSize = New Size(100, 28)
-        btnCreateUSB.Name = "btnCreateUSB"
-        btnCreateUSB.Size = New Size(100, 28)
-        btnCreateUSB.TabIndex = 3
-        btnCreateUSB.Text = "Create USB"
-        btnCreateUSB.UseVisualStyleBackColor = True
-        ' 
         ' btnCreateISO
         ' 
         btnCreateISO.AutoSize = True
@@ -153,76 +138,41 @@ Partial Class SetupForm
         btnCreateISO.Enabled = False
         btnCreateISO.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         btnCreateISO.Location = New Point(348, 213)
-        btnCreateISO.MaximumSize = New Size(100, 28)
-        btnCreateISO.MinimumSize = New Size(100, 28)
+        btnCreateISO.MaximumSize = New Size(0, 28)
+        btnCreateISO.MinimumSize = New Size(0, 28)
         btnCreateISO.Name = "btnCreateISO"
         btnCreateISO.Size = New Size(100, 28)
         btnCreateISO.TabIndex = 5
         btnCreateISO.Text = "Create ISO"
         btnCreateISO.UseVisualStyleBackColor = True
         ' 
-        ' Label5
+        ' CmbDrives
         ' 
-        Label5.AutoSize = True
-        TableLayoutPanel1.SetColumnSpan(Label5, 4)
-        Label5.Dock = DockStyle.Fill
-        Label5.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label5.Location = New Point(242, 128)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(402, 18)
-        Label5.TabIndex = 4
-        Label5.Text = "Select a Drive:"
+        TableLayoutPanel1.SetColumnSpan(CmbDrives, 3)
+        CmbDrives.DropDownStyle = ComboBoxStyle.DropDownList
+        CmbDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        CmbDrives.FormattingEnabled = True
+        CmbDrives.Location = New Point(242, 149)
+        CmbDrives.MaximumSize = New Size(289, 0)
+        CmbDrives.MinimumSize = New Size(100, 0)
+        CmbDrives.Name = "CmbDrives"
+        CmbDrives.Size = New Size(289, 26)
+        CmbDrives.TabIndex = 5
         ' 
-        ' Label4
+        ' btnCreateUSB
         ' 
-        Label4.AutoSize = True
-        TableLayoutPanel1.SetColumnSpan(Label4, 4)
-        Label4.Dock = DockStyle.Fill
-        Label4.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label4.Location = New Point(242, 82)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(402, 18)
-        Label4.TabIndex = 0
-        Label4.Text = "WinPE Instance:"
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        TableLayoutPanel1.SetColumnSpan(Label3, 4)
-        Label3.Dock = DockStyle.Fill
-        Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label3.Location = New Point(242, 57)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(402, 25)
-        Label3.TabIndex = 1
-        Label3.Text = "Install WIDT To USB or ISO"
-        ' 
-        ' btnRefreshDrives
-        ' 
-        btnRefreshDrives.AutoSize = True
-        btnRefreshDrives.Dock = DockStyle.Fill
-        btnRefreshDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRefreshDrives.Location = New Point(539, 149)
-        btnRefreshDrives.MaximumSize = New Size(89, 28)
-        btnRefreshDrives.MinimumSize = New Size(89, 28)
-        btnRefreshDrives.Name = "btnRefreshDrives"
-        btnRefreshDrives.Size = New Size(89, 28)
-        btnRefreshDrives.TabIndex = 6
-        btnRefreshDrives.Text = "Refresh"
-        btnRefreshDrives.UseVisualStyleBackColor = True
-        ' 
-        ' ChkShowInternal
-        ' 
-        ChkShowInternal.AutoSize = True
-        TableLayoutPanel1.SetColumnSpan(ChkShowInternal, 2)
-        ChkShowInternal.Dock = DockStyle.Fill
-        ChkShowInternal.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowInternal.Location = New Point(242, 183)
-        ChkShowInternal.Name = "ChkShowInternal"
-        ChkShowInternal.Size = New Size(206, 24)
-        ChkShowInternal.TabIndex = 7
-        ChkShowInternal.Text = "Show Internal Drives"
-        ChkShowInternal.UseVisualStyleBackColor = True
+        btnCreateUSB.AutoSize = True
+        btnCreateUSB.Dock = DockStyle.Top
+        btnCreateUSB.Enabled = False
+        btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnCreateUSB.Location = New Point(242, 213)
+        btnCreateUSB.MaximumSize = New Size(0, 28)
+        btnCreateUSB.MinimumSize = New Size(0, 28)
+        btnCreateUSB.Name = "btnCreateUSB"
+        btnCreateUSB.Size = New Size(100, 28)
+        btnCreateUSB.TabIndex = 3
+        btnCreateUSB.Text = "Create USB"
+        btnCreateUSB.UseVisualStyleBackColor = True
         ' 
         ' ChkShowUnknownDrives
         ' 
@@ -237,16 +187,18 @@ Partial Class SetupForm
         ChkShowUnknownDrives.Text = "Show Unknown Drives"
         ChkShowUnknownDrives.UseVisualStyleBackColor = True
         ' 
-        ' Label1
+        ' ChkShowInternal
         ' 
-        Label1.AutoSize = True
-        TableLayoutPanel1.SetColumnSpan(Label1, 5)
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point)
-        Label1.Location = New Point(3, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(412, 32)
-        Label1.TabIndex = 1
-        Label1.Text = "Windows Image Deployment Tools"
+        ChkShowInternal.AutoSize = True
+        TableLayoutPanel1.SetColumnSpan(ChkShowInternal, 2)
+        ChkShowInternal.Dock = DockStyle.Fill
+        ChkShowInternal.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        ChkShowInternal.Location = New Point(242, 183)
+        ChkShowInternal.Name = "ChkShowInternal"
+        ChkShowInternal.Size = New Size(206, 24)
+        ChkShowInternal.TabIndex = 7
+        ChkShowInternal.Text = "Show Internal Drives"
+        ChkShowInternal.UseVisualStyleBackColor = True
         ' 
         ' Label2
         ' 
@@ -259,70 +211,31 @@ Partial Class SetupForm
         Label2.TabIndex = 2
         Label2.Text = "Setup and Configuration Utility"
         ' 
-        ' btnLocateExistingInstance
+        ' btnRefreshDrives
         ' 
-        btnLocateExistingInstance.AutoSize = True
-        btnLocateExistingInstance.Dock = DockStyle.Top
-        btnLocateExistingInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnLocateExistingInstance.Location = New Point(3, 382)
-        btnLocateExistingInstance.Name = "btnLocateExistingInstance"
-        btnLocateExistingInstance.Size = New Size(233, 28)
-        btnLocateExistingInstance.TabIndex = 5
-        btnLocateExistingInstance.Text = "Locate Existing Instance"
-        btnLocateExistingInstance.UseVisualStyleBackColor = True
+        btnRefreshDrives.AutoSize = True
+        btnRefreshDrives.Dock = DockStyle.Fill
+        btnRefreshDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnRefreshDrives.Location = New Point(537, 149)
+        btnRefreshDrives.MaximumSize = New Size(0, 28)
+        btnRefreshDrives.MinimumSize = New Size(0, 28)
+        btnRefreshDrives.Name = "btnRefreshDrives"
+        btnRefreshDrives.Size = New Size(107, 28)
+        btnRefreshDrives.TabIndex = 6
+        btnRefreshDrives.Text = "Refresh"
+        btnRefreshDrives.UseVisualStyleBackColor = True
         ' 
-        ' Label6
+        ' Label5
         ' 
-        Label6.AutoSize = True
-        Label6.Dock = DockStyle.Fill
-        Label6.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label6.Location = New Point(3, 57)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(233, 25)
-        Label6.TabIndex = 2
-        Label6.Text = "Select WinPE Instance"
-        ' 
-        ' BoxWinPEInstances
-        ' 
-        BoxWinPEInstances.Dock = DockStyle.Fill
-        BoxWinPEInstances.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        BoxWinPEInstances.FormattingEnabled = True
-        BoxWinPEInstances.ItemHeight = 18
-        BoxWinPEInstances.Location = New Point(3, 85)
-        BoxWinPEInstances.Name = "BoxWinPEInstances"
-        TableLayoutPanel1.SetRowSpan(BoxWinPEInstances, 6)
-        BoxWinPEInstances.Size = New Size(233, 223)
-        BoxWinPEInstances.TabIndex = 0
-        ' 
-        ' btnNewInstance
-        ' 
-        btnNewInstance.AutoSize = True
-        btnNewInstance.Dock = DockStyle.Top
-        btnNewInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnNewInstance.Location = New Point(3, 314)
-        btnNewInstance.Name = "btnNewInstance"
-        btnNewInstance.Size = New Size(233, 28)
-        btnNewInstance.TabIndex = 3
-        btnNewInstance.Text = "Create New Instance"
-        btnNewInstance.UseVisualStyleBackColor = True
-        ' 
-        ' btnRemoveInstance
-        ' 
-        btnRemoveInstance.AutoSize = True
-        btnRemoveInstance.Dock = DockStyle.Top
-        btnRemoveInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRemoveInstance.Location = New Point(3, 348)
-        btnRemoveInstance.Name = "btnRemoveInstance"
-        btnRemoveInstance.Size = New Size(233, 28)
-        btnRemoveInstance.TabIndex = 4
-        btnRemoveInstance.Text = "Remove Instance"
-        btnRemoveInstance.UseVisualStyleBackColor = True
-        ' 
-        ' SaveFileDialog1
-        ' 
-        SaveFileDialog1.DefaultExt = "iso"
-        SaveFileDialog1.Filter = "ISO Files|*.iso"
-        SaveFileDialog1.Title = "Save ISO as..."
+        Label5.AutoSize = True
+        TableLayoutPanel1.SetColumnSpan(Label5, 4)
+        Label5.Dock = DockStyle.Fill
+        Label5.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label5.Location = New Point(242, 128)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(402, 18)
+        Label5.TabIndex = 4
+        Label5.Text = "Select a Drive:"
         ' 
         ' ChkWinPEStatus
         ' 
@@ -338,18 +251,111 @@ Partial Class SetupForm
         ChkWinPEStatus.Text = "Not Found"
         ChkWinPEStatus.UseVisualStyleBackColor = True
         ' 
-        ' CmbDrives
+        ' Label4
         ' 
-        TableLayoutPanel1.SetColumnSpan(CmbDrives, 3)
-        CmbDrives.DropDownStyle = ComboBoxStyle.DropDownList
-        CmbDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CmbDrives.FormattingEnabled = True
-        CmbDrives.Location = New Point(242, 149)
-        CmbDrives.MaximumSize = New Size(289, 0)
-        CmbDrives.MinimumSize = New Size(100, 0)
-        CmbDrives.Name = "CmbDrives"
-        CmbDrives.Size = New Size(289, 26)
-        CmbDrives.TabIndex = 5
+        Label4.AutoSize = True
+        TableLayoutPanel1.SetColumnSpan(Label4, 4)
+        Label4.Dock = DockStyle.Fill
+        Label4.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label4.Location = New Point(242, 82)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(402, 18)
+        Label4.TabIndex = 0
+        Label4.Text = "WinPE Instance:"
+        ' 
+        ' BoxWinPEInstances
+        ' 
+        BoxWinPEInstances.Dock = DockStyle.Fill
+        BoxWinPEInstances.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        BoxWinPEInstances.FormattingEnabled = True
+        BoxWinPEInstances.ItemHeight = 18
+        BoxWinPEInstances.Location = New Point(3, 85)
+        BoxWinPEInstances.Name = "BoxWinPEInstances"
+        TableLayoutPanel1.SetRowSpan(BoxWinPEInstances, 6)
+        BoxWinPEInstances.Size = New Size(233, 223)
+        BoxWinPEInstances.TabIndex = 0
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        TableLayoutPanel1.SetColumnSpan(Label3, 4)
+        Label3.Dock = DockStyle.Fill
+        Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label3.Location = New Point(242, 57)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(402, 25)
+        Label3.TabIndex = 1
+        Label3.Text = "Install WIDT To USB or ISO"
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Dock = DockStyle.Fill
+        Label6.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label6.Location = New Point(3, 57)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(233, 25)
+        Label6.TabIndex = 2
+        Label6.Text = "Select WinPE Instance"
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        TableLayoutPanel1.SetColumnSpan(Label1, 5)
+        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Location = New Point(3, 0)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(412, 32)
+        Label1.TabIndex = 1
+        Label1.Text = "Windows Image Deployment Tools"
+        ' 
+        ' btnLocateExistingInstance
+        ' 
+        btnLocateExistingInstance.AutoSize = True
+        btnLocateExistingInstance.Dock = DockStyle.Top
+        btnLocateExistingInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnLocateExistingInstance.Location = New Point(3, 382)
+        btnLocateExistingInstance.MaximumSize = New Size(0, 28)
+        btnLocateExistingInstance.MinimumSize = New Size(0, 28)
+        btnLocateExistingInstance.Name = "btnLocateExistingInstance"
+        btnLocateExistingInstance.Size = New Size(233, 28)
+        btnLocateExistingInstance.TabIndex = 5
+        btnLocateExistingInstance.Text = "Locate Existing Instance"
+        btnLocateExistingInstance.UseVisualStyleBackColor = True
+        ' 
+        ' btnNewInstance
+        ' 
+        btnNewInstance.AutoSize = True
+        btnNewInstance.Dock = DockStyle.Top
+        btnNewInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnNewInstance.Location = New Point(3, 314)
+        btnNewInstance.MaximumSize = New Size(0, 28)
+        btnNewInstance.MinimumSize = New Size(0, 28)
+        btnNewInstance.Name = "btnNewInstance"
+        btnNewInstance.Size = New Size(233, 28)
+        btnNewInstance.TabIndex = 3
+        btnNewInstance.Text = "Create New Instance"
+        btnNewInstance.UseVisualStyleBackColor = True
+        ' 
+        ' btnRemoveInstance
+        ' 
+        btnRemoveInstance.AutoSize = True
+        btnRemoveInstance.Dock = DockStyle.Top
+        btnRemoveInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnRemoveInstance.Location = New Point(3, 348)
+        btnRemoveInstance.MaximumSize = New Size(0, 28)
+        btnRemoveInstance.MinimumSize = New Size(0, 28)
+        btnRemoveInstance.Name = "btnRemoveInstance"
+        btnRemoveInstance.Size = New Size(233, 28)
+        btnRemoveInstance.TabIndex = 4
+        btnRemoveInstance.Text = "Remove Instance"
+        btnRemoveInstance.UseVisualStyleBackColor = True
+        ' 
+        ' SaveFileDialog1
+        ' 
+        SaveFileDialog1.DefaultExt = "iso"
+        SaveFileDialog1.Filter = "ISO Files|*.iso"
+        SaveFileDialog1.Title = "Save ISO as..."
         ' 
         ' SetupForm
         ' 
