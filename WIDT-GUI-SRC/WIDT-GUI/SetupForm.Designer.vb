@@ -371,6 +371,7 @@ Partial Class SetupForm
         CmbDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         CmbDrives.FormattingEnabled = True
         CmbDrives.Location = New Point(3, 92)
+        CmbDrives.MaximumSize = New Size(289, 0)
         CmbDrives.MinimumSize = New Size(100, 0)
         CmbDrives.Name = "CmbDrives"
         CmbDrives.Size = New Size(289, 26)
