@@ -31,18 +31,12 @@ Partial Class SetupForm
         TableLayoutPanel1 = New TableLayoutPanel()
         FlowLayoutPanel3 = New FlowLayoutPanel()
         TableLayoutPanel2 = New TableLayoutPanel()
-        FlowLayoutPanel5 = New FlowLayoutPanel()
         btnCreateUSB = New Button()
         btnCreateISO = New Button()
         Label5 = New Label()
-        FlowLayoutPanel4 = New FlowLayoutPanel()
-        ChkWinPEStatus = New CheckBox()
         Label4 = New Label()
         Label3 = New Label()
-        FlowLayoutPanel6 = New FlowLayoutPanel()
-        CmbDrives = New ComboBox()
         btnRefreshDrives = New Button()
-        FlowLayoutPanel7 = New FlowLayoutPanel()
         ChkShowInternal = New CheckBox()
         ChkShowUnknownDrives = New CheckBox()
         FlowLayoutPanel1 = New FlowLayoutPanel()
@@ -57,13 +51,11 @@ Partial Class SetupForm
         FolderBrowserDialog1 = New FolderBrowserDialog()
         SaveFileDialog1 = New SaveFileDialog()
         ToolTip1 = New ToolTip(components)
+        ChkWinPEStatus = New CheckBox()
+        CmbDrives = New ComboBox()
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         TableLayoutPanel2.SuspendLayout()
-        FlowLayoutPanel5.SuspendLayout()
-        FlowLayoutPanel4.SuspendLayout()
-        FlowLayoutPanel6.SuspendLayout()
-        FlowLayoutPanel7.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         TableLayoutPanel3.SuspendLayout()
         SuspendLayout()
@@ -87,19 +79,19 @@ Partial Class SetupForm
         ' AboutWIDTGUIToolStripMenuItem
         ' 
         AboutWIDTGUIToolStripMenuItem.Name = "AboutWIDTGUIToolStripMenuItem"
-        AboutWIDTGUIToolStripMenuItem.Size = New Size(180, 22)
+        AboutWIDTGUIToolStripMenuItem.Size = New Size(161, 22)
         AboutWIDTGUIToolStripMenuItem.Text = "About WIDT-GUI"
         ' 
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(177, 6)
+        ToolStripSeparator1.Size = New Size(158, 6)
         ' 
         ' QuitToolStripMenuItem
         ' 
         QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
         QuitToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
-        QuitToolStripMenuItem.Size = New Size(180, 22)
+        QuitToolStripMenuItem.Size = New Size(161, 22)
         QuitToolStripMenuItem.Text = "Quit"
         ' 
         ' TableLayoutPanel1
@@ -132,18 +124,26 @@ Partial Class SetupForm
         ' 
         ' TableLayoutPanel2
         ' 
-        TableLayoutPanel2.ColumnCount = 1
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
-        TableLayoutPanel2.Controls.Add(FlowLayoutPanel5, 0, 5)
-        TableLayoutPanel2.Controls.Add(Label5, 0, 3)
-        TableLayoutPanel2.Controls.Add(FlowLayoutPanel4, 0, 2)
+        TableLayoutPanel2.ColumnCount = 4
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.Controls.Add(CmbDrives, 0, 4)
+        TableLayoutPanel2.Controls.Add(btnCreateISO, 1, 6)
+        TableLayoutPanel2.Controls.Add(ChkShowInternal, 0, 5)
+        TableLayoutPanel2.Controls.Add(ChkWinPEStatus, 0, 2)
         TableLayoutPanel2.Controls.Add(Label4, 0, 1)
         TableLayoutPanel2.Controls.Add(Label3, 0, 0)
-        TableLayoutPanel2.Controls.Add(FlowLayoutPanel6, 0, 4)
+        TableLayoutPanel2.Controls.Add(Label5, 0, 3)
+        TableLayoutPanel2.Controls.Add(ChkShowUnknownDrives, 2, 5)
+        TableLayoutPanel2.Controls.Add(btnCreateUSB, 0, 6)
+        TableLayoutPanel2.Controls.Add(btnRefreshDrives, 3, 4)
         TableLayoutPanel2.Dock = DockStyle.Fill
         TableLayoutPanel2.Location = New Point(248, 67)
         TableLayoutPanel2.Name = "TableLayoutPanel2"
-        TableLayoutPanel2.RowCount = 6
+        TableLayoutPanel2.RowCount = 7
+        TableLayoutPanel2.RowStyles.Add(New RowStyle())
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
@@ -153,22 +153,13 @@ Partial Class SetupForm
         TableLayoutPanel2.Size = New Size(390, 356)
         TableLayoutPanel2.TabIndex = 3
         ' 
-        ' FlowLayoutPanel5
-        ' 
-        FlowLayoutPanel5.AutoSize = True
-        FlowLayoutPanel5.Controls.Add(btnCreateUSB)
-        FlowLayoutPanel5.Controls.Add(btnCreateISO)
-        FlowLayoutPanel5.Location = New Point(3, 174)
-        FlowLayoutPanel5.Name = "FlowLayoutPanel5"
-        FlowLayoutPanel5.Size = New Size(200, 34)
-        FlowLayoutPanel5.TabIndex = 8
-        ' 
         ' btnCreateUSB
         ' 
         btnCreateUSB.AutoSize = True
+        btnCreateUSB.Dock = DockStyle.Top
         btnCreateUSB.Enabled = False
         btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateUSB.Location = New Point(3, 3)
+        btnCreateUSB.Location = New Point(3, 156)
         btnCreateUSB.Name = "btnCreateUSB"
         btnCreateUSB.Size = New Size(97, 28)
         btnCreateUSB.TabIndex = 3
@@ -178,9 +169,10 @@ Partial Class SetupForm
         ' btnCreateISO
         ' 
         btnCreateISO.AutoSize = True
+        btnCreateISO.Dock = DockStyle.Top
         btnCreateISO.Enabled = False
         btnCreateISO.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateISO.Location = New Point(106, 3)
+        btnCreateISO.Location = New Point(106, 156)
         btnCreateISO.Name = "btnCreateISO"
         btnCreateISO.Size = New Size(91, 28)
         btnCreateISO.TabIndex = 5
@@ -190,103 +182,62 @@ Partial Class SetupForm
         ' Label5
         ' 
         Label5.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(Label5, 4)
+        Label5.Dock = DockStyle.Fill
         Label5.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label5.Location = New Point(3, 77)
+        Label5.Location = New Point(3, 71)
         Label5.Name = "Label5"
-        Label5.Size = New Size(103, 18)
+        Label5.Size = New Size(384, 18)
         Label5.TabIndex = 4
         Label5.Text = "Select a Drive:"
-        ' 
-        ' FlowLayoutPanel4
-        ' 
-        FlowLayoutPanel4.AutoSize = True
-        FlowLayoutPanel4.Controls.Add(ChkWinPEStatus)
-        FlowLayoutPanel4.Location = New Point(3, 46)
-        FlowLayoutPanel4.Name = "FlowLayoutPanel4"
-        FlowLayoutPanel4.Size = New Size(103, 28)
-        FlowLayoutPanel4.TabIndex = 3
-        ' 
-        ' ChkWinPEStatus
-        ' 
-        ChkWinPEStatus.AutoCheck = False
-        ChkWinPEStatus.AutoSize = True
-        ChkWinPEStatus.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkWinPEStatus.Location = New Point(3, 3)
-        ChkWinPEStatus.Name = "ChkWinPEStatus"
-        ChkWinPEStatus.Size = New Size(97, 22)
-        ChkWinPEStatus.TabIndex = 2
-        ChkWinPEStatus.Text = "Not Found"
-        ChkWinPEStatus.UseVisualStyleBackColor = True
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(Label4, 4)
+        Label4.Dock = DockStyle.Fill
         Label4.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         Label4.Location = New Point(3, 25)
         Label4.Name = "Label4"
-        Label4.Size = New Size(117, 18)
+        Label4.Size = New Size(384, 18)
         Label4.TabIndex = 0
         Label4.Text = "WinPE Instance:"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(Label3, 4)
+        Label3.Dock = DockStyle.Fill
         Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         Label3.Location = New Point(3, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(248, 25)
+        Label3.Size = New Size(384, 25)
         Label3.TabIndex = 1
         Label3.Text = "Install WIDT To USB or ISO"
-        ' 
-        ' FlowLayoutPanel6
-        ' 
-        FlowLayoutPanel6.AutoSize = True
-        FlowLayoutPanel6.Controls.Add(CmbDrives)
-        FlowLayoutPanel6.Controls.Add(btnRefreshDrives)
-        FlowLayoutPanel6.Controls.Add(FlowLayoutPanel7)
-        FlowLayoutPanel6.Location = New Point(3, 98)
-        FlowLayoutPanel6.Name = "FlowLayoutPanel6"
-        FlowLayoutPanel6.Size = New Size(371, 70)
-        FlowLayoutPanel6.TabIndex = 7
-        ' 
-        ' CmbDrives
-        ' 
-        CmbDrives.DropDownStyle = ComboBoxStyle.DropDownList
-        CmbDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CmbDrives.FormattingEnabled = True
-        CmbDrives.Location = New Point(3, 3)
-        CmbDrives.Name = "CmbDrives"
-        CmbDrives.Size = New Size(289, 26)
-        CmbDrives.TabIndex = 5
         ' 
         ' btnRefreshDrives
         ' 
         btnRefreshDrives.AutoSize = True
+        btnRefreshDrives.Dock = DockStyle.Fill
         btnRefreshDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRefreshDrives.Location = New Point(298, 3)
+        btnRefreshDrives.Location = New Point(298, 92)
+        btnRefreshDrives.MaximumSize = New Size(89, 28)
+        btnRefreshDrives.MinimumSize = New Size(89, 28)
         btnRefreshDrives.Name = "btnRefreshDrives"
-        btnRefreshDrives.Size = New Size(70, 28)
+        btnRefreshDrives.Size = New Size(89, 28)
         btnRefreshDrives.TabIndex = 6
         btnRefreshDrives.Text = "Refresh"
         btnRefreshDrives.UseVisualStyleBackColor = True
         ' 
-        ' FlowLayoutPanel7
-        ' 
-        FlowLayoutPanel7.AutoSize = True
-        FlowLayoutPanel7.Controls.Add(ChkShowInternal)
-        FlowLayoutPanel7.Controls.Add(ChkShowUnknownDrives)
-        FlowLayoutPanel7.Location = New Point(3, 37)
-        FlowLayoutPanel7.Name = "FlowLayoutPanel7"
-        FlowLayoutPanel7.Size = New Size(348, 30)
-        FlowLayoutPanel7.TabIndex = 8
-        ' 
         ' ChkShowInternal
         ' 
         ChkShowInternal.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(ChkShowInternal, 2)
+        ChkShowInternal.Dock = DockStyle.Fill
         ChkShowInternal.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowInternal.Location = New Point(3, 3)
+        ChkShowInternal.Location = New Point(3, 126)
         ChkShowInternal.Name = "ChkShowInternal"
-        ChkShowInternal.Size = New Size(162, 22)
+        ChkShowInternal.Size = New Size(194, 24)
         ChkShowInternal.TabIndex = 7
         ChkShowInternal.Text = "Show Internal Drives"
         ChkShowInternal.UseVisualStyleBackColor = True
@@ -294,8 +245,9 @@ Partial Class SetupForm
         ' ChkShowUnknownDrives
         ' 
         ChkShowUnknownDrives.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(ChkShowUnknownDrives, 2)
         ChkShowUnknownDrives.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowUnknownDrives.Location = New Point(171, 3)
+        ChkShowUnknownDrives.Location = New Point(203, 126)
         ChkShowUnknownDrives.Name = "ChkShowUnknownDrives"
         ChkShowUnknownDrives.Size = New Size(174, 24)
         ChkShowUnknownDrives.TabIndex = 8
@@ -418,9 +370,36 @@ Partial Class SetupForm
         SaveFileDialog1.Filter = "ISO Files|*.iso"
         SaveFileDialog1.Title = "Save ISO as..."
         ' 
+        ' ChkWinPEStatus
+        ' 
+        ChkWinPEStatus.AutoCheck = False
+        ChkWinPEStatus.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(ChkWinPEStatus, 4)
+        ChkWinPEStatus.Dock = DockStyle.Fill
+        ChkWinPEStatus.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        ChkWinPEStatus.Location = New Point(3, 46)
+        ChkWinPEStatus.Name = "ChkWinPEStatus"
+        ChkWinPEStatus.Size = New Size(384, 22)
+        ChkWinPEStatus.TabIndex = 2
+        ChkWinPEStatus.Text = "Not Found"
+        ChkWinPEStatus.UseVisualStyleBackColor = True
+        ' 
+        ' CmbDrives
+        ' 
+        TableLayoutPanel2.SetColumnSpan(CmbDrives, 3)
+        CmbDrives.Dock = DockStyle.Fill
+        CmbDrives.DropDownStyle = ComboBoxStyle.DropDownList
+        CmbDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        CmbDrives.FormattingEnabled = True
+        CmbDrives.Location = New Point(3, 92)
+        CmbDrives.MinimumSize = New Size(100, 0)
+        CmbDrives.Name = "CmbDrives"
+        CmbDrives.Size = New Size(289, 26)
+        CmbDrives.TabIndex = 5
+        ' 
         ' SetupForm
         ' 
-        AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
+        AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
         ClientSize = New Size(811, 450)
         Controls.Add(TableLayoutPanel1)
@@ -433,14 +412,6 @@ Partial Class SetupForm
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel2.ResumeLayout(False)
         TableLayoutPanel2.PerformLayout()
-        FlowLayoutPanel5.ResumeLayout(False)
-        FlowLayoutPanel5.PerformLayout()
-        FlowLayoutPanel4.ResumeLayout(False)
-        FlowLayoutPanel4.PerformLayout()
-        FlowLayoutPanel6.ResumeLayout(False)
-        FlowLayoutPanel6.PerformLayout()
-        FlowLayoutPanel7.ResumeLayout(False)
-        FlowLayoutPanel7.PerformLayout()
         FlowLayoutPanel1.ResumeLayout(False)
         FlowLayoutPanel1.PerformLayout()
         TableLayoutPanel3.ResumeLayout(False)
@@ -460,19 +431,13 @@ Partial Class SetupForm
     Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents Label3 As Label
-    Friend WithEvents ChkWinPEStatus As CheckBox
-    Friend WithEvents FlowLayoutPanel4 As FlowLayoutPanel
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents Label5 As Label
-    Friend WithEvents CmbDrives As ComboBox
     Friend WithEvents btnCreateUSB As Button
     Friend WithEvents btnCreateISO As Button
-    Friend WithEvents FlowLayoutPanel6 As FlowLayoutPanel
     Friend WithEvents btnRefreshDrives As Button
     Friend WithEvents ChkShowInternal As CheckBox
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
-    Friend WithEvents FlowLayoutPanel5 As FlowLayoutPanel
-    Friend WithEvents FlowLayoutPanel7 As FlowLayoutPanel
     Friend WithEvents ChkShowUnknownDrives As CheckBox
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents Label6 As Label
@@ -483,4 +448,6 @@ Partial Class SetupForm
     Friend WithEvents Label4 As Label
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents AboutWIDTGUIToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CmbDrives As ComboBox
+    Friend WithEvents ChkWinPEStatus As CheckBox
 End Class

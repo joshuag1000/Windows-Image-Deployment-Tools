@@ -44,7 +44,7 @@ Partial Class ConfigureDuplicationMagic
         Label6.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         Label6.Location = New Point(3, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(164, 28)
+        Label6.Size = New Size(162, 25)
         Label6.TabIndex = 9
         Label6.Text = "Duplicate Tools"
         ' 
@@ -53,9 +53,9 @@ Partial Class ConfigureDuplicationMagic
         Label1.AutoSize = True
         Label1.Dock = DockStyle.Fill
         Label1.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(3, 28)
+        Label1.Location = New Point(3, 25)
         Label1.Name = "Label1"
-        Label1.Size = New Size(164, 19)
+        Label1.Size = New Size(162, 20)
         Label1.TabIndex = 1
         Label1.Text = "Select a USB Drive"
         ' 
@@ -66,7 +66,7 @@ Partial Class ConfigureDuplicationMagic
         CmbDrives.DropDownStyle = ComboBoxStyle.DropDownList
         CmbDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         CmbDrives.FormattingEnabled = True
-        CmbDrives.Location = New Point(3, 50)
+        CmbDrives.Location = New Point(3, 48)
         CmbDrives.MaximumSize = New Size(289, 0)
         CmbDrives.MinimumSize = New Size(289, 0)
         CmbDrives.Name = "CmbDrives"
@@ -78,7 +78,7 @@ Partial Class ConfigureDuplicationMagic
         btnRefreshDrives.AutoSize = True
         btnRefreshDrives.Dock = DockStyle.Fill
         btnRefreshDrives.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRefreshDrives.Location = New Point(298, 50)
+        btnRefreshDrives.Location = New Point(298, 48)
         btnRefreshDrives.MaximumSize = New Size(76, 28)
         btnRefreshDrives.MinimumSize = New Size(76, 28)
         btnRefreshDrives.Name = "btnRefreshDrives"
@@ -92,7 +92,7 @@ Partial Class ConfigureDuplicationMagic
         ChkShowInternal.AutoSize = True
         ChkShowInternal.Dock = DockStyle.Fill
         ChkShowInternal.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowInternal.Location = New Point(3, 84)
+        ChkShowInternal.Location = New Point(3, 82)
         ChkShowInternal.MaximumSize = New Size(162, 22)
         ChkShowInternal.MinimumSize = New Size(162, 22)
         ChkShowInternal.Name = "ChkShowInternal"
@@ -107,7 +107,7 @@ Partial Class ConfigureDuplicationMagic
         TableLayoutPanel2.SetColumnSpan(ChkShowUnknownDrives, 3)
         ChkShowUnknownDrives.Dock = DockStyle.Fill
         ChkShowUnknownDrives.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowUnknownDrives.Location = New Point(173, 84)
+        ChkShowUnknownDrives.Location = New Point(171, 82)
         ChkShowUnknownDrives.MaximumSize = New Size(174, 22)
         ChkShowUnknownDrives.MinimumSize = New Size(174, 22)
         ChkShowUnknownDrives.Name = "ChkShowUnknownDrives"
@@ -120,7 +120,7 @@ Partial Class ConfigureDuplicationMagic
         ' 
         OK_Button.Dock = DockStyle.Fill
         OK_Button.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        OK_Button.Location = New Point(215, 112)
+        OK_Button.Location = New Point(215, 110)
         OK_Button.Margin = New Padding(4, 3, 4, 3)
         OK_Button.MaximumSize = New Size(76, 28)
         OK_Button.MinimumSize = New Size(76, 28)
@@ -133,7 +133,7 @@ Partial Class ConfigureDuplicationMagic
         ' 
         Cancel_Button.Dock = DockStyle.Fill
         Cancel_Button.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Cancel_Button.Location = New Point(299, 112)
+        Cancel_Button.Location = New Point(299, 110)
         Cancel_Button.Margin = New Padding(4, 3, 4, 3)
         Cancel_Button.MaximumSize = New Size(76, 28)
         Cancel_Button.MinimumSize = New Size(76, 28)
@@ -145,8 +145,8 @@ Partial Class ConfigureDuplicationMagic
         ' TableLayoutPanel2
         ' 
         TableLayoutPanel2.ColumnCount = 4
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 170F))
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 41F))
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 84F))
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         TableLayoutPanel2.Controls.Add(ChkShowUnknownDrives, 1, 3)
@@ -161,11 +161,11 @@ Partial Class ConfigureDuplicationMagic
         TableLayoutPanel2.Location = New Point(4, 4)
         TableLayoutPanel2.Name = "TableLayoutPanel2"
         TableLayoutPanel2.RowCount = 5
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 28F))
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 19F))
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 34F))
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 28F))
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 66F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle())
+        TableLayoutPanel2.RowStyles.Add(New RowStyle())
+        TableLayoutPanel2.RowStyles.Add(New RowStyle())
+        TableLayoutPanel2.RowStyles.Add(New RowStyle())
+        TableLayoutPanel2.RowStyles.Add(New RowStyle())
         TableLayoutPanel2.Size = New Size(379, 144)
         TableLayoutPanel2.TabIndex = 9
         ' 

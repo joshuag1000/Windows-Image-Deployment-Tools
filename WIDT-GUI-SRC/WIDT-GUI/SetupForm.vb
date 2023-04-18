@@ -382,4 +382,12 @@ Public Class SetupForm
     Private Sub AboutWIDTGUIToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutWIDTGUIToolStripMenuItem.Click
         AboutBox.ShowDialog(Me)
     End Sub
+
+    Private Sub TableLayoutPanel2_Paint(sender As Object, e As PaintEventArgs)
+
+    End Sub
+
+    Private Sub TableLayoutPanel2_Paint_1(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel2.Paint
+
+    End Sub
 End Class
