@@ -158,7 +158,13 @@ Public Module SharedFunctions
     ''' <param name="DriveToVerify"></param>
     ''' <returns></returns>
     Public Function VerifyDrive(ByVal DriveToVerify As DriveInformation) As Boolean
-        Return True
+        Dim Drives As List(Of DriveInformation) = GetAvailableDrives(True, True, True)
+        If Drives.Contains(DriveToVerify) Then
+            If MessageBox.Show("Are you sure you would like to proceed using the following drive?" + vbCrLf + DriveToVerify.ToString, "Proceed?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Return False
+            Return True
+        End If
+        MessageBox.Show("The selected drive can no longer be found. Please try again.", "Cannot Find Drive", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Return False
     End Function
 
     ''' <summary>

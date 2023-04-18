@@ -303,7 +303,10 @@ Public Class SetupForm
                     Return
                 End If
         End Select
-        If VerifyDrive(drive) = False Then Return
+        If VerifyDrive(drive) = False Then
+            RefreshDrives(ChkShowInternal.Checked, ChkShowUnknownDrives.Checked)
+            Return
+        End If
 
         ProgressDialog.Show(Me)
         ProgressDialog.SetProgressBarAmount(10)
