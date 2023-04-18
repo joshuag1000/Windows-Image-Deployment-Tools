@@ -39,7 +39,6 @@ Partial Class SetupForm
         btnRefreshDrives = New Button()
         ChkShowInternal = New CheckBox()
         ChkShowUnknownDrives = New CheckBox()
-        FlowLayoutPanel1 = New FlowLayoutPanel()
         Label1 = New Label()
         Label2 = New Label()
         TableLayoutPanel3 = New TableLayoutPanel()
@@ -56,7 +55,6 @@ Partial Class SetupForm
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         TableLayoutPanel2.SuspendLayout()
-        FlowLayoutPanel1.SuspendLayout()
         TableLayoutPanel3.SuspendLayout()
         SuspendLayout()
         ' 
@@ -97,19 +95,21 @@ Partial Class SetupForm
         ' TableLayoutPanel1
         ' 
         TableLayoutPanel1.ColumnCount = 3
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 245F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 70F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
-        TableLayoutPanel1.Controls.Add(FlowLayoutPanel3, 2, 1)
-        TableLayoutPanel1.Controls.Add(TableLayoutPanel2, 1, 1)
-        TableLayoutPanel1.Controls.Add(FlowLayoutPanel1, 0, 0)
-        TableLayoutPanel1.Controls.Add(TableLayoutPanel3, 0, 1)
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel1.Controls.Add(Label2, 0, 1)
+        TableLayoutPanel1.Controls.Add(Label1, 0, 0)
+        TableLayoutPanel1.Controls.Add(FlowLayoutPanel3, 2, 2)
+        TableLayoutPanel1.Controls.Add(TableLayoutPanel2, 1, 2)
+        TableLayoutPanel1.Controls.Add(TableLayoutPanel3, 0, 2)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Location = New Point(0, 24)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
-        TableLayoutPanel1.RowCount = 2
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 64F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel1.RowCount = 3
+        TableLayoutPanel1.RowStyles.Add(New RowStyle())
+        TableLayoutPanel1.RowStyles.Add(New RowStyle())
+        TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.Size = New Size(811, 426)
         TableLayoutPanel1.TabIndex = 1
         ' 
@@ -117,9 +117,9 @@ Partial Class SetupForm
         ' 
         FlowLayoutPanel3.Dock = DockStyle.Fill
         FlowLayoutPanel3.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel3.Location = New Point(644, 67)
+        FlowLayoutPanel3.Location = New Point(644, 60)
         FlowLayoutPanel3.Name = "FlowLayoutPanel3"
-        FlowLayoutPanel3.Size = New Size(164, 356)
+        FlowLayoutPanel3.Size = New Size(164, 363)
         FlowLayoutPanel3.TabIndex = 2
         ' 
         ' TableLayoutPanel2
@@ -140,7 +140,7 @@ Partial Class SetupForm
         TableLayoutPanel2.Controls.Add(btnCreateUSB, 0, 6)
         TableLayoutPanel2.Controls.Add(btnRefreshDrives, 3, 4)
         TableLayoutPanel2.Dock = DockStyle.Fill
-        TableLayoutPanel2.Location = New Point(248, 67)
+        TableLayoutPanel2.Location = New Point(248, 60)
         TableLayoutPanel2.Name = "TableLayoutPanel2"
         TableLayoutPanel2.RowCount = 7
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
@@ -150,7 +150,7 @@ Partial Class SetupForm
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
-        TableLayoutPanel2.Size = New Size(390, 356)
+        TableLayoutPanel2.Size = New Size(390, 363)
         TableLayoutPanel2.TabIndex = 3
         ' 
         ' btnCreateUSB
@@ -254,21 +254,10 @@ Partial Class SetupForm
         ChkShowUnknownDrives.Text = "Show Unknown Drives"
         ChkShowUnknownDrives.UseVisualStyleBackColor = True
         ' 
-        ' FlowLayoutPanel1
-        ' 
-        TableLayoutPanel1.SetColumnSpan(FlowLayoutPanel1, 3)
-        FlowLayoutPanel1.Controls.Add(Label1)
-        FlowLayoutPanel1.Controls.Add(Label2)
-        FlowLayoutPanel1.Dock = DockStyle.Fill
-        FlowLayoutPanel1.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel1.Location = New Point(3, 3)
-        FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        FlowLayoutPanel1.Size = New Size(805, 58)
-        FlowLayoutPanel1.TabIndex = 0
-        ' 
         ' Label1
         ' 
         Label1.AutoSize = True
+        TableLayoutPanel1.SetColumnSpan(Label1, 3)
         Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point)
         Label1.Location = New Point(3, 0)
         Label1.Name = "Label1"
@@ -279,6 +268,7 @@ Partial Class SetupForm
         ' Label2
         ' 
         Label2.AutoSize = True
+        TableLayoutPanel1.SetColumnSpan(Label2, 3)
         Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point)
         Label2.Location = New Point(3, 32)
         Label2.Name = "Label2"
@@ -296,7 +286,7 @@ Partial Class SetupForm
         TableLayoutPanel3.Controls.Add(btnNewInstance, 0, 2)
         TableLayoutPanel3.Controls.Add(btnRemoveInstance, 0, 3)
         TableLayoutPanel3.Dock = DockStyle.Fill
-        TableLayoutPanel3.Location = New Point(3, 67)
+        TableLayoutPanel3.Location = New Point(3, 60)
         TableLayoutPanel3.Name = "TableLayoutPanel3"
         TableLayoutPanel3.RowCount = 5
         TableLayoutPanel3.RowStyles.Add(New RowStyle())
@@ -304,7 +294,7 @@ Partial Class SetupForm
         TableLayoutPanel3.RowStyles.Add(New RowStyle())
         TableLayoutPanel3.RowStyles.Add(New RowStyle())
         TableLayoutPanel3.RowStyles.Add(New RowStyle())
-        TableLayoutPanel3.Size = New Size(239, 356)
+        TableLayoutPanel3.Size = New Size(239, 363)
         TableLayoutPanel3.TabIndex = 4
         ' 
         ' btnLocateExistingInstance
@@ -312,7 +302,7 @@ Partial Class SetupForm
         btnLocateExistingInstance.AutoSize = True
         btnLocateExistingInstance.Dock = DockStyle.Fill
         btnLocateExistingInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnLocateExistingInstance.Location = New Point(3, 325)
+        btnLocateExistingInstance.Location = New Point(3, 332)
         btnLocateExistingInstance.Name = "btnLocateExistingInstance"
         btnLocateExistingInstance.Size = New Size(233, 28)
         btnLocateExistingInstance.TabIndex = 5
@@ -337,7 +327,7 @@ Partial Class SetupForm
         BoxWinPEInstances.ItemHeight = 18
         BoxWinPEInstances.Location = New Point(3, 28)
         BoxWinPEInstances.Name = "BoxWinPEInstances"
-        BoxWinPEInstances.Size = New Size(233, 223)
+        BoxWinPEInstances.Size = New Size(233, 230)
         BoxWinPEInstances.TabIndex = 0
         ' 
         ' btnNewInstance
@@ -345,7 +335,7 @@ Partial Class SetupForm
         btnNewInstance.AutoSize = True
         btnNewInstance.Dock = DockStyle.Fill
         btnNewInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnNewInstance.Location = New Point(3, 257)
+        btnNewInstance.Location = New Point(3, 264)
         btnNewInstance.Name = "btnNewInstance"
         btnNewInstance.Size = New Size(233, 28)
         btnNewInstance.TabIndex = 3
@@ -357,7 +347,7 @@ Partial Class SetupForm
         btnRemoveInstance.AutoSize = True
         btnRemoveInstance.Dock = DockStyle.Fill
         btnRemoveInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRemoveInstance.Location = New Point(3, 291)
+        btnRemoveInstance.Location = New Point(3, 298)
         btnRemoveInstance.Name = "btnRemoveInstance"
         btnRemoveInstance.Size = New Size(233, 28)
         btnRemoveInstance.TabIndex = 4
@@ -410,10 +400,9 @@ Partial Class SetupForm
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
         TableLayoutPanel1.ResumeLayout(False)
+        TableLayoutPanel1.PerformLayout()
         TableLayoutPanel2.ResumeLayout(False)
         TableLayoutPanel2.PerformLayout()
-        FlowLayoutPanel1.ResumeLayout(False)
-        FlowLayoutPanel1.PerformLayout()
         TableLayoutPanel3.ResumeLayout(False)
         TableLayoutPanel3.PerformLayout()
         ResumeLayout(False)
@@ -425,7 +414,6 @@ Partial Class SetupForm
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents QuitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
