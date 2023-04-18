@@ -37,7 +37,8 @@ Public Class ConfigurePEDialog
     Private Sub ConfigurePEDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtWinPEPath.Text = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
         FolderBrowserDialog1.InitialDirectory = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
-        FlowDriverPath.Enabled = ChkIncludeDrivers.Checked
+        txtWinPEDrivers.Enabled = ChkIncludeDrivers.Checked
+        btnSelectDriversDir.Enabled = ChkIncludeDrivers.Checked
         txtWinPEName.Select()
 
         ' The order these are defined is critical. As if something has a dependancy then it needs to be installed first. This defines that order.
@@ -145,6 +146,7 @@ Public Class ConfigurePEDialog
     End Sub
 
     Private Sub ChkIncludeDrivers_CheckedChanged(sender As Object, e As EventArgs) Handles ChkIncludeDrivers.CheckedChanged
-        FlowDriverPath.Enabled = ChkIncludeDrivers.Checked
+        txtWinPEDrivers.Enabled = ChkIncludeDrivers.Checked
+        btnSelectDriversDir.Enabled = ChkIncludeDrivers.Checked
     End Sub
 End Class

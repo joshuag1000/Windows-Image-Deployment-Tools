@@ -44,13 +44,13 @@ Partial Class ProgressDialog
         TableLayoutPanel1.Controls.Add(ProgressBar1, 1, 2)
         TableLayoutPanel1.Controls.Add(txtboxInfo, 1, 1)
         TableLayoutPanel1.Dock = DockStyle.Fill
-        TableLayoutPanel1.Location = New Point(10, 34)
+        TableLayoutPanel1.Location = New Point(10, 10)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 3
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 27F))
-        TableLayoutPanel1.Size = New Size(564, 307)
+        TableLayoutPanel1.Size = New Size(564, 331)
         TableLayoutPanel1.TabIndex = 0
         ' 
         ' PictureBox1
@@ -83,7 +83,7 @@ Partial Class ProgressDialog
         ' ProgressBar1
         ' 
         ProgressBar1.Dock = DockStyle.Top
-        ProgressBar1.Location = New Point(73, 283)
+        ProgressBar1.Location = New Point(73, 307)
         ProgressBar1.MaximumSize = New Size(0, 23)
         ProgressBar1.MinimumSize = New Size(0, 23)
         ProgressBar1.Name = "ProgressBar1"
@@ -99,7 +99,7 @@ Partial Class ProgressDialog
         txtboxInfo.Name = "txtboxInfo"
         txtboxInfo.ReadOnly = True
         txtboxInfo.ScrollBars = ScrollBars.Both
-        txtboxInfo.Size = New Size(488, 254)
+        txtboxInfo.Size = New Size(488, 278)
         txtboxInfo.TabIndex = 4
         txtboxInfo.WordWrap = False
         ' 
