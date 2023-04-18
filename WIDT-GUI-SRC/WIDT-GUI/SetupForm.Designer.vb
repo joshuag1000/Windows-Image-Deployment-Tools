@@ -126,7 +126,7 @@ Partial Class SetupForm
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
-        TableLayoutPanel1.RowStyles.Add(New RowStyle())
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
@@ -274,11 +274,10 @@ Partial Class SetupForm
         BoxWinPEInstances.FormattingEnabled = True
         BoxWinPEInstances.ItemHeight = 18
         BoxWinPEInstances.Location = New Point(3, 85)
-        BoxWinPEInstances.MaximumSize = New Size(230, 230)
         BoxWinPEInstances.MinimumSize = New Size(230, 230)
         BoxWinPEInstances.Name = "BoxWinPEInstances"
         TableLayoutPanel1.SetRowSpan(BoxWinPEInstances, 6)
-        BoxWinPEInstances.Size = New Size(230, 230)
+        BoxWinPEInstances.Size = New Size(230, 235)
         BoxWinPEInstances.TabIndex = 0
         ' 
         ' Label3
@@ -323,7 +322,7 @@ Partial Class SetupForm
         btnLocateExistingInstance.AutoSize = True
         btnLocateExistingInstance.Dock = DockStyle.Fill
         btnLocateExistingInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnLocateExistingInstance.Location = New Point(3, 389)
+        btnLocateExistingInstance.Location = New Point(3, 394)
         btnLocateExistingInstance.MaximumSize = New Size(0, 28)
         btnLocateExistingInstance.MinimumSize = New Size(0, 28)
         btnLocateExistingInstance.Name = "btnLocateExistingInstance"
@@ -337,7 +336,7 @@ Partial Class SetupForm
         btnNewInstance.AutoSize = True
         btnNewInstance.Dock = DockStyle.Fill
         btnNewInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnNewInstance.Location = New Point(3, 321)
+        btnNewInstance.Location = New Point(3, 326)
         btnNewInstance.MaximumSize = New Size(230, 28)
         btnNewInstance.MinimumSize = New Size(230, 28)
         btnNewInstance.Name = "btnNewInstance"
@@ -351,7 +350,7 @@ Partial Class SetupForm
         btnRemoveInstance.AutoSize = True
         btnRemoveInstance.Dock = DockStyle.Fill
         btnRemoveInstance.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRemoveInstance.Location = New Point(3, 355)
+        btnRemoveInstance.Location = New Point(3, 360)
         btnRemoveInstance.MaximumSize = New Size(0, 28)
         btnRemoveInstance.MinimumSize = New Size(0, 28)
         btnRemoveInstance.Name = "btnRemoveInstance"
