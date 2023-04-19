@@ -33,8 +33,8 @@ Partial Class WinPEForm
         ToolStripSeparator1 = New ToolStripSeparator()
         UseLegacyToolsToolStripMenuItem = New ToolStripMenuItem()
         OpenConsoleToolStripMenuItem = New ToolStripMenuItem()
-        DuplicateWinPEUSBKeyToolStripMenuItem = New ToolStripMenuItem()
         OpenPowershellToolStripMenuItem = New ToolStripMenuItem()
+        DuplicateWinPEUSBKeyToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -107,18 +107,18 @@ Partial Class WinPEForm
         OpenConsoleToolStripMenuItem.Size = New Size(208, 22)
         OpenConsoleToolStripMenuItem.Text = "Open Console"
         ' 
+        ' OpenPowershellToolStripMenuItem
+        ' 
+        OpenPowershellToolStripMenuItem.Name = "OpenPowershellToolStripMenuItem"
+        OpenPowershellToolStripMenuItem.Size = New Size(208, 22)
+        OpenPowershellToolStripMenuItem.Text = "Open Powershell"
+        ' 
         ' DuplicateWinPEUSBKeyToolStripMenuItem
         ' 
         DuplicateWinPEUSBKeyToolStripMenuItem.Enabled = False
         DuplicateWinPEUSBKeyToolStripMenuItem.Name = "DuplicateWinPEUSBKeyToolStripMenuItem"
         DuplicateWinPEUSBKeyToolStripMenuItem.Size = New Size(208, 22)
         DuplicateWinPEUSBKeyToolStripMenuItem.Text = "Duplicate WinPE USB/ISO"
-        ' 
-        ' OpenPowershellToolStripMenuItem
-        ' 
-        OpenPowershellToolStripMenuItem.Name = "OpenPowershellToolStripMenuItem"
-        OpenPowershellToolStripMenuItem.Size = New Size(208, 22)
-        OpenPowershellToolStripMenuItem.Text = "Open Powershell"
         ' 
         ' WinPEForm
         ' 
@@ -128,8 +128,8 @@ Partial Class WinPEForm
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
         Name = "WinPEForm"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "WinPEForm"
-        WindowState = FormWindowState.Maximized
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
         ResumeLayout(False)

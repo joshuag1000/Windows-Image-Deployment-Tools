@@ -147,8 +147,8 @@ Partial Class ConfigureDuplicationMagic
         ' TableLayoutPanel2
         ' 
         TableLayoutPanel2.ColumnCount = 4
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel2.Controls.Add(ChkShowUnknownDrives, 1, 3)
@@ -183,7 +183,7 @@ Partial Class ConfigureDuplicationMagic
         Name = "ConfigureDuplicationMagic"
         Padding = New Padding(4)
         StartPosition = FormStartPosition.CenterParent
-        Text = "ConfigureDuplicationMagic"
+        Text = "Duplicate Tools"
         TableLayoutPanel2.ResumeLayout(False)
         TableLayoutPanel2.PerformLayout()
         ResumeLayout(False)
