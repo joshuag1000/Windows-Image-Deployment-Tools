@@ -40,22 +40,24 @@ Partial Class ConfigureDuplicationMagic
         ' Label6
         ' 
         Label6.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(Label6, 4)
         Label6.Dock = DockStyle.Fill
         Label6.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         Label6.Location = New Point(3, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(162, 25)
+        Label6.Size = New Size(373, 25)
         Label6.TabIndex = 9
         Label6.Text = "Duplicate Tools"
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
+        TableLayoutPanel2.SetColumnSpan(Label1, 4)
         Label1.Dock = DockStyle.Fill
         Label1.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         Label1.Location = New Point(3, 25)
         Label1.Name = "Label1"
-        Label1.Size = New Size(162, 20)
+        Label1.Size = New Size(373, 20)
         Label1.TabIndex = 1
         Label1.Text = "Select a USB Drive"
         ' 
@@ -145,10 +147,10 @@ Partial Class ConfigureDuplicationMagic
         ' TableLayoutPanel2
         ' 
         TableLayoutPanel2.ColumnCount = 4
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 84F))
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel2.Controls.Add(ChkShowUnknownDrives, 1, 3)
         TableLayoutPanel2.Controls.Add(ChkShowInternal, 0, 3)
         TableLayoutPanel2.Controls.Add(CmbDrives, 0, 2)
