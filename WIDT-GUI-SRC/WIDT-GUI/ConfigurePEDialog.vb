@@ -37,6 +37,9 @@ Public Class ConfigurePEDialog
     Private Sub ConfigurePEDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtWinPEPath.Text = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
         FolderBrowserDialog1.InitialDirectory = Directory.GetParent(Directory.GetParent(AppContext.BaseDirectory).ToString).ToString + "\WinPE-Instances"
+        txtWinPEDrivers.Text = ""
+        txtWinPEName.Text = ""
+        ChkIncludeDrivers.Checked = False
         txtWinPEDrivers.Enabled = ChkIncludeDrivers.Checked
         btnSelectDriversDir.Enabled = ChkIncludeDrivers.Checked
         txtWinPEName.Select()
