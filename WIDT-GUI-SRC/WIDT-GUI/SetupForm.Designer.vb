@@ -29,12 +29,7 @@ Partial Class SetupForm
         ToolStripSeparator1 = New ToolStripSeparator()
         QuitToolStripMenuItem = New ToolStripMenuItem()
         TableLayoutPanel1 = New TableLayoutPanel()
-        btnCreateISO = New Button()
         CmbDrives = New ComboBox()
-        btnCreateUSB = New Button()
-        ChkShowUnknownDrives = New CheckBox()
-        ChkShowInternal = New CheckBox()
-        Label2 = New Label()
         btnRefreshDrives = New Button()
         Label5 = New Label()
         ChkWinPEStatus = New CheckBox()
@@ -42,29 +37,52 @@ Partial Class SetupForm
         BoxWinPEInstances = New ListBox()
         Label3 = New Label()
         Label6 = New Label()
-        Label1 = New Label()
         btnLocateExistingInstance = New Button()
         btnNewInstance = New Button()
         btnRemoveInstance = New Button()
+        TableLayoutPanel3 = New TableLayoutPanel()
+        ChkShowInternal = New CheckBox()
+        ChkShowUnknownDrives = New CheckBox()
+        TableLayoutPanel4 = New TableLayoutPanel()
+        BoxCreateConfigs = New CheckedListBox()
+        BoxCreateImages = New CheckedListBox()
+        BoxCreateDrivers = New CheckedListBox()
+        Label7 = New Label()
+        Label8 = New Label()
+        Label9 = New Label()
+        Label10 = New Label()
+        btnCreateUSB = New Button()
+        btnCreateISO = New Button()
+        btnRefreshConfigs = New Button()
+        Label2 = New Label()
+        Label1 = New Label()
         FolderBrowserDialog1 = New FolderBrowserDialog()
         SaveFileDialog1 = New SaveFileDialog()
         ToolTip1 = New ToolTip(components)
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         TabPage2 = New TabPage()
+        TableLayoutPanel5 = New TableLayoutPanel()
+        Button2 = New Button()
+        Label11 = New Label()
+        boxWIDTConfigs = New ListBox()
+        Button1 = New Button()
+        Button3 = New Button()
         TableLayoutPanel2 = New TableLayoutPanel()
-        TableLayoutPanel3 = New TableLayoutPanel()
-        TableLayoutPanel4 = New TableLayoutPanel()
+        boxSelectImage = New ListBox()
+        Label12 = New Label()
         CheckedListBox1 = New CheckedListBox()
-        CheckedListBox2 = New CheckedListBox()
-        CheckedListBox3 = New CheckedListBox()
+        Label13 = New Label()
+        TreeView1 = New TreeView()
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
-        TabControl1.SuspendLayout()
-        TabPage1.SuspendLayout()
-        TableLayoutPanel2.SuspendLayout()
         TableLayoutPanel3.SuspendLayout()
         TableLayoutPanel4.SuspendLayout()
+        TabControl1.SuspendLayout()
+        TabPage1.SuspendLayout()
+        TabPage2.SuspendLayout()
+        TableLayoutPanel5.SuspendLayout()
+        TableLayoutPanel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' MenuStrip1
@@ -122,10 +140,11 @@ Partial Class SetupForm
         TableLayoutPanel1.Controls.Add(btnLocateExistingInstance, 0, 9)
         TableLayoutPanel1.Controls.Add(btnNewInstance, 0, 7)
         TableLayoutPanel1.Controls.Add(btnRemoveInstance, 0, 8)
-        TableLayoutPanel1.Controls.Add(btnCreateISO, 4, 7)
-        TableLayoutPanel1.Controls.Add(btnCreateUSB, 3, 7)
         TableLayoutPanel1.Controls.Add(TableLayoutPanel3, 1, 5)
         TableLayoutPanel1.Controls.Add(TableLayoutPanel4, 1, 6)
+        TableLayoutPanel1.Controls.Add(btnCreateUSB, 3, 9)
+        TableLayoutPanel1.Controls.Add(btnCreateISO, 4, 9)
+        TableLayoutPanel1.Controls.Add(btnRefreshConfigs, 2, 9)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Location = New Point(3, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -140,23 +159,8 @@ Partial Class SetupForm
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
         TableLayoutPanel1.Size = New Size(856, 478)
         TableLayoutPanel1.TabIndex = 1
-        ' 
-        ' btnCreateISO
-        ' 
-        btnCreateISO.AutoSize = True
-        btnCreateISO.Enabled = False
-        btnCreateISO.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateISO.Location = New Point(743, 379)
-        btnCreateISO.MaximumSize = New Size(0, 28)
-        btnCreateISO.MinimumSize = New Size(0, 28)
-        btnCreateISO.Name = "btnCreateISO"
-        btnCreateISO.Size = New Size(110, 28)
-        btnCreateISO.TabIndex = 5
-        btnCreateISO.Text = "Create ISO"
-        btnCreateISO.UseVisualStyleBackColor = True
         ' 
         ' CmbDrives
         ' 
@@ -170,55 +174,6 @@ Partial Class SetupForm
         CmbDrives.Name = "CmbDrives"
         CmbDrives.Size = New Size(498, 26)
         CmbDrives.TabIndex = 5
-        ' 
-        ' btnCreateUSB
-        ' 
-        btnCreateUSB.AutoSize = True
-        btnCreateUSB.Enabled = False
-        btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateUSB.Location = New Point(627, 379)
-        btnCreateUSB.MaximumSize = New Size(0, 28)
-        btnCreateUSB.MinimumSize = New Size(0, 28)
-        btnCreateUSB.Name = "btnCreateUSB"
-        btnCreateUSB.Size = New Size(110, 28)
-        btnCreateUSB.TabIndex = 3
-        btnCreateUSB.Text = "Create USB"
-        btnCreateUSB.UseVisualStyleBackColor = True
-        ' 
-        ' ChkShowUnknownDrives
-        ' 
-        ChkShowUnknownDrives.AutoSize = True
-        ChkShowUnknownDrives.Dock = DockStyle.Fill
-        ChkShowUnknownDrives.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowUnknownDrives.Location = New Point(171, 3)
-        ChkShowUnknownDrives.Name = "ChkShowUnknownDrives"
-        ChkShowUnknownDrives.Size = New Size(174, 23)
-        ChkShowUnknownDrives.TabIndex = 8
-        ChkShowUnknownDrives.Text = "Show Unknown Drives"
-        ChkShowUnknownDrives.UseVisualStyleBackColor = True
-        ' 
-        ' ChkShowInternal
-        ' 
-        ChkShowInternal.AutoSize = True
-        ChkShowInternal.Dock = DockStyle.Fill
-        ChkShowInternal.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        ChkShowInternal.Location = New Point(3, 3)
-        ChkShowInternal.Name = "ChkShowInternal"
-        ChkShowInternal.Size = New Size(162, 23)
-        ChkShowInternal.TabIndex = 7
-        ChkShowInternal.Text = "Show Internal Drives"
-        ChkShowInternal.UseVisualStyleBackColor = True
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Dock = DockStyle.Fill
-        Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label2.Location = New Point(3, 32)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(870, 25)
-        Label2.TabIndex = 2
-        Label2.Text = "Setup and Configuration Utility"
         ' 
         ' btnRefreshDrives
         ' 
@@ -309,17 +264,6 @@ Partial Class SetupForm
         Label6.TabIndex = 2
         Label6.Text = "Select WinPE Instance"
         ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Dock = DockStyle.Fill
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point)
-        Label1.Location = New Point(3, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(870, 32)
-        Label1.TabIndex = 1
-        Label1.Text = "Windows Image Deployment Tools"
-        ' 
         ' btnLocateExistingInstance
         ' 
         btnLocateExistingInstance.AutoSize = True
@@ -362,6 +306,212 @@ Partial Class SetupForm
         btnRemoveInstance.Text = "Remove Instance"
         btnRemoveInstance.UseVisualStyleBackColor = True
         ' 
+        ' TableLayoutPanel3
+        ' 
+        TableLayoutPanel3.ColumnCount = 3
+        TableLayoutPanel1.SetColumnSpan(TableLayoutPanel3, 4)
+        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel3.Controls.Add(ChkShowInternal, 0, 0)
+        TableLayoutPanel3.Controls.Add(ChkShowUnknownDrives, 1, 0)
+        TableLayoutPanel3.Dock = DockStyle.Fill
+        TableLayoutPanel3.Location = New Point(239, 126)
+        TableLayoutPanel3.Name = "TableLayoutPanel3"
+        TableLayoutPanel3.RowCount = 1
+        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel3.Size = New Size(614, 29)
+        TableLayoutPanel3.TabIndex = 9
+        ' 
+        ' ChkShowInternal
+        ' 
+        ChkShowInternal.AutoSize = True
+        ChkShowInternal.Dock = DockStyle.Fill
+        ChkShowInternal.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        ChkShowInternal.Location = New Point(3, 3)
+        ChkShowInternal.Name = "ChkShowInternal"
+        ChkShowInternal.Size = New Size(162, 23)
+        ChkShowInternal.TabIndex = 7
+        ChkShowInternal.Text = "Show Internal Drives"
+        ChkShowInternal.UseVisualStyleBackColor = True
+        ' 
+        ' ChkShowUnknownDrives
+        ' 
+        ChkShowUnknownDrives.AutoSize = True
+        ChkShowUnknownDrives.Dock = DockStyle.Fill
+        ChkShowUnknownDrives.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        ChkShowUnknownDrives.Location = New Point(171, 3)
+        ChkShowUnknownDrives.Name = "ChkShowUnknownDrives"
+        ChkShowUnknownDrives.Size = New Size(174, 23)
+        ChkShowUnknownDrives.TabIndex = 8
+        ChkShowUnknownDrives.Text = "Show Unknown Drives"
+        ChkShowUnknownDrives.UseVisualStyleBackColor = True
+        ' 
+        ' TableLayoutPanel4
+        ' 
+        TableLayoutPanel4.ColumnCount = 3
+        TableLayoutPanel1.SetColumnSpan(TableLayoutPanel4, 4)
+        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.33333F))
+        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
+        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
+        TableLayoutPanel4.Controls.Add(BoxCreateConfigs, 0, 2)
+        TableLayoutPanel4.Controls.Add(BoxCreateImages, 1, 2)
+        TableLayoutPanel4.Controls.Add(BoxCreateDrivers, 2, 2)
+        TableLayoutPanel4.Controls.Add(Label7, 0, 1)
+        TableLayoutPanel4.Controls.Add(Label8, 1, 1)
+        TableLayoutPanel4.Controls.Add(Label9, 2, 1)
+        TableLayoutPanel4.Controls.Add(Label10, 0, 0)
+        TableLayoutPanel4.Dock = DockStyle.Fill
+        TableLayoutPanel4.Location = New Point(239, 161)
+        TableLayoutPanel4.Name = "TableLayoutPanel4"
+        TableLayoutPanel4.RowCount = 3
+        TableLayoutPanel1.SetRowSpan(TableLayoutPanel4, 3)
+        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
+        TableLayoutPanel4.RowStyles.Add(New RowStyle())
+        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel4.Size = New Size(614, 280)
+        TableLayoutPanel4.TabIndex = 10
+        ' 
+        ' BoxCreateConfigs
+        ' 
+        BoxCreateConfigs.CheckOnClick = True
+        BoxCreateConfigs.Dock = DockStyle.Fill
+        BoxCreateConfigs.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        BoxCreateConfigs.FormattingEnabled = True
+        BoxCreateConfigs.Location = New Point(3, 43)
+        BoxCreateConfigs.Name = "BoxCreateConfigs"
+        BoxCreateConfigs.Size = New Size(198, 234)
+        BoxCreateConfigs.TabIndex = 0
+        ' 
+        ' BoxCreateImages
+        ' 
+        BoxCreateImages.CheckOnClick = True
+        BoxCreateImages.Dock = DockStyle.Fill
+        BoxCreateImages.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        BoxCreateImages.FormattingEnabled = True
+        BoxCreateImages.Location = New Point(207, 43)
+        BoxCreateImages.Name = "BoxCreateImages"
+        BoxCreateImages.Size = New Size(198, 234)
+        BoxCreateImages.TabIndex = 1
+        ' 
+        ' BoxCreateDrivers
+        ' 
+        BoxCreateDrivers.CheckOnClick = True
+        BoxCreateDrivers.Dock = DockStyle.Fill
+        BoxCreateDrivers.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        BoxCreateDrivers.FormattingEnabled = True
+        BoxCreateDrivers.Location = New Point(411, 43)
+        BoxCreateDrivers.Name = "BoxCreateDrivers"
+        BoxCreateDrivers.Size = New Size(200, 234)
+        BoxCreateDrivers.TabIndex = 2
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label7.Location = New Point(3, 20)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(106, 20)
+        Label7.TabIndex = 3
+        Label7.Text = "Select Configs:"
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label8.Location = New Point(207, 20)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(104, 20)
+        Label8.TabIndex = 4
+        Label8.Text = "Select Images:"
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label9.Location = New Point(411, 20)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(135, 20)
+        Label9.TabIndex = 5
+        Label9.Text = "Select Driver Packs:"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        TableLayoutPanel4.SetColumnSpan(Label10, 3)
+        Label10.Dock = DockStyle.Fill
+        Label10.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label10.Location = New Point(3, 0)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(608, 20)
+        Label10.TabIndex = 6
+        Label10.Text = "Select Items to Copy to USB: (USB Only)"
+        ' 
+        ' btnCreateUSB
+        ' 
+        btnCreateUSB.AutoSize = True
+        btnCreateUSB.Enabled = False
+        btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnCreateUSB.Location = New Point(627, 447)
+        btnCreateUSB.MaximumSize = New Size(0, 28)
+        btnCreateUSB.MinimumSize = New Size(0, 28)
+        btnCreateUSB.Name = "btnCreateUSB"
+        btnCreateUSB.Size = New Size(110, 28)
+        btnCreateUSB.TabIndex = 3
+        btnCreateUSB.Text = "Create USB"
+        btnCreateUSB.UseVisualStyleBackColor = True
+        ' 
+        ' btnCreateISO
+        ' 
+        btnCreateISO.AutoSize = True
+        btnCreateISO.Dock = DockStyle.Fill
+        btnCreateISO.Enabled = False
+        btnCreateISO.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnCreateISO.Location = New Point(743, 447)
+        btnCreateISO.MaximumSize = New Size(0, 28)
+        btnCreateISO.MinimumSize = New Size(0, 28)
+        btnCreateISO.Name = "btnCreateISO"
+        btnCreateISO.Size = New Size(110, 28)
+        btnCreateISO.TabIndex = 5
+        btnCreateISO.Text = "Create ISO"
+        btnCreateISO.UseVisualStyleBackColor = True
+        ' 
+        ' btnRefreshConfigs
+        ' 
+        btnRefreshConfigs.AutoSize = True
+        btnRefreshConfigs.Dock = DockStyle.Fill
+        btnRefreshConfigs.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnRefreshConfigs.Location = New Point(496, 447)
+        btnRefreshConfigs.MaximumSize = New Size(0, 28)
+        btnRefreshConfigs.MinimumSize = New Size(0, 28)
+        btnRefreshConfigs.Name = "btnRefreshConfigs"
+        btnRefreshConfigs.Size = New Size(125, 28)
+        btnRefreshConfigs.TabIndex = 11
+        btnRefreshConfigs.Text = "Refresh Configs"
+        btnRefreshConfigs.UseVisualStyleBackColor = True
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Dock = DockStyle.Fill
+        Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label2.Location = New Point(3, 32)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(870, 25)
+        Label2.TabIndex = 2
+        Label2.Text = "Setup and Configuration Utility"
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Dock = DockStyle.Fill
+        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Location = New Point(3, 0)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(870, 32)
+        Label1.TabIndex = 1
+        Label1.Text = "Windows Image Deployment Tools"
+        ' 
         ' SaveFileDialog1
         ' 
         SaveFileDialog1.DefaultExt = "iso"
@@ -393,13 +543,110 @@ Partial Class SetupForm
         ' 
         ' TabPage2
         ' 
+        TabPage2.Controls.Add(TableLayoutPanel5)
         TabPage2.Location = New Point(4, 30)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(660, 484)
+        TabPage2.Size = New Size(862, 484)
         TabPage2.TabIndex = 1
         TabPage2.Text = "Create Image Configs"
         TabPage2.UseVisualStyleBackColor = True
+        ' 
+        ' TableLayoutPanel5
+        ' 
+        TableLayoutPanel5.ColumnCount = 4
+        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel5.Controls.Add(Label13, 2, 0)
+        TableLayoutPanel5.Controls.Add(Button2, 0, 4)
+        TableLayoutPanel5.Controls.Add(Label11, 0, 0)
+        TableLayoutPanel5.Controls.Add(boxWIDTConfigs, 0, 1)
+        TableLayoutPanel5.Controls.Add(Button1, 0, 2)
+        TableLayoutPanel5.Controls.Add(Button3, 0, 3)
+        TableLayoutPanel5.Controls.Add(boxSelectImage, 1, 1)
+        TableLayoutPanel5.Controls.Add(Label12, 1, 0)
+        TableLayoutPanel5.Controls.Add(CheckedListBox1, 2, 1)
+        TableLayoutPanel5.Controls.Add(TreeView1, 3, 1)
+        TableLayoutPanel5.Dock = DockStyle.Fill
+        TableLayoutPanel5.Location = New Point(3, 3)
+        TableLayoutPanel5.Name = "TableLayoutPanel5"
+        TableLayoutPanel5.RowCount = 5
+        TableLayoutPanel5.RowStyles.Add(New RowStyle())
+        TableLayoutPanel5.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel5.RowStyles.Add(New RowStyle())
+        TableLayoutPanel5.RowStyles.Add(New RowStyle())
+        TableLayoutPanel5.RowStyles.Add(New RowStyle())
+        TableLayoutPanel5.Size = New Size(856, 478)
+        TableLayoutPanel5.TabIndex = 0
+        ' 
+        ' Button2
+        ' 
+        Button2.AutoSize = True
+        Button2.Dock = DockStyle.Fill
+        Button2.Enabled = False
+        Button2.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Button2.Location = New Point(3, 447)
+        Button2.MaximumSize = New Size(230, 28)
+        Button2.MinimumSize = New Size(230, 28)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(230, 28)
+        Button2.TabIndex = 6
+        Button2.Text = "Load External Configurations"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Dock = DockStyle.Fill
+        Label11.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label11.Location = New Point(3, 0)
+        Label11.MaximumSize = New Size(230, 25)
+        Label11.MinimumSize = New Size(230, 25)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(230, 25)
+        Label11.TabIndex = 3
+        Label11.Text = "WIDT Configurations"
+        ' 
+        ' boxWIDTConfigs
+        ' 
+        boxWIDTConfigs.Dock = DockStyle.Fill
+        boxWIDTConfigs.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        boxWIDTConfigs.FormattingEnabled = True
+        boxWIDTConfigs.ItemHeight = 18
+        boxWIDTConfigs.Location = New Point(3, 28)
+        boxWIDTConfigs.Name = "boxWIDTConfigs"
+        boxWIDTConfigs.Size = New Size(230, 345)
+        boxWIDTConfigs.TabIndex = 4
+        ' 
+        ' Button1
+        ' 
+        Button1.AutoSize = True
+        Button1.Dock = DockStyle.Fill
+        Button1.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Button1.Location = New Point(3, 379)
+        Button1.MaximumSize = New Size(230, 28)
+        Button1.MinimumSize = New Size(230, 28)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(230, 28)
+        Button1.TabIndex = 5
+        Button1.Text = "Create New Configuration"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Button3
+        ' 
+        Button3.AutoSize = True
+        Button3.Dock = DockStyle.Fill
+        Button3.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Button3.Location = New Point(3, 413)
+        Button3.MaximumSize = New Size(230, 28)
+        Button3.MinimumSize = New Size(230, 28)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(230, 28)
+        Button3.TabIndex = 7
+        Button3.Text = "Remove Configuration"
+        Button3.UseVisualStyleBackColor = True
         ' 
         ' TableLayoutPanel2
         ' 
@@ -418,76 +665,60 @@ Partial Class SetupForm
         TableLayoutPanel2.Size = New Size(876, 581)
         TableLayoutPanel2.TabIndex = 3
         ' 
-        ' TableLayoutPanel3
+        ' boxSelectImage
         ' 
-        TableLayoutPanel3.ColumnCount = 3
-        TableLayoutPanel1.SetColumnSpan(TableLayoutPanel3, 4)
-        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle())
-        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle())
-        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
-        TableLayoutPanel3.Controls.Add(ChkShowInternal, 0, 0)
-        TableLayoutPanel3.Controls.Add(ChkShowUnknownDrives, 1, 0)
-        TableLayoutPanel3.Dock = DockStyle.Fill
-        TableLayoutPanel3.Location = New Point(239, 126)
-        TableLayoutPanel3.Name = "TableLayoutPanel3"
-        TableLayoutPanel3.RowCount = 1
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        TableLayoutPanel3.Size = New Size(614, 29)
-        TableLayoutPanel3.TabIndex = 9
+        boxSelectImage.Dock = DockStyle.Fill
+        boxSelectImage.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        boxSelectImage.FormattingEnabled = True
+        boxSelectImage.ItemHeight = 18
+        boxSelectImage.Location = New Point(239, 28)
+        boxSelectImage.Name = "boxSelectImage"
+        boxSelectImage.Size = New Size(230, 345)
+        boxSelectImage.TabIndex = 9
         ' 
-        ' TableLayoutPanel4
+        ' Label12
         ' 
-        TableLayoutPanel4.ColumnCount = 3
-        TableLayoutPanel1.SetColumnSpan(TableLayoutPanel4, 4)
-        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel4.Controls.Add(CheckedListBox1, 0, 0)
-        TableLayoutPanel4.Controls.Add(CheckedListBox2, 1, 0)
-        TableLayoutPanel4.Controls.Add(CheckedListBox3, 2, 0)
-        TableLayoutPanel4.Dock = DockStyle.Fill
-        TableLayoutPanel4.Location = New Point(239, 161)
-        TableLayoutPanel4.Name = "TableLayoutPanel4"
-        TableLayoutPanel4.RowCount = 1
-        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        TableLayoutPanel4.Size = New Size(614, 212)
-        TableLayoutPanel4.TabIndex = 10
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label12.Location = New Point(239, 0)
+        Label12.MaximumSize = New Size(230, 25)
+        Label12.MinimumSize = New Size(230, 25)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(230, 25)
+        Label12.TabIndex = 10
+        Label12.Text = "Select Image for Config"
         ' 
         ' CheckedListBox1
         ' 
-        CheckedListBox1.CheckOnClick = True
         CheckedListBox1.Dock = DockStyle.Fill
-        CheckedListBox1.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        CheckedListBox1.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         CheckedListBox1.FormattingEnabled = True
-        CheckedListBox1.Items.AddRange(New Object() {"1"})
-        CheckedListBox1.Location = New Point(3, 3)
+        CheckedListBox1.Location = New Point(475, 28)
         CheckedListBox1.Name = "CheckedListBox1"
-        CheckedListBox1.Size = New Size(198, 206)
-        CheckedListBox1.TabIndex = 0
+        CheckedListBox1.Size = New Size(230, 345)
+        CheckedListBox1.TabIndex = 11
         ' 
-        ' CheckedListBox2
+        ' Label13
         ' 
-        CheckedListBox2.CheckOnClick = True
-        CheckedListBox2.Dock = DockStyle.Fill
-        CheckedListBox2.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CheckedListBox2.FormattingEnabled = True
-        CheckedListBox2.Items.AddRange(New Object() {"2"})
-        CheckedListBox2.Location = New Point(207, 3)
-        CheckedListBox2.Name = "CheckedListBox2"
-        CheckedListBox2.Size = New Size(198, 206)
-        CheckedListBox2.TabIndex = 1
+        Label13.AutoSize = True
+        Label13.Dock = DockStyle.Fill
+        Label13.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label13.Location = New Point(475, 0)
+        Label13.MaximumSize = New Size(230, 25)
+        Label13.MinimumSize = New Size(230, 25)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(230, 25)
+        Label13.TabIndex = 12
+        Label13.Text = "Select Driver Packs for Config"
         ' 
-        ' CheckedListBox3
+        ' TreeView1
         ' 
-        CheckedListBox3.CheckOnClick = True
-        CheckedListBox3.Dock = DockStyle.Fill
-        CheckedListBox3.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CheckedListBox3.FormattingEnabled = True
-        CheckedListBox3.Items.AddRange(New Object() {"3"})
-        CheckedListBox3.Location = New Point(411, 3)
-        CheckedListBox3.Name = "CheckedListBox3"
-        CheckedListBox3.Size = New Size(200, 206)
-        CheckedListBox3.TabIndex = 2
+        TreeView1.Dock = DockStyle.Fill
+        TreeView1.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TreeView1.Location = New Point(711, 28)
+        TreeView1.Name = "TreeView1"
+        TreeView1.Size = New Size(142, 345)
+        TreeView1.TabIndex = 13
         ' 
         ' SetupForm
         ' 
@@ -504,13 +735,17 @@ Partial Class SetupForm
         MenuStrip1.PerformLayout()
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
-        TabControl1.ResumeLayout(False)
-        TabPage1.ResumeLayout(False)
-        TableLayoutPanel2.ResumeLayout(False)
-        TableLayoutPanel2.PerformLayout()
         TableLayoutPanel3.ResumeLayout(False)
         TableLayoutPanel3.PerformLayout()
         TableLayoutPanel4.ResumeLayout(False)
+        TableLayoutPanel4.PerformLayout()
+        TabControl1.ResumeLayout(False)
+        TabPage1.ResumeLayout(False)
+        TabPage2.ResumeLayout(False)
+        TableLayoutPanel5.ResumeLayout(False)
+        TableLayoutPanel5.PerformLayout()
+        TableLayoutPanel2.ResumeLayout(False)
+        TableLayoutPanel2.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -547,7 +782,23 @@ Partial Class SetupForm
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
+    Friend WithEvents BoxCreateConfigs As CheckedListBox
+    Friend WithEvents BoxCreateImages As CheckedListBox
+    Friend WithEvents BoxCreateDrivers As CheckedListBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents btnRefreshConfigs As Button
+    Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Label11 As Label
+    Friend WithEvents boxWIDTConfigs As ListBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label13 As Label
+    Friend WithEvents boxSelectImage As ListBox
+    Friend WithEvents Label12 As Label
     Friend WithEvents CheckedListBox1 As CheckedListBox
-    Friend WithEvents CheckedListBox2 As CheckedListBox
-    Friend WithEvents CheckedListBox3 As CheckedListBox
+    Friend WithEvents TreeView1 As TreeView
 End Class

@@ -1,30 +1,79 @@
 ﻿Imports System.IO
-Imports System.Threading
 
 Public Class SetupForm
     Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Check to see if there is a WinPE install in the 'default' location. If there is select it.
-        'If Directory.Exists(Directory.GetParent(AppContext.BaseDirectory.ToString).ToString + "\WinPE-Instances\WIDT_WinPE_amd64") Then
-        '    WinPEPath = Directory.GetParent(AppContext.BaseDirectory.ToString).ToString + "\WIDT_WinPE_amd64"
-        '    RefreshWinPEPath()
-        'End If
-
-        Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
-        End If
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Drivers") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Drivers")
-        End If
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers")
-        End If
+        ' Detect any configs and check the required folders exist.
+        DetectConfigs()
 
         ' Detect any WinPE Instances including saved onces 
         DetectWinPEInstances()
         ' Load the drives into the ui
         RefreshDrives(False, False)
     End Sub
+
+    Private Sub DetectConfigs()
+        Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
+        End If
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers")
+        End If
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Configs") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Configs")
+        End If
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Drivers") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Drivers")
+        End If
+        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Images") Then
+            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Images")
+        End If
+
+        ' Load the existing configs into the list boxes
+        BoxCreateConfigs.Items.Clear()
+        For Each Configs In Directory.GetFiles(Directory.GetParent(ApplicationPath).ToString + "\Configs")
+            If Configs.Substring(Configs.Length - 4, 4).ToLower = ".xml" Then
+                BoxCreateConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Length - 4), Configs))
+                boxWIDTConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Length - 4), Configs))
+            End If
+        Next
+
+        ' Load the existing images into the list boxes
+        BoxCreateImages.Items.Clear()
+        For Each Images In Directory.GetFiles(Directory.GetParent(ApplicationPath).ToString + "\Images")
+            If Images.Substring(Images.Length - 4, 4) = ".wim".ToLower Or Images.Substring(Images.Length - 4, 4) = ".iso".ToLower Then
+                BoxCreateImages.Items.Add(New ConfigItem(Images.Replace(Directory.GetParent(ApplicationPath).ToString + "\Images\", ""), Images))
+            End If
+        Next
+
+        ' Load the Driver Packs into the list boxes.
+        BoxCreateDrivers.Items.Clear()
+        For Each DriverPack In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\Drivers")
+            BoxCreateDrivers.Items.Add(New ConfigItem(DriverPack.Replace(Directory.GetParent(ApplicationPath).ToString + "\Drivers\", ""), DriverPack))
+        Next
+    End Sub
+
+    Private Structure ConfigItem
+        Private Name As String
+        Private path As String
+
+        Public Sub New(ByVal NName As String, ByVal Npath As String)
+            Name = NName
+            path = Npath
+        End Sub
+
+        Public Function GetName() As String
+            Return Name
+        End Function
+
+        Public Function GetPath() As String
+            Return path
+        End Function
+
+        Public Overrides Function ToString() As String
+            Return Name
+        End Function
+    End Structure
 
     Private Sub QuitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
         Me.Close()
@@ -384,5 +433,9 @@ Public Class SetupForm
 
     Private Sub AboutWIDTGUIToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutWIDTGUIToolStripMenuItem.Click
         AboutBox.ShowDialog(Me)
+    End Sub
+
+    Private Sub btnRefreshConfigs_Click(sender As Object, e As EventArgs) Handles btnRefreshConfigs.Click
+        DetectConfigs()
     End Sub
 End Class
