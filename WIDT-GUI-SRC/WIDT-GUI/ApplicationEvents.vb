@@ -26,15 +26,17 @@ Namespace My
     Partial Friend Class MyApplication
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             If My.Settings.StartupApp.ToLower = "winpe" Then
-                Application.MainForm = Global.WIDT_GUI.WinPEForm
+                SetStartupMode(True)
+            Else
+                SetStartupMode(False)
             End If
             If Application.CommandLineArgs.Count > 1 Then
                 If Application.CommandLineArgs.Item(0) = "/S" Then
                     If Application.CommandLineArgs.Item(1).ToLower = "winpe" Then
-                        Application.MainForm = Global.WIDT_GUI.WinPEForm
+                        SetStartupMode(True)
                     End If
                     If Application.CommandLineArgs.Item(1).ToLower = "setup" Then
-                        Application.MainForm = Global.WIDT_GUI.SetupForm
+                        SetStartupMode(False)
                     End If
                 End If
                 If Application.CommandLineArgs.Item(0) = "/SetStartupApp" Then

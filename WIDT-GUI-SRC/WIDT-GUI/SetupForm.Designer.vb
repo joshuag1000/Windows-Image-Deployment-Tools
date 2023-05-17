@@ -60,28 +60,33 @@ Partial Class SetupForm
         SaveFileDialog1 = New SaveFileDialog()
         ToolTip1 = New ToolTip(components)
         TabControl1 = New TabControl()
-        TabPage1 = New TabPage()
-        TabPage2 = New TabPage()
+        PageCreateDrives = New TabPage()
+        pageManageConfigs = New TabPage()
         TableLayoutPanel5 = New TableLayoutPanel()
-        Button2 = New Button()
+        Label13 = New Label()
+        btnLoadConfigs = New Button()
         Label11 = New Label()
         boxWIDTConfigs = New ListBox()
-        Button1 = New Button()
-        Button3 = New Button()
-        TableLayoutPanel2 = New TableLayoutPanel()
+        btnCreateConfig = New Button()
+        btnRemoveConfig = New Button()
         boxSelectImage = New ListBox()
         Label12 = New Label()
-        CheckedListBox1 = New CheckedListBox()
-        Label13 = New Label()
-        TreeView1 = New TreeView()
+        boxSelectedDriverPacks = New CheckedListBox()
+        TreeSelConfig = New TreeView()
+        Label14 = New Label()
+        TableLayoutPanel6 = New TableLayoutPanel()
+        btnWriteConfigToDrive = New Button()
+        btnBuildConfigToWim = New Button()
+        TableLayoutPanel2 = New TableLayoutPanel()
         MenuStrip1.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         TableLayoutPanel3.SuspendLayout()
         TableLayoutPanel4.SuspendLayout()
         TabControl1.SuspendLayout()
-        TabPage1.SuspendLayout()
-        TabPage2.SuspendLayout()
+        PageCreateDrives.SuspendLayout()
+        pageManageConfigs.SuspendLayout()
         TableLayoutPanel5.SuspendLayout()
+        TableLayoutPanel6.SuspendLayout()
         TableLayoutPanel2.SuspendLayout()
         SuspendLayout()
         ' 
@@ -520,8 +525,8 @@ Partial Class SetupForm
         ' 
         ' TabControl1
         ' 
-        TabControl1.Controls.Add(TabPage1)
-        TabControl1.Controls.Add(TabPage2)
+        TabControl1.Controls.Add(PageCreateDrives)
+        TabControl1.Controls.Add(pageManageConfigs)
         TabControl1.Dock = DockStyle.Fill
         TabControl1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         TabControl1.Location = New Point(3, 60)
@@ -530,27 +535,27 @@ Partial Class SetupForm
         TabControl1.Size = New Size(870, 518)
         TabControl1.TabIndex = 2
         ' 
-        ' TabPage1
+        ' PageCreateDrives
         ' 
-        TabPage1.Controls.Add(TableLayoutPanel1)
-        TabPage1.Location = New Point(4, 30)
-        TabPage1.Name = "TabPage1"
-        TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(862, 484)
-        TabPage1.TabIndex = 0
-        TabPage1.Text = "Create WinPE Drives"
-        TabPage1.UseVisualStyleBackColor = True
+        PageCreateDrives.Controls.Add(TableLayoutPanel1)
+        PageCreateDrives.Location = New Point(4, 30)
+        PageCreateDrives.Name = "PageCreateDrives"
+        PageCreateDrives.Padding = New Padding(3)
+        PageCreateDrives.Size = New Size(862, 484)
+        PageCreateDrives.TabIndex = 0
+        PageCreateDrives.Text = "Create WinPE Drives"
+        PageCreateDrives.UseVisualStyleBackColor = True
         ' 
-        ' TabPage2
+        ' pageManageConfigs
         ' 
-        TabPage2.Controls.Add(TableLayoutPanel5)
-        TabPage2.Location = New Point(4, 30)
-        TabPage2.Name = "TabPage2"
-        TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(862, 484)
-        TabPage2.TabIndex = 1
-        TabPage2.Text = "Create Image Configs"
-        TabPage2.UseVisualStyleBackColor = True
+        pageManageConfigs.Controls.Add(TableLayoutPanel5)
+        pageManageConfigs.Location = New Point(4, 30)
+        pageManageConfigs.Name = "pageManageConfigs"
+        pageManageConfigs.Padding = New Padding(3)
+        pageManageConfigs.Size = New Size(862, 484)
+        pageManageConfigs.TabIndex = 1
+        pageManageConfigs.Text = "Manage Image Configs"
+        pageManageConfigs.UseVisualStyleBackColor = True
         ' 
         ' TableLayoutPanel5
         ' 
@@ -560,15 +565,17 @@ Partial Class SetupForm
         TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         TableLayoutPanel5.Controls.Add(Label13, 2, 0)
-        TableLayoutPanel5.Controls.Add(Button2, 0, 4)
+        TableLayoutPanel5.Controls.Add(btnLoadConfigs, 0, 4)
         TableLayoutPanel5.Controls.Add(Label11, 0, 0)
         TableLayoutPanel5.Controls.Add(boxWIDTConfigs, 0, 1)
-        TableLayoutPanel5.Controls.Add(Button1, 0, 2)
-        TableLayoutPanel5.Controls.Add(Button3, 0, 3)
+        TableLayoutPanel5.Controls.Add(btnCreateConfig, 0, 2)
+        TableLayoutPanel5.Controls.Add(btnRemoveConfig, 0, 3)
         TableLayoutPanel5.Controls.Add(boxSelectImage, 1, 1)
         TableLayoutPanel5.Controls.Add(Label12, 1, 0)
-        TableLayoutPanel5.Controls.Add(CheckedListBox1, 2, 1)
-        TableLayoutPanel5.Controls.Add(TreeView1, 3, 1)
+        TableLayoutPanel5.Controls.Add(boxSelectedDriverPacks, 2, 1)
+        TableLayoutPanel5.Controls.Add(TreeSelConfig, 3, 1)
+        TableLayoutPanel5.Controls.Add(Label14, 3, 0)
+        TableLayoutPanel5.Controls.Add(TableLayoutPanel6, 1, 2)
         TableLayoutPanel5.Dock = DockStyle.Fill
         TableLayoutPanel5.Location = New Point(3, 3)
         TableLayoutPanel5.Name = "TableLayoutPanel5"
@@ -581,20 +588,33 @@ Partial Class SetupForm
         TableLayoutPanel5.Size = New Size(856, 478)
         TableLayoutPanel5.TabIndex = 0
         ' 
-        ' Button2
+        ' Label13
         ' 
-        Button2.AutoSize = True
-        Button2.Dock = DockStyle.Fill
-        Button2.Enabled = False
-        Button2.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Button2.Location = New Point(3, 447)
-        Button2.MaximumSize = New Size(230, 28)
-        Button2.MinimumSize = New Size(230, 28)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(230, 28)
-        Button2.TabIndex = 6
-        Button2.Text = "Load External Configurations"
-        Button2.UseVisualStyleBackColor = True
+        Label13.AutoSize = True
+        Label13.Dock = DockStyle.Fill
+        Label13.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label13.Location = New Point(475, 0)
+        Label13.MaximumSize = New Size(230, 25)
+        Label13.MinimumSize = New Size(230, 25)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(230, 25)
+        Label13.TabIndex = 12
+        Label13.Text = "Select Driver Packs for Config"
+        ' 
+        ' btnLoadConfigs
+        ' 
+        btnLoadConfigs.AutoSize = True
+        btnLoadConfigs.Dock = DockStyle.Fill
+        btnLoadConfigs.Enabled = False
+        btnLoadConfigs.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnLoadConfigs.Location = New Point(3, 443)
+        btnLoadConfigs.MaximumSize = New Size(230, 28)
+        btnLoadConfigs.MinimumSize = New Size(230, 28)
+        btnLoadConfigs.Name = "btnLoadConfigs"
+        btnLoadConfigs.Size = New Size(230, 28)
+        btnLoadConfigs.TabIndex = 6
+        btnLoadConfigs.Text = "Load External Configurations"
+        btnLoadConfigs.UseVisualStyleBackColor = True
         ' 
         ' Label11
         ' 
@@ -617,36 +637,129 @@ Partial Class SetupForm
         boxWIDTConfigs.ItemHeight = 18
         boxWIDTConfigs.Location = New Point(3, 28)
         boxWIDTConfigs.Name = "boxWIDTConfigs"
-        boxWIDTConfigs.Size = New Size(230, 345)
+        boxWIDTConfigs.Size = New Size(230, 341)
         boxWIDTConfigs.TabIndex = 4
         ' 
-        ' Button1
+        ' btnCreateConfig
         ' 
-        Button1.AutoSize = True
-        Button1.Dock = DockStyle.Fill
-        Button1.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Button1.Location = New Point(3, 379)
-        Button1.MaximumSize = New Size(230, 28)
-        Button1.MinimumSize = New Size(230, 28)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(230, 28)
-        Button1.TabIndex = 5
-        Button1.Text = "Create New Configuration"
-        Button1.UseVisualStyleBackColor = True
+        btnCreateConfig.AutoSize = True
+        btnCreateConfig.Dock = DockStyle.Fill
+        btnCreateConfig.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnCreateConfig.Location = New Point(3, 375)
+        btnCreateConfig.MaximumSize = New Size(230, 28)
+        btnCreateConfig.MinimumSize = New Size(230, 28)
+        btnCreateConfig.Name = "btnCreateConfig"
+        btnCreateConfig.Size = New Size(230, 28)
+        btnCreateConfig.TabIndex = 5
+        btnCreateConfig.Text = "Create New Configuration"
+        btnCreateConfig.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' btnRemoveConfig
         ' 
-        Button3.AutoSize = True
-        Button3.Dock = DockStyle.Fill
-        Button3.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Button3.Location = New Point(3, 413)
-        Button3.MaximumSize = New Size(230, 28)
-        Button3.MinimumSize = New Size(230, 28)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(230, 28)
-        Button3.TabIndex = 7
-        Button3.Text = "Remove Configuration"
-        Button3.UseVisualStyleBackColor = True
+        btnRemoveConfig.AutoSize = True
+        btnRemoveConfig.Dock = DockStyle.Fill
+        btnRemoveConfig.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnRemoveConfig.Location = New Point(3, 409)
+        btnRemoveConfig.MaximumSize = New Size(230, 28)
+        btnRemoveConfig.MinimumSize = New Size(230, 28)
+        btnRemoveConfig.Name = "btnRemoveConfig"
+        btnRemoveConfig.Size = New Size(230, 28)
+        btnRemoveConfig.TabIndex = 7
+        btnRemoveConfig.Text = "Remove Configuration"
+        btnRemoveConfig.UseVisualStyleBackColor = True
+        ' 
+        ' boxSelectImage
+        ' 
+        boxSelectImage.Dock = DockStyle.Fill
+        boxSelectImage.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        boxSelectImage.FormattingEnabled = True
+        boxSelectImage.ItemHeight = 18
+        boxSelectImage.Location = New Point(239, 28)
+        boxSelectImage.Name = "boxSelectImage"
+        boxSelectImage.Size = New Size(230, 341)
+        boxSelectImage.TabIndex = 9
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label12.Location = New Point(239, 0)
+        Label12.MaximumSize = New Size(230, 25)
+        Label12.MinimumSize = New Size(230, 25)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(230, 25)
+        Label12.TabIndex = 10
+        Label12.Text = "Select Image for Config"
+        ' 
+        ' boxSelectedDriverPacks
+        ' 
+        boxSelectedDriverPacks.Dock = DockStyle.Fill
+        boxSelectedDriverPacks.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        boxSelectedDriverPacks.FormattingEnabled = True
+        boxSelectedDriverPacks.Location = New Point(475, 28)
+        boxSelectedDriverPacks.Name = "boxSelectedDriverPacks"
+        boxSelectedDriverPacks.Size = New Size(230, 341)
+        boxSelectedDriverPacks.TabIndex = 11
+        ' 
+        ' TreeSelConfig
+        ' 
+        TreeSelConfig.Dock = DockStyle.Fill
+        TreeSelConfig.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TreeSelConfig.Location = New Point(711, 28)
+        TreeSelConfig.Name = "TreeSelConfig"
+        TreeSelConfig.Size = New Size(142, 341)
+        TreeSelConfig.TabIndex = 13
+        ' 
+        ' Label14
+        ' 
+        Label14.Dock = DockStyle.Fill
+        Label14.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label14.Location = New Point(711, 0)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(142, 25)
+        Label14.TabIndex = 14
+        Label14.Text = "Selected Config"
+        ' 
+        ' TableLayoutPanel6
+        ' 
+        TableLayoutPanel6.ColumnCount = 2
+        TableLayoutPanel5.SetColumnSpan(TableLayoutPanel6, 3)
+        TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 210F))
+        TableLayoutPanel6.Controls.Add(btnWriteConfigToDrive, 1, 2)
+        TableLayoutPanel6.Controls.Add(btnBuildConfigToWim, 1, 1)
+        TableLayoutPanel6.Dock = DockStyle.Fill
+        TableLayoutPanel6.Location = New Point(239, 375)
+        TableLayoutPanel6.Name = "TableLayoutPanel6"
+        TableLayoutPanel6.RowCount = 3
+        TableLayoutPanel5.SetRowSpan(TableLayoutPanel6, 3)
+        TableLayoutPanel6.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel6.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel6.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel6.Size = New Size(614, 100)
+        TableLayoutPanel6.TabIndex = 15
+        ' 
+        ' btnWriteConfigToDrive
+        ' 
+        btnWriteConfigToDrive.Dock = DockStyle.Fill
+        btnWriteConfigToDrive.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnWriteConfigToDrive.Location = New Point(407, 69)
+        btnWriteConfigToDrive.Name = "btnWriteConfigToDrive"
+        btnWriteConfigToDrive.Size = New Size(204, 28)
+        btnWriteConfigToDrive.TabIndex = 1
+        btnWriteConfigToDrive.Text = "Write Config to Drive"
+        btnWriteConfigToDrive.UseVisualStyleBackColor = True
+        ' 
+        ' btnBuildConfigToWim
+        ' 
+        btnBuildConfigToWim.Dock = DockStyle.Fill
+        btnBuildConfigToWim.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnBuildConfigToWim.Location = New Point(407, 36)
+        btnBuildConfigToWim.Name = "btnBuildConfigToWim"
+        btnBuildConfigToWim.Size = New Size(204, 27)
+        btnBuildConfigToWim.TabIndex = 2
+        btnBuildConfigToWim.Text = "Build Config To Wim"
+        btnBuildConfigToWim.UseVisualStyleBackColor = True
         ' 
         ' TableLayoutPanel2
         ' 
@@ -664,61 +777,6 @@ Partial Class SetupForm
         TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         TableLayoutPanel2.Size = New Size(876, 581)
         TableLayoutPanel2.TabIndex = 3
-        ' 
-        ' boxSelectImage
-        ' 
-        boxSelectImage.Dock = DockStyle.Fill
-        boxSelectImage.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        boxSelectImage.FormattingEnabled = True
-        boxSelectImage.ItemHeight = 18
-        boxSelectImage.Location = New Point(239, 28)
-        boxSelectImage.Name = "boxSelectImage"
-        boxSelectImage.Size = New Size(230, 345)
-        boxSelectImage.TabIndex = 9
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label12.Location = New Point(239, 0)
-        Label12.MaximumSize = New Size(230, 25)
-        Label12.MinimumSize = New Size(230, 25)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(230, 25)
-        Label12.TabIndex = 10
-        Label12.Text = "Select Image for Config"
-        ' 
-        ' CheckedListBox1
-        ' 
-        CheckedListBox1.Dock = DockStyle.Fill
-        CheckedListBox1.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CheckedListBox1.FormattingEnabled = True
-        CheckedListBox1.Location = New Point(475, 28)
-        CheckedListBox1.Name = "CheckedListBox1"
-        CheckedListBox1.Size = New Size(230, 345)
-        CheckedListBox1.TabIndex = 11
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Dock = DockStyle.Fill
-        Label13.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label13.Location = New Point(475, 0)
-        Label13.MaximumSize = New Size(230, 25)
-        Label13.MinimumSize = New Size(230, 25)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(230, 25)
-        Label13.TabIndex = 12
-        Label13.Text = "Select Driver Packs for Config"
-        ' 
-        ' TreeView1
-        ' 
-        TreeView1.Dock = DockStyle.Fill
-        TreeView1.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TreeView1.Location = New Point(711, 28)
-        TreeView1.Name = "TreeView1"
-        TreeView1.Size = New Size(142, 345)
-        TreeView1.TabIndex = 13
         ' 
         ' SetupForm
         ' 
@@ -740,10 +798,11 @@ Partial Class SetupForm
         TableLayoutPanel4.ResumeLayout(False)
         TableLayoutPanel4.PerformLayout()
         TabControl1.ResumeLayout(False)
-        TabPage1.ResumeLayout(False)
-        TabPage2.ResumeLayout(False)
+        PageCreateDrives.ResumeLayout(False)
+        pageManageConfigs.ResumeLayout(False)
         TableLayoutPanel5.ResumeLayout(False)
         TableLayoutPanel5.PerformLayout()
+        TableLayoutPanel6.ResumeLayout(False)
         TableLayoutPanel2.ResumeLayout(False)
         TableLayoutPanel2.PerformLayout()
         ResumeLayout(False)
@@ -777,8 +836,8 @@ Partial Class SetupForm
     Friend WithEvents CmbDrives As ComboBox
     Friend WithEvents ChkWinPEStatus As CheckBox
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents PageCreateDrives As TabPage
+    Friend WithEvents pageManageConfigs As TabPage
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
@@ -791,14 +850,18 @@ Partial Class SetupForm
     Friend WithEvents Label10 As Label
     Friend WithEvents btnRefreshConfigs As Button
     Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnLoadConfigs As Button
     Friend WithEvents Label11 As Label
     Friend WithEvents boxWIDTConfigs As ListBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents btnCreateConfig As Button
+    Friend WithEvents btnRemoveConfig As Button
     Friend WithEvents Label13 As Label
     Friend WithEvents boxSelectImage As ListBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents CheckedListBox1 As CheckedListBox
-    Friend WithEvents TreeView1 As TreeView
+    Friend WithEvents boxSelectedDriverPacks As CheckedListBox
+    Friend WithEvents TreeSelConfig As TreeView
+    Friend WithEvents Label14 As Label
+    Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
+    Friend WithEvents btnWriteConfigToDrive As Button
+    Friend WithEvents btnBuildConfigToWim As Button
 End Class

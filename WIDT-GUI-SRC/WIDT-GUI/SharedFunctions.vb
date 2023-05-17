@@ -3,6 +3,15 @@ Imports System.IO
 Imports System.Management
 
 Public Module SharedFunctions
+    ' Boolean to specify if we are running in winpe. If we are then we need to change how things appear.
+    Private StartupInWinPEMode As Boolean = False
+    Public Sub SetStartupMode(ByVal NewMode As Boolean)
+        StartupInWinPEMode = NewMode
+    End Sub
+    Public Function GetStartupMode() As Boolean
+        Return StartupInWinPEMode
+    End Function
+
     ''' <summary>
     '''     Runs a command asynchronously and allows for a live return of the commands output.
     '''     Returns True if an error occured.
@@ -202,7 +211,7 @@ Public Module SharedFunctions
     ''' <param name="drive"></param>
     ''' <param name="WPEPath"></param>
     ''' <param name="UseDuplicationMagic"></param>
-    Public Function SetupWinPEDrive(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal drive As DriveInformation, ByVal WPEPath As String, ByVal UseDuplicationMagic As Boolean) As Boolean
+    Public Function SetupWinPEDrive(ByVal Percent As IProgress(Of Integer), ByVal Info As IProgress(Of String), ByVal DetailedInfo As IProgress(Of String), ByVal drive As DriveInformation, ByVal WPEPath As String, ByVal UseDuplicationMagic As Boolean, ByVal ConfigDir As String, ByVal ItemsToCopy As List(Of ConfigItem)) As Boolean
         If WPEPath = "" And UseDuplicationMagic = False Then Return True
         ' Create the temporary directory to save the diskpart files. It it already exists delete it.
         Info.Report("Creating Temporary Directory")
@@ -237,7 +246,7 @@ Public Module SharedFunctions
 
         If WPEPath <> "" And UseDuplicationMagic = False Then
             Info.Report("Installing WinPE")
-            If RunCmdCommand("call xcopy /herky " + WPEPath + "\media " + LettersToUse(0).ToString.ToUpper + ":\", DetailedInfo) Then Return True
+            If RunCmdCommand("call xcopy /herky """ + WPEPath + "\media"" """ + LettersToUse(0).ToString.ToUpper + ":\""", DetailedInfo) Then Return True
             Percent.Report(90)
         ElseIf WPEPath = "" And UseDuplicationMagic = True Then
             Info.Report("Installing WinPE from Duplication Magic")
@@ -284,7 +293,22 @@ Public Module SharedFunctions
             Percent.Report(100)
         End If
 
-        '''' TODO: copy config files - Will be added when congig is created
+        Info.Report("Copying Config files")
+        File.Create(LettersToUse(1).ToString & ":\WinPEDriveAutoDetect")
+        Directory.CreateDirectory(LettersToUse(1).ToString.ToUpper + ":\Configs")
+        Directory.CreateDirectory(LettersToUse(1).ToString.ToUpper + ":\Drivers")
+        Directory.CreateDirectory(LettersToUse(1).ToString.ToUpper + ":\Images")
+        For Each item In ItemsToCopy
+            If item.GetPath.Substring(item.GetPath.Length - 10).Contains("Configs") Then
+                If RunCmdCommand("call xcopy /herky """ + item.GetPath + """ """ + LettersToUse(1).ToString.ToUpper + ":\Configs\""", DetailedInfo) Then Return True
+            End If
+            If item.GetPath.Substring(item.GetPath.Length - 10).Contains("Drivers") Then
+                If RunCmdCommand("call xcopy /herky """ + item.GetPath + """ """ + LettersToUse(1).ToString.ToUpper + ":\Drivers\""", DetailedInfo) Then Return True
+            End If
+            If item.GetPath.Substring(item.GetPath.Length - 10).Contains("Images") Then
+                If RunCmdCommand("call xcopy /herky """ + item.GetPath + """ """ + LettersToUse(1).ToString.ToUpper + ":\Images\""", DetailedInfo) Then Return True
+            End If
+        Next
 
         Directory.Delete(AppContext.BaseDirectory + "\TemporaryFiles", True)
         Return False
@@ -331,6 +355,28 @@ Public Module SharedFunctions
 
         Public Function GetHasLanguage() As Boolean
             Return HasLanguage
+        End Function
+    End Structure
+
+    Public Structure ConfigItem
+        Private Name As String
+        Private path As String
+
+        Public Sub New(ByVal NName As String, ByVal Npath As String)
+            Name = NName
+            path = Npath
+        End Sub
+
+        Public Function GetName() As String
+            Return Name
+        End Function
+
+        Public Function GetPath() As String
+            Return path
+        End Function
+
+        Public Overrides Function ToString() As String
+            Return Name
         End Function
     End Structure
 End Module

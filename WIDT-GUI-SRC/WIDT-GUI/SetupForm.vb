@@ -1,79 +1,78 @@
 ﻿Imports System.IO
 
 Public Class SetupForm
-    Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Detect any configs and check the required folders exist.
-        DetectConfigs()
+    Dim DetectedConfigPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
 
-        ' Detect any WinPE Instances including saved onces 
+    Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Detect any WinPE Instances including saved onces. If we are in WinPE mode this ONLY checks for Duplication Magic
         DetectWinPEInstances()
+
+        ' If we are running in WinPE Mode behave slightly differently.
+        If GetStartupMode() = True Then
+            Me.Text = "WinPE - Windows Image Deployment Tools"
+            btnNewInstance.Enabled = False
+            btnRemoveInstance.Enabled = False
+            btnLocateExistingInstance.Enabled = False
+            btnCreateISO.Enabled = False
+            TabControl1.SelectedIndex = 1
+
+            For Each drive In System.IO.DriveInfo.GetDrives
+                If drive.RootDirectory.ToString <> "" Then
+                    If File.Exists(drive.RootDirectory.ToString & ":\WinPEDriveAutoDetect") Then
+                        DetectedConfigPath = drive.RootDirectory.ToString & ":\"
+                        Exit For
+                    End If
+                End If
+            Next
+        End If
+        ' Detect any configs and check the required folders exist.
+        DetectConfigs(DetectedConfigPath)
         ' Load the drives into the ui
         RefreshDrives(False, False)
     End Sub
 
-    Private Sub DetectConfigs()
-        Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
+    Private Sub DetectConfigs(ByVal DataPath As String)
+        If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\WinPE-Instances") Then
+            Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\WinPE-Instances")
         End If
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Drivers")
+        If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\WinPE-Drivers") Then
+            Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\WinPE-Drivers")
         End If
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Configs") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Configs")
+        If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\Configs") Then
+            Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\Configs")
         End If
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Drivers") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Drivers")
+        If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\Drivers") Then
+            Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\Drivers")
         End If
-        If Not Directory.Exists(Directory.GetParent(ApplicationPath).ToString + "\Images") Then
-            Directory.CreateDirectory(Directory.GetParent(ApplicationPath).ToString + "\Images")
+        If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\Images") Then
+            Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\Images")
         End If
 
         ' Load the existing configs into the list boxes
         BoxCreateConfigs.Items.Clear()
-        For Each Configs In Directory.GetFiles(Directory.GetParent(ApplicationPath).ToString + "\Configs")
+        For Each Configs In Directory.GetFiles(Directory.GetParent(DataPath).ToString + "\Configs")
             If Configs.Substring(Configs.Length - 4, 4).ToLower = ".xml" Then
-                BoxCreateConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Length - 4), Configs))
-                boxWIDTConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(ApplicationPath).ToString + "\Configs\", "").Length - 4), Configs))
+                BoxCreateConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Length - 4), Configs))
+                boxWIDTConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Length - 4), Configs))
             End If
         Next
 
         ' Load the existing images into the list boxes
         BoxCreateImages.Items.Clear()
-        For Each Images In Directory.GetFiles(Directory.GetParent(ApplicationPath).ToString + "\Images")
+        For Each Images In Directory.GetFiles(Directory.GetParent(DataPath).ToString + "\Images")
             If Images.Substring(Images.Length - 4, 4) = ".wim".ToLower Or Images.Substring(Images.Length - 4, 4) = ".iso".ToLower Then
-                BoxCreateImages.Items.Add(New ConfigItem(Images.Replace(Directory.GetParent(ApplicationPath).ToString + "\Images\", ""), Images))
+                BoxCreateImages.Items.Add(New ConfigItem(Images.Replace(Directory.GetParent(DataPath).ToString + "\Images\", ""), Images))
+                boxSelectImage.Items.Add(New ConfigItem(Images.Replace(Directory.GetParent(DataPath).ToString + "\Images\", ""), Images))
             End If
         Next
 
         ' Load the Driver Packs into the list boxes.
         BoxCreateDrivers.Items.Clear()
-        For Each DriverPack In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\Drivers")
-            BoxCreateDrivers.Items.Add(New ConfigItem(DriverPack.Replace(Directory.GetParent(ApplicationPath).ToString + "\Drivers\", ""), DriverPack))
+        For Each DriverPack In Directory.GetDirectories(Directory.GetParent(DataPath).ToString + "\Drivers")
+            BoxCreateDrivers.Items.Add(New ConfigItem(DriverPack.Replace(Directory.GetParent(DataPath).ToString + "\Drivers\", ""), DriverPack))
+            boxSelectedDriverPacks.Items.Add(New ConfigItem(DriverPack.Replace(Directory.GetParent(DataPath).ToString + "\Drivers\", ""), DriverPack))
         Next
     End Sub
-
-    Private Structure ConfigItem
-        Private Name As String
-        Private path As String
-
-        Public Sub New(ByVal NName As String, ByVal Npath As String)
-            Name = NName
-            path = Npath
-        End Sub
-
-        Public Function GetName() As String
-            Return Name
-        End Function
-
-        Public Function GetPath() As String
-            Return path
-        End Function
-
-        Public Overrides Function ToString() As String
-            Return Name
-        End Function
-    End Structure
 
     Private Sub QuitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
         Me.Close()
@@ -110,13 +109,22 @@ Public Class SetupForm
     Private Sub DetectWinPEInstances()
         BoxWinPEInstances.Items.Clear()
         BoxWinPEInstances.Items.Add(New WinPEItem("---- Detected WinPE Instances ----", "N/A", True))
-        Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
-        For Each Folder In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
-            BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Folder, True))
-        Next
+        If GetStartupMode() = True Then
+            If File.Exists(AppContext.BaseDirectory + "\WinPEMagic.7z") Then
+                BoxWinPEInstances.Items.Add(New WinPEItem("WIDT: Duplication Magic", AppContext.BaseDirectory + "\WinPEMagic.7z", True))
+            Else
+                BoxWinPEInstances.Items.Add(New WinPEItem("Duplication Magic Not Found", "N/A", True))
+            End If
+        Else
+            Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
+            For Each Folder In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
+                BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Folder, True))
+            Next
 
-        ' Add manually defined instances
-        BoxWinPEInstances.Items.Add(New WinPEItem("------ Saved WinPE Instances ------", "N/A", False))
+            ' Add manually defined instances
+            BoxWinPEInstances.Items.Add(New WinPEItem("------ Saved WinPE Instances ------", "N/A", False))
+        End If
+
     End Sub
 
     Private Async Sub btnNewInstance_Click(sender As Object, e As EventArgs) Handles btnNewInstance.Click
@@ -368,9 +376,29 @@ Public Class SetupForm
         Dim progressInfoDetailed = New Progress(Of String)(Sub(Info)
                                                                ProgressDialog.SetTextboxText(Info)
                                                            End Sub)
-        Dim WinPEItem As WinPEItem = BoxWinPEInstances.SelectedItem
+        Dim SelectedWinPEItem As WinPEItem = BoxWinPEInstances.SelectedItem
         Await Task.Run(Sub()
-                           If SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, WinPEItem.GetInstancePath, False) Then Return
+                           Dim ItemsToCopy As New List(Of ConfigItem)
+                           For i = 0 To BoxCreateConfigs.Items.Count - 1
+                               If BoxCreateConfigs.GetItemChecked(i) = True Then
+                                   ItemsToCopy.Add(BoxCreateConfigs.Items(i))
+                               End If
+                           Next
+                           For i = 0 To BoxCreateDrivers.Items.Count - 1
+                               If BoxCreateDrivers.GetItemChecked(i) = True Then
+                                   ItemsToCopy.Add(BoxCreateDrivers.Items(i))
+                               End If
+                           Next
+                           For i = 0 To BoxCreateImages.Items.Count - 1
+                               If BoxCreateImages.GetItemChecked(i) = True Then
+                                   ItemsToCopy.Add(BoxCreateImages.Items(i))
+                               End If
+                           Next
+                           If SelectedWinPEItem.GetInstanceName = "WIDT: Duplication Magic" And SelectedWinPEItem.GetInstancePath = AppContext.BaseDirectory + "\WinPEMagic.7z" And SelectedWinPEItem.GetIsInstanceDetected = True Then
+                               If SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, "", True, DetectedConfigPath, ItemsToCopy) Then Return
+                           Else
+                               If SetupWinPEDrive(progressPercent, progressInfo, progressInfoDetailed, drive, SelectedWinPEItem.GetInstancePath, False, DetectedConfigPath, ItemsToCopy) Then Return
+                           End If
                            MessageBox.Show("USB Drive Created Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                        End Sub)
         ProgressDialog.Close()
@@ -436,6 +464,6 @@ Public Class SetupForm
     End Sub
 
     Private Sub btnRefreshConfigs_Click(sender As Object, e As EventArgs) Handles btnRefreshConfigs.Click
-        DetectConfigs()
+        DetectConfigs(DetectedConfigPath)
     End Sub
 End Class
