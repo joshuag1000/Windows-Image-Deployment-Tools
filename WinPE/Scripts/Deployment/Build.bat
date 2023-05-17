@@ -22,7 +22,7 @@ if %folderCnt% EQU 1 (
     set /p "selection=Image: "
 )
 if not "!folder%selection%!"=="" (
-    call ApplyImage.bat \!folder%selection%!
+    call ApplyImage.bat "\!folder%selection%!"
     call ApplyRecovery.bat
 ) else (
     echo No Wim files were found.
