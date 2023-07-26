@@ -147,9 +147,9 @@ Partial Class SetupForm
         TableLayoutPanel1.Controls.Add(btnRemoveInstance, 0, 8)
         TableLayoutPanel1.Controls.Add(TableLayoutPanel3, 1, 5)
         TableLayoutPanel1.Controls.Add(TableLayoutPanel4, 1, 6)
-        TableLayoutPanel1.Controls.Add(btnCreateUSB, 3, 9)
-        TableLayoutPanel1.Controls.Add(btnCreateISO, 4, 9)
         TableLayoutPanel1.Controls.Add(btnRefreshConfigs, 2, 9)
+        TableLayoutPanel1.Controls.Add(btnCreateISO, 3, 9)
+        TableLayoutPanel1.Controls.Add(btnCreateUSB, 4, 9)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Location = New Point(3, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -455,9 +455,10 @@ Partial Class SetupForm
         ' btnCreateUSB
         ' 
         btnCreateUSB.AutoSize = True
+        btnCreateUSB.Dock = DockStyle.Fill
         btnCreateUSB.Enabled = False
         btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateUSB.Location = New Point(627, 447)
+        btnCreateUSB.Location = New Point(743, 447)
         btnCreateUSB.MaximumSize = New Size(0, 28)
         btnCreateUSB.MinimumSize = New Size(0, 28)
         btnCreateUSB.Name = "btnCreateUSB"
@@ -472,7 +473,7 @@ Partial Class SetupForm
         btnCreateISO.Dock = DockStyle.Fill
         btnCreateISO.Enabled = False
         btnCreateISO.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateISO.Location = New Point(743, 447)
+        btnCreateISO.Location = New Point(627, 447)
         btnCreateISO.MaximumSize = New Size(0, 28)
         btnCreateISO.MinimumSize = New Size(0, 28)
         btnCreateISO.Name = "btnCreateISO"
