@@ -51,9 +51,9 @@ Partial Class SetupForm
         Label8 = New Label()
         Label9 = New Label()
         Label10 = New Label()
-        btnCreateUSB = New Button()
-        btnCreateISO = New Button()
         btnRefreshConfigs = New Button()
+        btnCreateISO = New Button()
+        btnCreateUSB = New Button()
         Label2 = New Label()
         Label1 = New Label()
         FolderBrowserDialog1 = New FolderBrowserDialog()
@@ -452,20 +452,19 @@ Partial Class SetupForm
         Label10.TabIndex = 6
         Label10.Text = "Select Items to Copy to USB: (USB Only)"
         ' 
-        ' btnCreateUSB
+        ' btnRefreshConfigs
         ' 
-        btnCreateUSB.AutoSize = True
-        btnCreateUSB.Dock = DockStyle.Fill
-        btnCreateUSB.Enabled = False
-        btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnCreateUSB.Location = New Point(743, 447)
-        btnCreateUSB.MaximumSize = New Size(0, 28)
-        btnCreateUSB.MinimumSize = New Size(0, 28)
-        btnCreateUSB.Name = "btnCreateUSB"
-        btnCreateUSB.Size = New Size(110, 28)
-        btnCreateUSB.TabIndex = 3
-        btnCreateUSB.Text = "Create USB"
-        btnCreateUSB.UseVisualStyleBackColor = True
+        btnRefreshConfigs.AutoSize = True
+        btnRefreshConfigs.Dock = DockStyle.Fill
+        btnRefreshConfigs.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnRefreshConfigs.Location = New Point(496, 447)
+        btnRefreshConfigs.MaximumSize = New Size(0, 28)
+        btnRefreshConfigs.MinimumSize = New Size(0, 28)
+        btnRefreshConfigs.Name = "btnRefreshConfigs"
+        btnRefreshConfigs.Size = New Size(125, 28)
+        btnRefreshConfigs.TabIndex = 11
+        btnRefreshConfigs.Text = "Refresh Configs"
+        btnRefreshConfigs.UseVisualStyleBackColor = True
         ' 
         ' btnCreateISO
         ' 
@@ -482,19 +481,20 @@ Partial Class SetupForm
         btnCreateISO.Text = "Create ISO"
         btnCreateISO.UseVisualStyleBackColor = True
         ' 
-        ' btnRefreshConfigs
+        ' btnCreateUSB
         ' 
-        btnRefreshConfigs.AutoSize = True
-        btnRefreshConfigs.Dock = DockStyle.Fill
-        btnRefreshConfigs.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnRefreshConfigs.Location = New Point(496, 447)
-        btnRefreshConfigs.MaximumSize = New Size(0, 28)
-        btnRefreshConfigs.MinimumSize = New Size(0, 28)
-        btnRefreshConfigs.Name = "btnRefreshConfigs"
-        btnRefreshConfigs.Size = New Size(125, 28)
-        btnRefreshConfigs.TabIndex = 11
-        btnRefreshConfigs.Text = "Refresh Configs"
-        btnRefreshConfigs.UseVisualStyleBackColor = True
+        btnCreateUSB.AutoSize = True
+        btnCreateUSB.Dock = DockStyle.Fill
+        btnCreateUSB.Enabled = False
+        btnCreateUSB.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        btnCreateUSB.Location = New Point(743, 447)
+        btnCreateUSB.MaximumSize = New Size(0, 28)
+        btnCreateUSB.MinimumSize = New Size(0, 28)
+        btnCreateUSB.Name = "btnCreateUSB"
+        btnCreateUSB.Size = New Size(110, 28)
+        btnCreateUSB.TabIndex = 3
+        btnCreateUSB.Text = "Create USB"
+        btnCreateUSB.UseVisualStyleBackColor = True
         ' 
         ' Label2
         ' 
