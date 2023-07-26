@@ -4,9 +4,6 @@ Public Class SetupForm
     Dim DetectedConfigPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
 
     Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Detect any WinPE Instances including saved onces. If we are in WinPE mode this ONLY checks for Duplication Magic
-        DetectWinPEInstances()
-
         ' If we are running in WinPE Mode behave slightly differently.
         If GetStartupMode() = True Then
             Me.Text = "WinPE - Windows Image Deployment Tools"
@@ -25,6 +22,8 @@ Public Class SetupForm
                 End If
             Next
         End If
+        ' Detect any WinPE Instances including saved onces. If we are in WinPE mode this ONLY checks for Duplication Magic
+        DetectWinPEInstances(DetectedConfigPath)
         ' Detect any configs and check the required folders exist.
         DetectConfigs(DetectedConfigPath)
         ' Load the drives into the ui
@@ -32,12 +31,6 @@ Public Class SetupForm
     End Sub
 
     Private Sub DetectConfigs(ByVal DataPath As String)
-        If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\WinPE-Instances") Then
-            Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\WinPE-Instances")
-        End If
-        If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\WinPE-Drivers") Then
-            Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\WinPE-Drivers")
-        End If
         If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\Configs") Then
             Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\Configs")
         End If
@@ -106,7 +99,7 @@ Public Class SetupForm
         End Function
     End Structure
 
-    Private Sub DetectWinPEInstances()
+    Private Sub DetectWinPEInstances(ByVal DataPath As String)
         BoxWinPEInstances.Items.Clear()
         BoxWinPEInstances.Items.Add(New WinPEItem("---- Detected WinPE Instances ----", "N/A", True))
         If GetStartupMode() = True Then
@@ -116,6 +109,12 @@ Public Class SetupForm
                 BoxWinPEInstances.Items.Add(New WinPEItem("Duplication Magic Not Found", "N/A", True))
             End If
         Else
+            If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\WinPE-Instances") Then
+                Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\WinPE-Instances")
+            End If
+            If Not Directory.Exists(Directory.GetParent(DataPath).ToString + "\WinPE-Drivers") Then
+                Directory.CreateDirectory(Directory.GetParent(DataPath).ToString + "\WinPE-Drivers")
+            End If
             Dim ApplicationPath As String = If(AppContext.BaseDirectory.Chars(AppContext.BaseDirectory.Length - 1) = "\", AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.Length - 2), AppContext.BaseDirectory)
             For Each Folder In Directory.GetDirectories(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances")
                 BoxWinPEInstances.Items.Add(New WinPEItem(Folder.ToString.Replace(Directory.GetParent(ApplicationPath).ToString + "\WinPE-Instances\", ""), Folder, True))
@@ -172,7 +171,7 @@ Public Class SetupForm
             End If
 
             ' Update UI with the newly setup tools
-            DetectWinPEInstances()
+            DetectWinPEInstances(DetectedConfigPath)
         End If
     End Sub
 
