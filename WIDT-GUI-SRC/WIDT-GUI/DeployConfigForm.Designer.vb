@@ -38,9 +38,9 @@ Partial Class DeployConfigForm
         OpenConfigurationWindowToolStripMenuItem = New ToolStripMenuItem()
         ShowConsoleToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
+        AboutToolStripMenuItem = New ToolStripMenuItem()
         QuitWIDTToolStripMenuItem = New ToolStripMenuItem()
         ShutdownWinPEToolStripMenuItem = New ToolStripMenuItem()
-        AboutToolStripMenuItem = New ToolStripMenuItem()
         TableLayoutPanel2.SuspendLayout()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
@@ -201,6 +201,12 @@ Partial Class DeployConfigForm
         ToolStripSeparator1.Name = "ToolStripSeparator1"
         ToolStripSeparator1.Size = New Size(224, 6)
         ' 
+        ' AboutToolStripMenuItem
+        ' 
+        AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        AboutToolStripMenuItem.Size = New Size(227, 22)
+        AboutToolStripMenuItem.Text = "About"
+        ' 
         ' QuitWIDTToolStripMenuItem
         ' 
         QuitWIDTToolStripMenuItem.Name = "QuitWIDTToolStripMenuItem"
@@ -212,12 +218,6 @@ Partial Class DeployConfigForm
         ShutdownWinPEToolStripMenuItem.Name = "ShutdownWinPEToolStripMenuItem"
         ShutdownWinPEToolStripMenuItem.Size = New Size(227, 22)
         ShutdownWinPEToolStripMenuItem.Text = "Shutdown WinPE"
-        ' 
-        ' AboutToolStripMenuItem
-        ' 
-        AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(227, 22)
-        AboutToolStripMenuItem.Text = "About"
         ' 
         ' DeployConfigForm
         ' 
