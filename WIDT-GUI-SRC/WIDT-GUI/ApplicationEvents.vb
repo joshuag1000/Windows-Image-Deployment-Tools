@@ -27,16 +27,20 @@ Namespace My
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             If My.Settings.StartupApp.ToLower = "winpe" Then
                 SetStartupMode(True)
+                Application.MainForm = Global.WIDT_GUI.DeployConfigForm
             Else
                 SetStartupMode(False)
+                Application.MainForm = Global.WIDT_GUI.SetupForm
             End If
             If Application.CommandLineArgs.Count > 1 Then
                 If Application.CommandLineArgs.Item(0) = "/S" Then
                     If Application.CommandLineArgs.Item(1).ToLower = "winpe" Then
                         SetStartupMode(True)
+                        Application.MainForm = Global.WIDT_GUI.DeployConfigForm
                     End If
                     If Application.CommandLineArgs.Item(1).ToLower = "setup" Then
                         SetStartupMode(False)
+                        Application.MainForm = Global.WIDT_GUI.SetupForm
                     End If
                 End If
                 If Application.CommandLineArgs.Item(0) = "/SetStartupApp" Then

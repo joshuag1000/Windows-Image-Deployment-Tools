@@ -281,8 +281,8 @@ Partial Class ConfigurePEDialog
         TableLayoutPanel2.PerformLayout()
         ResumeLayout(False)
     End Sub
-    Friend WithEvents OK_Button As System.Windows.Forms.Button
-    Friend WithEvents Cancel_Button As System.Windows.Forms.Button
+    Friend WithEvents OK_Button As Button
+    Friend WithEvents Cancel_Button As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents txtWinPEPath As TextBox

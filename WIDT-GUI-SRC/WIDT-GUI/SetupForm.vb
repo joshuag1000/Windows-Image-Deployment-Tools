@@ -12,6 +12,8 @@ Public Class SetupForm
             btnLocateExistingInstance.Enabled = False
             btnCreateISO.Enabled = False
             TabControl1.SelectedIndex = 1
+            InstallConfigurationsToolStripMenuItem.Enabled = False
+            InstallConfigurationsToolStripMenuItem.Visible = False
 
             For Each drive In System.IO.DriveInfo.GetDrives
                 If drive.RootDirectory.ToString <> "" Then
@@ -42,10 +44,10 @@ Public Class SetupForm
         End If
 
         ' Load the existing configs into the list boxes
-        BoxCreateConfigs.Items.Clear()
+        BoxSelectConfigs.Items.Clear()
         For Each Configs In Directory.GetFiles(Directory.GetParent(DataPath).ToString + "\Configs")
             If Configs.Substring(Configs.Length - 4, 4).ToLower = ".xml" Then
-                BoxCreateConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Length - 4), Configs))
+                BoxSelectConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Length - 4), Configs))
                 boxWIDTConfigs.Items.Add(New ConfigItem(Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Substring(0, Configs.Replace(Directory.GetParent(DataPath).ToString + "\Configs\", "").Length - 4), Configs))
             End If
         Next
@@ -378,9 +380,9 @@ Public Class SetupForm
         Dim SelectedWinPEItem As WinPEItem = BoxWinPEInstances.SelectedItem
         Await Task.Run(Sub()
                            Dim ItemsToCopy As New List(Of ConfigItem)
-                           For i = 0 To BoxCreateConfigs.Items.Count - 1
-                               If BoxCreateConfigs.GetItemChecked(i) = True Then
-                                   ItemsToCopy.Add(BoxCreateConfigs.Items(i))
+                           For i = 0 To BoxSelectConfigs.Items.Count - 1
+                               If BoxSelectConfigs.GetItemChecked(i) = True Then
+                                   ItemsToCopy.Add(BoxSelectConfigs.Items(i))
                                End If
                            Next
                            For i = 0 To BoxCreateDrivers.Items.Count - 1
@@ -464,5 +466,17 @@ Public Class SetupForm
 
     Private Sub btnRefreshConfigs_Click(sender As Object, e As EventArgs) Handles btnRefreshConfigs.Click
         DetectConfigs(DetectedConfigPath)
+    End Sub
+
+    Private Sub btnCreateConfig_Click(sender As Object, e As EventArgs) Handles btnCreateConfig.Click
+
+    End Sub
+
+    Private Sub btnBuildConfigToWim_Click(sender As Object, e As EventArgs) Handles btnBuildConfigToWim.Click
+
+    End Sub
+
+    Private Sub InstallConfigurationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstallConfigurationsToolStripMenuItem.Click
+        DeployConfigForm.ShowDialog()
     End Sub
 End Class

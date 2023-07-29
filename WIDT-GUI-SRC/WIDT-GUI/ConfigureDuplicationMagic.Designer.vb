@@ -22,7 +22,7 @@ Partial Class ConfigureDuplicationMagic
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New ComponentModel.Container()
+        Me.components = New ComponentModel.Container()
         Label6 = New Label()
         Label1 = New Label()
         CmbDrives = New ComboBox()
@@ -31,7 +31,7 @@ Partial Class ConfigureDuplicationMagic
         ChkShowUnknownDrives = New CheckBox()
         OK_Button = New Button()
         Cancel_Button = New Button()
-        ToolTip1 = New ToolTip(components)
+        ToolTip1 = New ToolTip(Me.components)
         FolderBrowserDialog1 = New FolderBrowserDialog()
         TableLayoutPanel2 = New TableLayoutPanel()
         TableLayoutPanel2.SuspendLayout()

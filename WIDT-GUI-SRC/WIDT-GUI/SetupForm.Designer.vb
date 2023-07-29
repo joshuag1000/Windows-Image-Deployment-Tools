@@ -28,6 +28,7 @@ Partial Class SetupForm
         AboutWIDTGUIToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         QuitToolStripMenuItem = New ToolStripMenuItem()
+        InstallConfigurationsToolStripMenuItem = New ToolStripMenuItem()
         TableLayoutPanel1 = New TableLayoutPanel()
         CmbDrives = New ComboBox()
         btnRefreshDrives = New Button()
@@ -44,7 +45,7 @@ Partial Class SetupForm
         ChkShowInternal = New CheckBox()
         ChkShowUnknownDrives = New CheckBox()
         TableLayoutPanel4 = New TableLayoutPanel()
-        BoxCreateConfigs = New CheckedListBox()
+        BoxSelectConfigs = New CheckedListBox()
         BoxCreateImages = New CheckedListBox()
         BoxCreateDrivers = New CheckedListBox()
         Label7 = New Label()
@@ -75,7 +76,6 @@ Partial Class SetupForm
         TreeSelConfig = New TreeView()
         Label14 = New Label()
         TableLayoutPanel6 = New TableLayoutPanel()
-        btnWriteConfigToDrive = New Button()
         btnBuildConfigToWim = New Button()
         TableLayoutPanel2 = New TableLayoutPanel()
         MenuStrip1.SuspendLayout()
@@ -92,7 +92,7 @@ Partial Class SetupForm
         ' 
         ' MenuStrip1
         ' 
-        MenuStrip1.Items.AddRange(New ToolStripItem() {FileToolStripMenuItem})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {FileToolStripMenuItem, InstallConfigurationsToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.MaximumSize = New Size(0, 24)
         MenuStrip1.MinimumSize = New Size(0, 24)
@@ -125,6 +125,12 @@ Partial Class SetupForm
         QuitToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
         QuitToolStripMenuItem.Size = New Size(161, 22)
         QuitToolStripMenuItem.Text = "Quit"
+        ' 
+        ' InstallConfigurationsToolStripMenuItem
+        ' 
+        InstallConfigurationsToolStripMenuItem.Name = "InstallConfigurationsToolStripMenuItem"
+        InstallConfigurationsToolStripMenuItem.Size = New Size(132, 20)
+        InstallConfigurationsToolStripMenuItem.Text = "Install Configurations"
         ' 
         ' TableLayoutPanel1
         ' 
@@ -359,7 +365,7 @@ Partial Class SetupForm
         TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.33333F))
         TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
         TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
-        TableLayoutPanel4.Controls.Add(BoxCreateConfigs, 0, 2)
+        TableLayoutPanel4.Controls.Add(BoxSelectConfigs, 0, 2)
         TableLayoutPanel4.Controls.Add(BoxCreateImages, 1, 2)
         TableLayoutPanel4.Controls.Add(BoxCreateDrivers, 2, 2)
         TableLayoutPanel4.Controls.Add(Label7, 0, 1)
@@ -377,16 +383,16 @@ Partial Class SetupForm
         TableLayoutPanel4.Size = New Size(614, 280)
         TableLayoutPanel4.TabIndex = 10
         ' 
-        ' BoxCreateConfigs
+        ' BoxSelectConfigs
         ' 
-        BoxCreateConfigs.CheckOnClick = True
-        BoxCreateConfigs.Dock = DockStyle.Fill
-        BoxCreateConfigs.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        BoxCreateConfigs.FormattingEnabled = True
-        BoxCreateConfigs.Location = New Point(3, 43)
-        BoxCreateConfigs.Name = "BoxCreateConfigs"
-        BoxCreateConfigs.Size = New Size(198, 234)
-        BoxCreateConfigs.TabIndex = 0
+        BoxSelectConfigs.CheckOnClick = True
+        BoxSelectConfigs.Dock = DockStyle.Fill
+        BoxSelectConfigs.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        BoxSelectConfigs.FormattingEnabled = True
+        BoxSelectConfigs.Location = New Point(3, 43)
+        BoxSelectConfigs.Name = "BoxSelectConfigs"
+        BoxSelectConfigs.Size = New Size(198, 234)
+        BoxSelectConfigs.TabIndex = 0
         ' 
         ' BoxCreateImages
         ' 
@@ -727,8 +733,7 @@ Partial Class SetupForm
         TableLayoutPanel5.SetColumnSpan(TableLayoutPanel6, 3)
         TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 210F))
-        TableLayoutPanel6.Controls.Add(btnWriteConfigToDrive, 1, 2)
-        TableLayoutPanel6.Controls.Add(btnBuildConfigToWim, 1, 1)
+        TableLayoutPanel6.Controls.Add(btnBuildConfigToWim, 1, 2)
         TableLayoutPanel6.Dock = DockStyle.Fill
         TableLayoutPanel6.Location = New Point(239, 375)
         TableLayoutPanel6.Name = "TableLayoutPanel6"
@@ -740,24 +745,13 @@ Partial Class SetupForm
         TableLayoutPanel6.Size = New Size(614, 100)
         TableLayoutPanel6.TabIndex = 15
         ' 
-        ' btnWriteConfigToDrive
-        ' 
-        btnWriteConfigToDrive.Dock = DockStyle.Fill
-        btnWriteConfigToDrive.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnWriteConfigToDrive.Location = New Point(407, 69)
-        btnWriteConfigToDrive.Name = "btnWriteConfigToDrive"
-        btnWriteConfigToDrive.Size = New Size(204, 28)
-        btnWriteConfigToDrive.TabIndex = 1
-        btnWriteConfigToDrive.Text = "Write Config to Drive"
-        btnWriteConfigToDrive.UseVisualStyleBackColor = True
-        ' 
         ' btnBuildConfigToWim
         ' 
         btnBuildConfigToWim.Dock = DockStyle.Fill
         btnBuildConfigToWim.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        btnBuildConfigToWim.Location = New Point(407, 36)
+        btnBuildConfigToWim.Location = New Point(407, 69)
         btnBuildConfigToWim.Name = "btnBuildConfigToWim"
-        btnBuildConfigToWim.Size = New Size(204, 27)
+        btnBuildConfigToWim.Size = New Size(204, 28)
         btnBuildConfigToWim.TabIndex = 2
         btnBuildConfigToWim.Text = "Build Config To Wim"
         btnBuildConfigToWim.UseVisualStyleBackColor = True
@@ -842,7 +836,7 @@ Partial Class SetupForm
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
-    Friend WithEvents BoxCreateConfigs As CheckedListBox
+    Friend WithEvents BoxSelectConfigs As CheckedListBox
     Friend WithEvents BoxCreateImages As CheckedListBox
     Friend WithEvents BoxCreateDrivers As CheckedListBox
     Friend WithEvents Label7 As Label
@@ -863,6 +857,6 @@ Partial Class SetupForm
     Friend WithEvents TreeSelConfig As TreeView
     Friend WithEvents Label14 As Label
     Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
-    Friend WithEvents btnWriteConfigToDrive As Button
     Friend WithEvents btnBuildConfigToWim As Button
+    Friend WithEvents InstallConfigurationsToolStripMenuItem As ToolStripMenuItem
 End Class
