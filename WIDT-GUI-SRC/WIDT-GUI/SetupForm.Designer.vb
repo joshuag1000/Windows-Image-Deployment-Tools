@@ -73,8 +73,6 @@ Partial Class SetupForm
         boxSelectImage = New ListBox()
         Label12 = New Label()
         boxSelectedDriverPacks = New CheckedListBox()
-        TreeSelConfig = New TreeView()
-        Label14 = New Label()
         TableLayoutPanel6 = New TableLayoutPanel()
         btnBuildConfigToWim = New Button()
         TableLayoutPanel2 = New TableLayoutPanel()
@@ -566,11 +564,10 @@ Partial Class SetupForm
         ' 
         ' TableLayoutPanel5
         ' 
-        TableLayoutPanel5.ColumnCount = 4
+        TableLayoutPanel5.ColumnCount = 3
         TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle())
-        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle())
-        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle())
-        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel5.Controls.Add(Label13, 2, 0)
         TableLayoutPanel5.Controls.Add(btnLoadConfigs, 0, 4)
         TableLayoutPanel5.Controls.Add(Label11, 0, 0)
@@ -580,8 +577,6 @@ Partial Class SetupForm
         TableLayoutPanel5.Controls.Add(boxSelectImage, 1, 1)
         TableLayoutPanel5.Controls.Add(Label12, 1, 0)
         TableLayoutPanel5.Controls.Add(boxSelectedDriverPacks, 2, 1)
-        TableLayoutPanel5.Controls.Add(TreeSelConfig, 3, 1)
-        TableLayoutPanel5.Controls.Add(Label14, 3, 0)
         TableLayoutPanel5.Controls.Add(TableLayoutPanel6, 1, 2)
         TableLayoutPanel5.Dock = DockStyle.Fill
         TableLayoutPanel5.Location = New Point(3, 3)
@@ -600,7 +595,7 @@ Partial Class SetupForm
         Label13.AutoSize = True
         Label13.Dock = DockStyle.Fill
         Label13.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label13.Location = New Point(475, 0)
+        Label13.Location = New Point(549, 0)
         Label13.MaximumSize = New Size(230, 25)
         Label13.MinimumSize = New Size(230, 25)
         Label13.Name = "Label13"
@@ -683,7 +678,7 @@ Partial Class SetupForm
         boxSelectImage.ItemHeight = 18
         boxSelectImage.Location = New Point(239, 28)
         boxSelectImage.Name = "boxSelectImage"
-        boxSelectImage.Size = New Size(230, 341)
+        boxSelectImage.Size = New Size(304, 341)
         boxSelectImage.TabIndex = 9
         ' 
         ' Label12
@@ -703,34 +698,15 @@ Partial Class SetupForm
         boxSelectedDriverPacks.Dock = DockStyle.Fill
         boxSelectedDriverPacks.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         boxSelectedDriverPacks.FormattingEnabled = True
-        boxSelectedDriverPacks.Location = New Point(475, 28)
+        boxSelectedDriverPacks.Location = New Point(549, 28)
         boxSelectedDriverPacks.Name = "boxSelectedDriverPacks"
-        boxSelectedDriverPacks.Size = New Size(230, 341)
+        boxSelectedDriverPacks.Size = New Size(304, 341)
         boxSelectedDriverPacks.TabIndex = 11
-        ' 
-        ' TreeSelConfig
-        ' 
-        TreeSelConfig.Dock = DockStyle.Fill
-        TreeSelConfig.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TreeSelConfig.Location = New Point(711, 28)
-        TreeSelConfig.Name = "TreeSelConfig"
-        TreeSelConfig.Size = New Size(142, 341)
-        TreeSelConfig.TabIndex = 13
-        ' 
-        ' Label14
-        ' 
-        Label14.Dock = DockStyle.Fill
-        Label14.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label14.Location = New Point(711, 0)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(142, 25)
-        Label14.TabIndex = 14
-        Label14.Text = "Selected Config"
         ' 
         ' TableLayoutPanel6
         ' 
         TableLayoutPanel6.ColumnCount = 2
-        TableLayoutPanel5.SetColumnSpan(TableLayoutPanel6, 3)
+        TableLayoutPanel5.SetColumnSpan(TableLayoutPanel6, 2)
         TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 210F))
         TableLayoutPanel6.Controls.Add(btnBuildConfigToWim, 1, 2)
@@ -854,8 +830,6 @@ Partial Class SetupForm
     Friend WithEvents boxSelectImage As ListBox
     Friend WithEvents Label12 As Label
     Friend WithEvents boxSelectedDriverPacks As CheckedListBox
-    Friend WithEvents TreeSelConfig As TreeView
-    Friend WithEvents Label14 As Label
     Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
     Friend WithEvents btnBuildConfigToWim As Button
     Friend WithEvents InstallConfigurationsToolStripMenuItem As ToolStripMenuItem
