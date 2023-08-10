@@ -1,4 +1,5 @@
 @echo off
+setlocal ENABLEEXTENSIONS
 setlocal enableDelayedExpansion
 ::build "array" of Wim Files
 set folderCnt=0
@@ -21,13 +22,26 @@ if %folderCnt% EQU 1 (
     set selection=
     set /p "selection=Image: "
 )
-if not "!folder%selection%!"=="" (
-    call ApplyImage.bat "\!folder%selection%!"
-    call ApplyRecovery.bat
-) else (
+if "!folder%selection%!"=="" (
     echo No Wim files were found.
     goto :CaptureQuestion
 )
+
+(echo Rescan
+echo List Disk
+echo Exit
+)  | diskpart
+
+set /P diskNumber=Please select a drive to install the image to:
+Set "OldString1=select disk 0"  
+Set "NewString1=select disk %diskNumber%"  
+
+@ECHO OFF &SETLOCAL
+cd /D %~dp0
+for %%x in (.\DismTemplates\*.txt) do call:process "%%~x"
+
+call ApplyImage.bat "\!folder%selection%!"
+call ApplyRecovery.bat
 goto :EOF
 
 :CaptureQuestion
@@ -40,3 +54,20 @@ goto :CaptureQuestion
 
 :CaptureImage
 call CaptureImage.bat
+
+goto :EOF
+
+:: https://superuser.com/a/683079
+:process 
+set "outFile=%~n1%~x1"  
+(for /f "skip=2 delims=" %%a in ('find /n /v "" "%~1"') do (  
+    set "ln=%%a"  
+    Setlocal enableDelayedExpansion  
+    set "ln=!ln:*]=!"  
+    if defined ln (
+        set "ln=!ln:%OldString1%=%NewString1%!"  
+    )
+    echo(!ln!  
+    endlocal  
+))>"%outFile%"
+exit /b

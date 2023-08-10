@@ -38,5 +38,9 @@ dism /capture-image /imagefile:"%SaveDrive%:\%MyFileName%.wim" /capturedir:%Chos
 rmdir %SaveDrive%:\ScratchDir
 echo Image has been captured please check the console for errors before exiting.
 
+set /P c=Would you like to capture again? [Y/N]? 
+if /I "%c%" EQU "Y" goto :Start
+if /I "%c%" EQU "y" goto :Start
+
 :ENDOFFILE
 pause
